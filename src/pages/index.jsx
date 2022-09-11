@@ -272,7 +272,7 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          John Walley - Software engineer, founder, and amateur astronaut
+          John Walley - Software engineer, founder, and amateur coxswain
         </title>
         <meta
           name="description"
