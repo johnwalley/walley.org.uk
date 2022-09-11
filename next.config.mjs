@@ -17,10 +17,33 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source:
-          '/blog/2016/5/11/algorithm-visualization-part-2',
-        destination:
-          '/articles/algorithm-visualization-part-2',
+        source: '/blog/2017/1/15/prioritization',
+        destination: '',
+        permanent: true,
+      },
+      {
+        source: '/blog/2017/1/8/memoization',
+        destination: '',
+        permanent: true,
+      },
+      {
+        source: '/blog/2016/11/14/whats-the-biggest-number-you-can-think-of',
+        destination: '',
+        permanent: true,
+      },
+      {
+        source: '/blog/2016/11/8/react-and-d3',
+        destination: '',
+        permanent: true,
+      },
+      {
+        source: '/blog/2016/9/4/rollup-and-d3-plugins',
+        destination: '',
+        permanent: true,
+      },
+      {
+        source: '/blog/2016/7/24/cambridge-bumps-launch-post-mortem',
+        destination: '',
         permanent: true,
       },
       {
