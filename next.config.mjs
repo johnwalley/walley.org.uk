@@ -18,32 +18,32 @@ const nextConfig = {
     return [
       {
         source: '/blog/2017/1/15/prioritization',
-        destination: '',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/blog/2017/1/8/memoization',
-        destination: '',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/blog/2016/11/14/whats-the-biggest-number-you-can-think-of',
-        destination: '',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/blog/2016/11/8/react-and-d3',
-        destination: '',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/blog/2016/9/4/rollup-and-d3-plugins',
-        destination: '',
+        destination: '/',
         permanent: true,
       },
       {
         source: '/blog/2016/7/24/cambridge-bumps-launch-post-mortem',
-        destination: '',
+        destination: '/',
         permanent: true,
       },
       {
