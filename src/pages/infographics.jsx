@@ -49,17 +49,43 @@ export default function Infographics() {
           </InfographicsSection>
           <InfographicsSection title="Posters">
             <Infographic
-              href="https://static1.squarespace.com/static/590dd8261b10e3154459c549/t/5fb2a8899c914c7cb4d427a1/1605544080144/The+ten+oldest+universities+in+the+UK.pdf"
+              href="/posters/The ten oldest universities in the UK.pdf"
               title="The 10 oldest universities in the UK"
               description="A quick overview of the oldest universities in the United Kingdom."
               cta="View poster"
             />
             <Infographic
-              href="https://static1.squarespace.com/static/590dd8261b10e3154459c549/t/5f2ea03acd0ccc32567de5d0/1596891197001/Pedestrian+Crossings.pdf"
+              href="/posters/Pedestrian Crossings.pdf"
               title="Pedestrian crossings in the United Kingdom"
               description="The use of amusing animal names began in 1951
               with the introduction of 'Zebra' Crossings."
               cta="View poster"
+            />
+            <Infographic
+              href="/posters/How long is a rowing boat.pdf"
+              title="How long is a rowing boat?"
+              description="Modern rowing boats are made from composite materials such as carbon fibre and kevlar. They are extremely narrow and long to maximise speed."
+              cta="View poster"
+            />
+            <Infographic
+              href="/posters/Britain's Bike Theft Capital.pdf"
+              title="Britain’s Bike Theft Capital?"
+              description="Oxford and Cambridge are the UK’s top cycling cities. We’ve crunched through 6 million reported crimes over the past 12 months to find out how they compare."
+              cta="View poster"
+            />
+            <Infographic
+              href="/posters/World Marathon Courses.pdf"
+              title="World marathon courses"
+              description="Popular marathon courses visualised."
+              cta="View poster"
+            />
+          </InfographicsSection>
+          <InfographicsSection title="Websites">
+            <Infographic
+              href="https://www.tynebridges.com/"
+              title="Tyne Bridges"
+              description="Interactive infographic about the bridges across the Tyne between Newcastle and Gateshead."
+              cta="Visit website"
             />
           </InfographicsSection>
         </div>

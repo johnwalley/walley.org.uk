@@ -18,7 +18,6 @@ import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import logoMathworks from '@/images/logos/mathworks.png'
-import logoFacebook from '@/images/logos/facebook.svg'
 import logoQinetiq from '@/images/logos/qinetiq.jpeg'
 import logoRedgate from '@/images/logos/redgate.svg'
 import logoFidelity from '@/images/logos/fidelity.png'
@@ -283,13 +282,16 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software engineer, founder, and amateur astronaut.
+            Software engineer, founder, and amateur coxswain.
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <p className="prose mt-6 text-base dark:prose-invert">
             I’m John, a software engineer and entrepreneur based in Cambridge.
-            I’m the founder and CEO of Mulbery House Software, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
+            I’m the founder and CEO of{' '}
+            <a href="https://www.mulberryhousesoftware.com">
+              Mulberry House Software
+            </a>
+            , where we develop products and services to help turn data into
+            interactive visualisations, infographics and reports.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
