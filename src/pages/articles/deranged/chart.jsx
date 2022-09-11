@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { useEffect } from 'react'
 
-export const Chart = () => {
+const Chart = () => {
   useEffect(() => {
     if (!document.querySelector('div#example>svg')) {
       var D = function (n) {
@@ -94,3 +94,5 @@ export const Chart = () => {
 
   return <div id="example"></div>
 }
+
+export default Chart

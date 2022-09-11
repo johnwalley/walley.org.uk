@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { useEffect } from 'react'
 
-export const Viz = () => {
+const Viz = () => {
   useEffect(() => {
     var count = 0,
       overshoot = 300
@@ -213,3 +213,5 @@ export const Viz = () => {
 
   return <p id="longestString" className="shuffle animation"></p>
 }
+
+export default Viz
