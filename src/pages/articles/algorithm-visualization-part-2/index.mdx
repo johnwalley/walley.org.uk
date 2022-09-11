@@ -1,0 +1,62 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Viz from './viz'
+
+export const meta = {
+  author: 'John Walley',
+  date: '2016-05-11',
+  title: 'Algorithm visualization: Part 2',
+  description:
+    'The second problem in our series of algorithm katas is Kingdom And Trees from Top Coder.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+The second problem in our series of algorithm katas is [Kingdom And Trees](https://community.topcoder.com/stat?c=problem_statement&pm=11967) from [Top Coder](https://www.topcoder.com/).
+
+Essentially we have an array of positive integers which we want to transform into an array of strictly increasing positive integers. The only operation at our disposal is to change the value of an element by an amount in the range [-X, X].
+
+It's difficult to come up with a smart algorithm to solve this in one go. However it's relatively straightforward to test whether a particular value of X permits a solution. We can then simply search through potential values of X until we find the lowest value which permits a solution. In this case we use a binary search.
+
+To test a particular value of X we reduce the value of each element in turn by as much as possible. The first element goes to max(1, a[0] - X). The second must be at least as large as the first, and so on. This is either possible for all elements or it will fail at some point. It fails if adding X cannot produce a value larger than the previous element.
+
+<Viz />
+
+And the code.
+
+```js
+function kingdomAndTrees(a, maxX) {
+  var lo = 1
+  var hi = maxX
+  var mid
+
+  while (lo < hi) {
+    mid = Math.floor((hi + lo) / 2)
+    var success = hasSolution(a, mid)
+
+    if (success) {
+      hi = mid
+    } else {
+      lo = mid + 1
+    }
+  }
+
+  return lo
+}
+
+function hasSolution(a, j) {
+  var lastHeight = 0
+  var i
+
+  for (i = 0; i < a.length; i++) {
+    if (a[i] + j > lastHeight) {
+      lastHeight = Math.max(lastHeight + 1, a[i] - j)
+    } else {
+      return false
+    }
+  }
+
+  if (i === a.length) {
+    return true
+  }
+}
+```

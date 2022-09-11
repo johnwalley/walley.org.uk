@@ -1,0 +1,62 @@
+.shuffle .line {
+  stroke: #aaa;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  transition: all 500ms linear;
+}
+
+.shuffle .line--active {
+  stroke: #f00;
+  stroke-width: 3px;
+}
+
+.shuffle .line--inactive {
+  stroke: #000;
+}
+
+.shuffle .text--active {
+  fill: #f00;
+}
+
+.shuffle .text--inactive {
+  fill: #000;
+}
+
+.range {
+  fill: orangered;
+}
+
+.range-background {
+  fill: orange;
+}
+
+.bar {
+  fill: lightslategray;
+}
+
+.bar-active {
+  fill: steelblue;
+}
+
+.bar-blocked {
+  fill: darkred;
+}
+
+.bar-success {
+  fill: darkolivegreen;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}

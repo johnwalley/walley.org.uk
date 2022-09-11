@@ -17,10 +17,20 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/blog/2016/4/27/youre-making-it-hard-to-like-you-github-desktop',
-        destination: '/articles/youre-making-it-hard-to-like-you-github-desktop',
+        source:
+          '/blog/2016/5/11/algorithm-visualization-part-2',
+        destination:
+          '/articles/algorithm-visualization-part-2',
         permanent: true,
-      },      {
+      },
+      {
+        source:
+          '/blog/2016/4/27/youre-making-it-hard-to-like-you-github-desktop',
+        destination:
+          '/articles/youre-making-it-hard-to-like-you-github-desktop',
+        permanent: true,
+      },
+      {
         source: '/blog/2016/4/18/algorithm-visualization',
         destination: '/articles/algorithm-visualization',
         permanent: true,

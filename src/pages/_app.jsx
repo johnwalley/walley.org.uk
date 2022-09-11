@@ -7,6 +7,7 @@ import '@/styles/tailwind.css'
 import 'focus-visible'
 import 'katex/dist/katex.min.css'
 import './articles/algorithm-visualization/style.css'
+import './articles/algorithm-visualization-part-2/style.css'
 
 function usePrevious(value) {
   let ref = useRef()
