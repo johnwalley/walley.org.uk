@@ -1,0 +1,69 @@
+.animation {
+  position: relative;
+  cursor: pointer;
+}
+
+.animation--playing button {
+  opacity: 0;
+}
+
+.animation button {
+  cursor: pointer;
+  position: absolute;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  color: #333;
+  background: #fff;
+  bottom: 0px;
+  left: 12px;
+  font-family: sans-serif;
+}
+
+.animation:not(.animation--playing) button {
+  transition: opacity 250ms linear;
+  transition-delay: 2s;
+}
+
+.animation:hover button {
+  border-color: #000;
+  color: #000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.animation button:focus {
+  outline: none;
+}
+
+.animation--playing button,
+.animation:active button {
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.shuffle .line {
+  stroke: #aaa;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  transition: all 500ms linear;
+}
+
+.shuffle .line--active {
+  stroke: #f00;
+  stroke-width: 3px;
+}
+
+.shuffle .line--inactive {
+  stroke: #000;
+}
+
+.shuffle .text--active {
+  fill: #f00;
+}
+
+.shuffle .text--inactive {
+  fill: #000;
+}
+
+.shuffle text {
+  font-family: sans-serif;
+}
