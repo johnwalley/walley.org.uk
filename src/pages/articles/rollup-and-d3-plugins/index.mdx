@@ -1,0 +1,38 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'John Walley',
+  date: '2016-09-04',
+  title: 'Rollup and d3 plugins',
+  description:
+    'Mike Bostock outlines a standard for putting together d3 plugins here. My first serious attempt is d3-bumps-chart - a way of visualizing bumps race results.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+Mike Bostock outlines a standard for putting together d3 plugins [here](https://bost.ocks.org/mike/d3-plugin/). My first serious attempt is [d3-bumps-chart](https://github.com/johnwalley/d3-bumps-chart/) - a way of visualizing bumps race results. You can see it used at [www.cambridgebumps.com](http://www.cambridgebumps.com/).
+
+The original implementation imported the whole of d3.
+
+`import * as d3 from 'd3';`
+
+I decided to try being more specific and only import the individual d3 packages I was using, e.g.
+
+```js
+import { select } from 'd3-selection'
+import { scaleLinear } from 'd3-scale'
+import { line } from 'd3-shape'
+import { max, range } from 'd3-array'
+```
+
+Rollup is a Javascript module bundler. Think Webpack or Browserify. My take is that it has fewer features but brings tree-shaking to the table. Rollup will eliminate unused library code and the theory is that this will always generate smaller modules than the equivalent Webpack or Browserify equivalent. Nice!
+
+However, when I moved to importing specific objects from individual d3 modules I started seeing the following error message.
+
+`selection.transition is not a function`
+
+Some digging around turned up the root cause. Rollup's heuristics for detecting code to include do not in general pickup code which relies on side effects. The way the transition function in d3-transition works relies on such side-effecting code. The solution is simply to explicitly import the module itself, i.e.
+
+`import 'd3-transition';`
+
+I put this up in the hope it might save someone else some time when putting together a d3 plugin.
