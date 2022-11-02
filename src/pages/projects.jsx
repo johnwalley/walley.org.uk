@@ -44,6 +44,7 @@ const projects = [
   },
   {
     name: "Where's Wall-E?",
+    description: 'Travels around the world.',
     link: {
       href: 'https://photos.app.goo.gl/ygstkZKUJw7rYdzAA',
       label: 'Google Photos album',
