@@ -7,6 +7,7 @@ import logoAllotment from '@/images/logos/allotment.svg'
 import logoPennant from '@/images/logos/pennant.svg'
 import logoPubMap from '@/images/logos/pubmap.png'
 import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
+import logoWallE from '@/images/logos/wall-e.png'
 
 const projects = [
   {
@@ -40,6 +41,14 @@ const projects = [
       label: 'cambridgebumps.com',
     },
     logo: logoCambridgeBumps,
+  },
+  {
+    name: "Where's Wall-E?",
+    link: {
+      href: 'https://photos.app.goo.gl/ygstkZKUJw7rYdzAA',
+      label: 'Google Photos album',
+    },
+    logo: logoWallE,
   },
 ]
 
