@@ -7,6 +7,7 @@ import logoAllotment from '@/images/logos/allotment.svg'
 import logoPennant from '@/images/logos/pennant.svg'
 import logoPubMap from '@/images/logos/pubmap.png'
 import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
+import logoChangingPlaces from '@/images/logos/changing-places.svg'
 import logoWallE from '@/images/logos/wall-e.png'
 
 const projects = [
@@ -41,6 +42,16 @@ const projects = [
       label: 'cambridgebumps.com',
     },
     logo: logoCambridgeBumps,
+  },
+  {
+    name: 'Changing Places International Map',
+    description:
+      'Changing Places Toilets enable anyone, regardless of their disability, to go to the shops, attend hospital appointments, enjoy community life, socialise and travel.',
+    link: {
+      href: 'https://app.changingplacesinternational.org/',
+      label: 'app.changingplacesinternational.org',
+    },
+    logo: logoChangingPlaces,
   },
   {
     name: "Where's Wall-E?",
