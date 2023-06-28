@@ -1,0 +1,31 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/future/image'
+import chart from './kHWnb-github-repositories-using-allotment.png'
+import downloads from './downloads.png'
+
+export const meta = {
+  author: 'John Walley',
+  date: '2023-06-28',
+  title: 'Dependents',
+  description:
+    'Who uses my library?',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+My open-source library, [Allotment](https://allotment.mulberryhousesoftware.com/), has been slowly gaining traction. It's around 20 thousand downloads per week.
+While it isn't a huge number, it isn't nothing. There is also enough interest that a healthy number of issues and feature requests get submitted.
+
+<Image src={downloads} alt="Downloads" />
+
+One statistic GitHub makes available is which other repositories use you as a dependency. The UI isn't great as you can't sort by stars so I used [ghtopdep](https://github.com/github-tooling/ghtopdep) to give me the top ten repositories by number of stars.
+
+<Image src={chart} alt="GitHub repositories using Allotment" />
+
+[JSON Crack](https://jsoncrack.com/) is out in front with nearly 25 thousand starts. It lets you visualize your JSON data instantly into graphs and looks really smart.
+
+[Notesnook](https://notesnook.com/) is a free (as in speech) & open-source note-taking app focused on user privacy & ease of use.
+
+[Hetty](https://hetty.xyz/) is an HTTP toolkit for security research. Now, just because Allotment is listed as a dependency it doesn't mean it is actually used. This is the case here. Perhaps a developer was just ttrying out Allotment and forgot to remove it as a dependency when they were done.
+
+All-in-all it's rewarding to see my work used in some popular projects.
