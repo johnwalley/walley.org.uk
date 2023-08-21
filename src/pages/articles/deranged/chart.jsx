@@ -49,7 +49,7 @@ const Chart = () => {
           'viewBox',
           `0 0 ${width + margin.left + margin.right} ${
             height + margin.top + margin.bottom
-          }`
+          }`,
         )
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
@@ -57,12 +57,12 @@ const Chart = () => {
       x.domain(
         d3.extent(data, function (d) {
           return d.x
-        })
+        }),
       )
       y.domain(
         d3.extent(data, function (d) {
           return d.y
-        })
+        }),
       )
 
       svg

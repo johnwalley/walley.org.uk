@@ -236,7 +236,8 @@ const Viz = () => {
                     .attr('x', (width / maxX) * (action.range[0] - 1))
                     .attr(
                       'width',
-                      (width / (maxX - 1)) * (action.range[2] - action.range[0])
+                      (width / (maxX - 1)) *
+                        (action.range[2] - action.range[0]),
                     )
                     .attr('y', 0 - margin.top / 2)
                     .attr('height', 20)
