@@ -78,6 +78,12 @@ export default function Infographics() {
               title="World marathon courses"
               description="Popular marathon courses visualised."
               cta="View poster"
+            />{' '}
+            <Infographic
+              href="/posters/Twenty-five ways to cross the River Cam.pdf"
+              title="Twenty-five ways to cross the River Cam"
+              description="Cambridge's bridges."
+              cta="View poster"
             />
           </InfographicsSection>
           <InfographicsSection title="Websites">
