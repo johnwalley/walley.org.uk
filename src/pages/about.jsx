@@ -65,7 +65,7 @@ export default function About() {
             </h1>
             <div className="prose mt-6 space-y-7 text-base text-zinc-600 dark:prose-invert dark:text-zinc-400">
               <p>
-                Today, I’m the founder of{' '}
+                I’m the founder of{' '}
                 <a href="https://www.mulberryhousesoftware.com">
                   Mulberry House Software
                 </a>
