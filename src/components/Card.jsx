@@ -17,7 +17,10 @@ function ChevronRightIcon(props) {
 export function Card({ as: Component = 'div', className, children }) {
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      className={clsx(
+        className,
+        'group relative flex flex-col items-start',
+      )}
     >
       {children}
     </Component>
@@ -36,10 +39,22 @@ Card.Link = function CardLink({ children, ...props }) {
   )
 }
 
+Card.Content = function CardContent({ as: Component = 'div', children }) {
+  return <Component className="w-full">{children}</Component>
+}
+
 Card.Title = function CardTitle({ as: Component = 'h2', href, children }) {
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
+    </Component>
+  )
+}
+
+Card.Media = function CardMedia({ as: Component = 'div', children }) {
+  return (
+    <Component className="relative aspect-video w-full overflow-hidden md:aspect-square md:max-w-[300px]">
+      {children}
     </Component>
   )
 }
