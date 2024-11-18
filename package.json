@@ -1,5 +1,5 @@
 {
-  "name": "tailwindui-template",
+  "name": "walley-org-uk",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,7 @@
     "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.1.2",
     "@next/mdx": "^12.2.3",
-    "@tailwindcss/typography": "^0.5.4",
+    "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.7",
     "clsx": "^1.2.0",
     "d3": "^7.6.1",
@@ -29,12 +29,12 @@
     "rehype-mathjax": "^4.0.2",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "tailwindcss": "3.3.3"
+    "tailwindcss": "3.4.15"
   },
   "devDependencies": {
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.5",
     "prettier": "3.2.5",
-    "prettier-plugin-tailwindcss": "0.5.14"
+    "prettier-plugin-tailwindcss": "0.6.8"
   }
 }
