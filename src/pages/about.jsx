@@ -61,16 +61,16 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m John Walley. I live in Cambridge.
+              Hi, I’m John Walley. I live in the beautiful city of Cambridge
             </h1>
             <div className="prose mt-6 space-y-7 text-base text-zinc-600 dark:prose-invert dark:text-zinc-400">
               <p>
-                I’m the founder of{' '}
+                As the founder of{' '}
                 <a href="https://www.mulberryhousesoftware.com">
                   Mulberry House Software
-                </a>
-                , where we develop products and services to help turn data into
-                interactive visualisations, infographics and reports.
+                </a>{' '}
+                I’m passionate about transforming data into captivating
+                interactive visualisations, infographics, and reports.
               </p>
             </div>
           </div>
