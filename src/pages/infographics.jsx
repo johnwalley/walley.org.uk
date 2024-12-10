@@ -10,7 +10,8 @@ import oldest_unis from '@/images/infographics/oldest_unis.jpg'
 import pedestrian_crossings from '@/images/infographics/pedestrian_crossings.jpg'
 import how_long from '@/images/infographics/how_long.jpg'
 import bike_theft from '@/images/infographics/bike_theft.jpg'
-
+import marathons from '@/images/infographics/marathons.png'
+import river_crossings from '@/images/infographics/river_crossings.png'
 
 import tyne_bridges from '@/images/infographics/tyne_bridges.jpg'
 
@@ -29,7 +30,7 @@ function Infographic({ title, description, cta, href, imgSrc }) {
         <Card.Media>
           <Image
             src={imgSrc}
-            className="object-cover transition duration-500 ease-in-out origin-top sm:group-hover:scale-105"
+            className="origin-top object-cover transition duration-500 ease-in-out sm:group-hover:scale-105"
           />
         </Card.Media>
       )}
@@ -103,12 +104,14 @@ export default function Infographics() {
               title="World marathon courses"
               description="Popular marathon courses visualised."
               cta="View poster"
-            />{' '}
+              imgSrc={marathons}
+            />
             <Infographic
               href="/posters/Twenty-five ways to cross the River Cam.pdf"
               title="Twenty-five ways to cross the River Cam"
               description="Cambridge's bridges."
               cta="View poster"
+              imgSrc={river_crossings}
             />
           </InfographicsSection>
           <InfographicsSection title="Websites">

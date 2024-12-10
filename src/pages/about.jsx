@@ -4,6 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { Button } from '@/components/Button'
 import {
   TwitterIcon,
   YouTubeIcon,
@@ -73,11 +74,16 @@ export default function About() {
                 interactive visualisations, infographics, and reports.
               </p>
             </div>
+            <Link href="/cv">
+              <Button variant="secondary" className="group mt-6 w-full">
+                CV
+              </Button>
+            </Link>
           </div>
           <div className="lg:pl-20">
             <ul role="list">
               <SocialLink
-                href="https://twitter.com/WoWhatIMean"
+                href="https://twitter.com/johnmwalley"
                 icon={TwitterIcon}
               >
                 Follow on Twitter
