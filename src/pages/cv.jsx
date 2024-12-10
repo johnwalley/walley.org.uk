@@ -134,8 +134,8 @@ export default function CV() {
                       solutions across multiple industries.
                     </li>
                     <li>
-                      Created a floor planner with leading UK home
-                      renovation startup{' '}
+                      Created a floor planner with leading UK home renovation
+                      startup{' '}
                       <Anchor href="https://www.renovatewithreno.co.uk/">
                         Reno
                       </Anchor>
@@ -158,7 +158,8 @@ export default function CV() {
                       and{' '}
                       <Anchor href="https://allotment.mulberryhousesoftware.com/">
                         Allotment
-                      </Anchor>.
+                      </Anchor>
+                      .
                     </li>
                   </Ul>
                 </Description>
@@ -226,7 +227,7 @@ export default function CV() {
                     </li>
                     <li>
                       Developed a bespoke financial trading tool tailored to an
-                      for an independent trader's needs.
+                      for an independent trader&apos;s needs.
                     </li>
                   </Ul>
                 </Description>
@@ -314,8 +315,8 @@ export default function CV() {
                         className="hover:underline"
                         href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.61.050501"
                       >
-                        'Hyperfine-resolved spectrum of the molecular dication
-                        DCl<sup>2+</sup>'.
+                        &lsquo;Hyperfine-resolved spectrum of the molecular
+                        dication DCl<sup>2+</sup>&rsquo;.
                       </Anchor>
                     </li>
                   </Ul>
