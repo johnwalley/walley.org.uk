@@ -115,7 +115,7 @@ function Resume() {
       company: 'Mulberry House Software',
       title: 'CEO',
       logo: logoMulberryHouseSoftware,
-      start: '2017',
+      start: '2016',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
@@ -198,15 +198,12 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button
-        href="/john-walley-cv-two-page.pdf"
-        download
-        variant="secondary"
-        className="group mt-6 w-full"
-      >
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <Link href="/cv">
+        <Button variant="secondary" className="group mt-6 w-full">
+          CV
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        </Button>
+      </Link>
     </div>
   )
 }

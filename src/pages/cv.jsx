@@ -38,12 +38,16 @@ function MailIcon(props) {
 }
 
 function Ul({ children }) {
-  return <ul className="list-disc">{children}</ul>
+  return (
+    <ul className="list-inside list-disc space-y-2 leading-normal">
+      {children}
+    </ul>
+  )
 }
 
 function H2({ children }) {
   return (
-    <h2 className="mb-4 text-lg font-bold text-slate-900 dark:text-slate-200">
+    <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-slate-200">
       {children}
     </h2>
   )
@@ -51,14 +55,18 @@ function H2({ children }) {
 
 function H3({ left, right }) {
   return (
-    <h3 className="font-bold text-slate-900 dark:text-slate-200">
+    <h3 className="text-lg font-bold text-slate-900 dark:text-slate-200">
       {left} / <span className="font-normal">{right}</span>
     </h3>
   )
 }
 
 function Subtitle({ children }) {
-  return <h4 className="mb-2 text-slate-500 dark:text-slate-400">{children}</h4>
+  return (
+    <h4 className="mb-2 text-base italic text-slate-500 dark:text-slate-400">
+      {children}
+    </h4>
+  )
 }
 
 function Description({ children }) {
@@ -88,7 +96,7 @@ export default function CV() {
         <meta name="description" content="CV" />
       </Head>
       <Container className="mt-16 text-base text-black dark:text-white sm:mt-32">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2">
           <div className="md:col-start-1 md:row-start-1">
             <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-200">
               John Walley
@@ -121,8 +129,8 @@ export default function CV() {
               </Anchor>
             </div>
           </div>
-          <div className="left">
-            <div className="experience">
+          <div className="">
+            <div className="">
               <H2>Work experience</H2>
               <div>
                 <H3 left="Mulberry House Software" right="CEO & Founder" />
@@ -194,8 +202,8 @@ export default function CV() {
                 <Description>
                   <Ul>
                     <li>
-                      Helped to solve SQL Server database deployment for users
-                      of the most popular release management tools.
+                      Helped solve SQL Server database deployment for users of
+                      popular release management tools.
                     </li>
                   </Ul>
                 </Description>
@@ -324,7 +332,7 @@ export default function CV() {
               </div>
             </div>
           </div>
-          <div className="right">
+          <div className="">
             <div className="pb-6">
               <H2>Education</H2>
               <div>
@@ -333,27 +341,31 @@ export default function CV() {
                   right="MSc in Mathematical Modelling and Scientific Computing"
                 />
                 <Subtitle className="subtitle">2002 - 2003</Subtitle>
-                <Ul>
-                  <li>
-                    Studied mathematical modelling, numerical linear algebra,
-                    numerical optimisation and distributed computing for
-                    computational finance.
-                  </li>
-                  <li>
-                    Explored the numerical solution of magnetic fluid flow in my
-                    dissertation.
-                  </li>
-                </Ul>
+                <Description>
+                  <Ul>
+                    <li>
+                      Studied mathematical modelling, numerical linear algebra,
+                      numerical optimisation and distributed computing for
+                      computational finance.
+                    </li>
+                    <li>
+                      Explored the numerical solution of magnetic fluid flow in
+                      my dissertation.
+                    </li>
+                  </Ul>
+                </Description>
               </div>
               <div>
                 <H3 left="University of Cambridge" right="BA in Mathematics" />
                 <Subtitle className="subtitle">1999 - 2002</Subtitle>
-                <Ul>
-                  <li>
-                    Studied a wide variety of topics with an emphasis on applied
-                    mathematics, statistics and theoretical physics.
-                  </li>
-                </Ul>
+                <Description>
+                  <Ul>
+                    <li>
+                      Studied a wide variety of topics with an emphasis on
+                      applied mathematics, statistics and theoretical physics.
+                    </li>
+                  </Ul>
+                </Description>
               </div>
             </div>
             <div className="text-black dark:text-white">
