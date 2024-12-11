@@ -263,7 +263,7 @@ export default function Home({ articles }) {
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://twitter.com/DoWHatIMean"
+              href="https://twitter.com/johnmwalley"
               aria-label="Follow on Twitter"
               icon={TwitterIcon}
             />
