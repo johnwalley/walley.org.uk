@@ -1,0 +1,186 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/future/image'
+import ctrc_1868 from './ctrc_1868.jpg'
+import chart_1868 from './1868_chart.png'
+import institute_1869 from './institute_1869.jpg'
+import ccrc_2024 from './ccrc_2024.webp'
+
+export const meta = {
+  author: 'John Walley',
+  date: '2024-12-18',
+  title: 'The Story of Cambridge Rowing: The First Town Bumps',
+  description:
+    'The article explores the history of Cambridge’s first Town Bumps races in 1868, uncovering fascinating details from archival records and highlighting the enduring spirit of competition and community in rowing.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+While the history of University rowing in Cambridge has been extensively documented, much less attention has been given to the early rowing activities of local residents. Comprehensive records of the University Bumps races exist from as early as 1827, and Oxford’s equivalent dates back even further to 1815. However, the same level of detail is not available for Cambridge’s non-University Bumps races. For these, complete results are conveniently recorded from 1950 onward in Ken Drake’s History of Cantabrigian Rowing Club 1950–2010. Unfortunately, finding records prior to 1950 has proven to be much more challenging.
+
+The [Cambridgeshire Rowing Association](https://www.crarowing.co.uk/about/about-the-cra/early-cra-history) (CRA) tells us that the first Town Bumps races took place in 1868. The starting order of the boats on July 27th was as follows:
+
+1. 1st Church of England Young Men's Society
+1. 1st United College Servants
+1. 1st Albert Institute
+1. 1st Cambridge Town Club
+1. 1st Young Men’s Christian Association
+1. 1st Pitt Press
+1. 2nd Albert Institute
+1. 3rd Cambridge Town Rowing Club
+1. 2nd Cambridge Town Rowing Club
+1. 2nd United College Servants.
+
+By the end of the week, Cambridge Town Club had secured the title of Head of the River.
+
+Can we uncover more? How did the events unfold over the days of racing? Who were the clubs and crews involved? With the exception of Cambridge Town Rowing Club (now City of Cambridge Rowing Club), all the others are now defunct.
+
+To delve deeper, let’s head to Cambridge Central Library and see what we can discover. On the recommendation of CRA President Bill Key, our starting point is _Sixty Three Years on the Cam_ by Mr. Briscoe Snelson.
+
+## Sixty Three Years on the Cam
+
+The book includes a photograph of the winning Cambridge Town Rowing Club crew from the 1868 races.
+
+<figure>
+  <Image src={ctrc_1868} alt="Rowing crew in front of boathouse." />
+  <figcaption>
+    The names of the four at the back are: Fred Cass, Thomas Holmes, Richard
+    Collyer, and William Harvey. Seated on the steps and leaning against the
+    boathouse J French. Seated in the centre, John Harvey. On the ground, Ben
+    Diver, John Spurge, and J Hodson.
+  </figcaption>
+</figure>
+
+There follows an account of the racing.
+
+> It was anticipated that the College Servants would easily bump the leading boat,
+> and that 1st Albert, being rather weak near the bows,
+> would meet a similar fate at the hands of the Town 1st.
+> The prophets predicted a splendid race between the College Servants and the Town for head of the river,
+> and much interest was shown in the struggle for supremacy.
+> After keen rowing the Town
+> went head of the river, with Albert second.
+
+Unfortunately, the accounts lack sufficient detail to piece together the results of each day’s racing.
+
+However, I was fortunate to stumble across _Cambridge (non-University) and District Rowing in the 19th Century_ by J.R. Moy — a compilation of articles from the Cambridge Chronicle and Cambridge Independent Press.
+
+## Cambridge Rowing in the 19th Century
+
+An entry dated 25 July 1868 reads:
+
+> Cambridge Town Eight-oar races. The banks of the river Cam have recently been frequented by
+> many persons watching the preparation of the various crews for these races, and the usual comments
+> have been freely launched at passing rowers. Despite "chaff" and the greater difficulty found in the
+> wretched state of the river, the past week has been marked by very great improvement in the rowing,
+> and most of the competitors having discarded their tubs for racing boats, a better criterion of their
+> powers is now afforded.
+
+We also get a start order which matches up perfectly with that from the CRA website.
+
+Turning to the 1 August entry, we finally find what we’ve been searching for: a detailed account of the bumps from the first day of racing.
+
+- College Servants bumped The Church in The Gut
+- The Town bumped The Institute at Grassy
+- The Association rowed over
+- Institute 2 bumped Pitt Press on Long Reach
+- Town 2 bumped Town 3 at First Post Corner
+- College Servants 2 rowed over
+
+Along with a description of the racing.
+
+> Notwithstanding the heat of the weather on Monday evening, hundreds of townspeople flocked the
+> towing-path, making the racing course the place of observation, whilst the commodious house-boats
+> of Messrs Foster and Logan conveyed a large number of spectators down the river and the utmost
+> enjoyment which the temperature permitted was experienced en route. The racing was, of course
+> rather wild, but every excuse must be made for it, it being the first night.
+
+<details>
+  <summary>Second day of racing's results</summary>
+  <ul>
+    <li>College Servants rowed over</li>
+    <li>The Town bumped The Church at First Post Corner</li>
+    <li>The Institute rowed over</li>
+    <li>The Association rowed over</li>
+    <li>The Institute 2 rowed over</li>
+    <li>The Town 2 bumped The Pitt Press opposite The Plough</li>
+    <li>College Servants bumped The Town 3 in The Gut</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Third day of racing's results</summary>
+  <span>
+    The account of the racing differs from the given bumps order. I have relied
+    on the details in the account, as they are consistent with the crew order
+    for the remainder of the week.
+  </span>
+  <ul>
+    <li>The Town bumped The Servants on Plough Reach</li>
+    <li>The Institute bumps The Church at First Post Corner</li>
+    <li>The Association rowed over</li>
+    <li>The Town 2 bumped The Institute in The Gut</li>
+    <li>The Servants bumped Pitt Press at First Post Corner</li>
+    <li>The Town 3 rowed over</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Fourth day of racing's results</summary>
+  <ul>
+    <li>The Town rowed over</li>
+    <li>The Institute bumped The Servants at Grassy</li>
+    <li>The Church rowed over</li>
+    <li>The Town 2 bumped The Association</li>
+    <li>The Servants 2 bumped The Institute 2 at First Post Corner</li>
+    <li>Pitt Press rowed over</li>
+    <li>The Town 3 rowed over</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Fifth day of racing's results</summary>
+  <ul>
+    <li>The Town rowed over</li>
+    <li>The Institute rowed over</li>
+    <li>The Servants rowed over</li>
+    <li>The Church rowed over</li>
+    <li>The Town 2 rowed over</li>
+    <li>The Servants 2 bumped The Association at Grassy</li>
+    <li>Pitt Press bumped The Institute 2 at First Post Corner</li>
+    <li>The Town 3 rowed over</li>
+  </ul>
+</details>
+
+This is enough to reconstruct the bumps chart for the full week of racing.
+
+<figure>
+  <Image src={chart_1868} alt="Bumps chart." />
+  <figcaption>Results of racing in Town Bumps 1868.</figcaption>
+</figure>
+
+Cambridge Town finish head of the river but pressed hard the Albert Institute. This account is from the final day of racing.
+
+> A most magnificent race took place between the first three boats. As the
+> boat at the head of the river [The Town] neared Grassy, The Institute got within a few yards of here, but on
+> entering the Long Reach the crew made their enormous strength available and sprinted away.
+
+<figure>
+  <Image src={institute_1869} alt="Albert Institute rowing crew photo." />
+  <figcaption>Albert Institute crew in 1869.</figcaption>
+</figure>
+
+## A timeless spirit
+
+These records remind us that while people and equipment evolve, the spirit of competition and community is timeless.
+
+Finally, here are the men’s Head of the River crews from the first and most recent Town Bumps — 156 years apart.
+
+<figure>
+  <Image src={ccrc_2024} alt="Photo of crew in front of boathouse." />
+  <figcaption>City of Cambridge Rowing Club in 2024.</figcaption>
+</figure>
+
+<figure>
+  <Image src={ctrc_1868} alt="Photo of crew in front of boathouse." />
+  <figcaption>Cambridge Town Rowing Club in 1868.</figcaption>
+</figure>

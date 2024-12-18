@@ -106,13 +106,13 @@ module.exports = {
           h2: {
             fontSize: theme('fontSize.xl')[0],
             lineHeight: theme('lineHeight.7'),
-            marginTop: theme('spacing.20'),
+            marginTop: theme('spacing.12'),
             marginBottom: theme('spacing.4'),
           },
           h3: {
             fontSize: theme('fontSize.base')[0],
             lineHeight: theme('lineHeight.7'),
-            marginTop: theme('spacing.16'),
+            marginTop: theme('spacing.10'),
             marginBottom: theme('spacing.4'),
           },
           ':is(h2, h3) + *': {
@@ -121,7 +121,7 @@ module.exports = {
 
           // Images
           img: {
-            borderRadius: theme('borderRadius.3xl'),
+            borderRadius: theme('borderRadius.xl'),
           },
 
           // Inline elements
@@ -189,8 +189,8 @@ module.exports = {
             paddingLeft: theme('spacing.6'),
           },
           li: {
-            marginTop: theme('spacing.6'),
-            marginBottom: theme('spacing.6'),
+            marginTop: theme('spacing.2'),
+            marginBottom: theme('spacing.2'),
             paddingLeft: theme('spacing[3.5]'),
           },
           'li::marker': {
