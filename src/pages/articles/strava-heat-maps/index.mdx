@@ -1,0 +1,48 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/future/image'
+import cambourne from './cambourne.png'
+import cambridge from './cambridge.png'
+import newcastle from './newcastle.png'
+
+export const meta = {
+  author: 'John Walley',
+  date: '2025-01-16',
+  title: 'Running heatmaps',
+  description: 'Where do I run?',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+As part of my goal to run 5K every day this January, I’ve been tracking my progress on [Strava](https://www.strava.com/), and the [heatmaps](https://datavizproject.com/data-type/heat-map/) are fascinating. Here’s what they reveal about where I’ve been logging my miles over the years.
+
+First up we have Cambourne, a town a few miles to the west of Cambridge. It's where I live and therefore where I start and stop most of my runs.
+
+<figure>
+  <Image src={cambourne} alt="Cambourne running heatmap" />
+  <figcaption>Cambourne running heatmap</figcaption>
+</figure>
+
+There's plenty of locations to explore, including a nature reserve to the south and footpaths around the perimeter.
+
+If we zoom out to include Cambridge and its surroundings we can see I've logged a lot of time on the guided busway (the relatively smooth line in the north). This reflects a number of years living in
+some of the villages which lie alongside it.
+
+<figure>
+  <Image src={cambridge} alt="Cambridge running heatmap" />
+  <figcaption>Cambridge running heatmap</figcaption>
+</figure>
+
+Other features which jump out are the two deep-red small circuits. These are parkruns. Storey's Field to the west, and Milton Country Park to the north east.
+
+We can also see a few runs up and down the towpath of the River Cam towards Baits Bite Lock. Finally, the big loop out to the south-west of Cambridge is part of the Cambridge Half Marathon which I've run a few times.
+
+My last example is of Newcastle and North Tyneside. There are a few runs around my parent's home but the most noticeable path is the one going from
+Newcastle City centre to South Shields. This is the course of the Great North Run which I've run a few times and hope to do so in the future.
+
+<figure>
+  <Image src={newcastle} alt="Newcastle running heatmap" />
+  <figcaption>Newcastle running heatmap</figcaption>
+</figure>
+
+With two weeks' of 5K runs under my belt, it's interesting to see what the next half of January has in store.
+These heatmaps remind me just how much there is to explore close to home.
