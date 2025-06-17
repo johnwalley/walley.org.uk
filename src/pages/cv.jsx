@@ -127,14 +127,13 @@ export default function CV() {
               <H2>Experience</H2>
               {data.work.map(
                 (
-                  { name, position, startDate, endDate, summary, highlights },
+                  { name, position, startDate, endDate, date, summary, highlights },
                   index,
                 ) => (
                   <div key={index}>
                     <H3 left={name} right={position} />
                     <Subtitle>
-                      {formatYearMonth(startDate)} -{' '}
-                      {endDate ? formatYearMonth(endDate) : 'Present'}
+                      {date ? date : `${formatYearMonth(startDate)} - ${endDate ? formatYearMonth(endDate) : 'Present'}`}
                     </Subtitle>
                     <Description>
                       {summary && <p>{summary}</p>}

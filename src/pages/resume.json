@@ -1,20 +1,25 @@
 {
   "meta": {
-    "theme": "professional"
+    "theme": "remarkable"
   },
   "basics": {
     "name": "John Walley",
     "label": "Software Developer",
     "email": "john.walley@mulberryhousesoftware.com",
-    "summary": "A full-stack developer with a strong product focus, experienced in building applications from the ground up. Comfortable wearing multiple hats and driving projects from concept to launch. Open to exploring new opportunities where I can contribute technical expertise, product vision, and a startup mindset.",
-    "website": "https://www.walley.org.uk",
+    "summary": "Full-stack developer and entrepreneur with over 15 years of experience delivering robust applications and innovative software solutions. Expert in TypeScript, JavaScript, and data visualisation, with a proven track record of leading cross-industry projects from conception to deployment.",
+    "url": "https://www.walley.org.uk",
     "location": {
       "city": "Cambridge",
-      "countryCode": "GB"
+      "countryCode": "UK"
     },
     "profiles": [
       {
         "username": "johnwalley",
+        "url": "https://www.linkedin.com/in/johnwalley/",
+        "network": "linkedin"
+      },
+      {
+        "username": "johnmwalley",
         "url": "https://twitter.com/johnwalley",
         "network": "twitter"
       },
@@ -27,15 +32,24 @@
   },
   "work": [
     {
+      "name": "Cambridge Intelligence",
+      "position": "Software Developer",
+      "url": "https://cambridge-intelligence.com/",
+      "startDate": "2025-06",
+      "summary": "Developing innovative data visualisation solutions.",
+      "highlights": []
+    },
+    {
       "name": "Mulberry House Software",
       "position": "CEO & Founder",
       "url": "https://www.mulberryhousesoftware.com",
       "startDate": "2016-05",
-      "summary": "Founded and led a software company delivering innovative solutions across multiple industries.",
+      "endDate": "2025-06",
+      "summary": "Founded and grew a software consultancy delivering innovative solutions across multiple industries.",
       "highlights": [
-        "Developed a floor planner in collaboration with Reno, a leading UK home renovation startup.",
-        "Designed visualization tools for the pension industry in partnership with Financial Canvas.",
-        "Created open-source data visualization libraries (Pennant & Allotment) for Vega, a decentralized derivatives trading network."
+        "Developed a floor planner in collaboration with [Reno](https://www.renovatewithreno.co.uk/), a leading UK home renovation startup.",
+        "Designed visualization tools for the pension industry in partnership with [Financial Canvas](https://www.financialcanvas.co.uk/).",
+        "Created open-source data visualization libraries with over 80,000 weekly downloads ([Allotment](https://allotment.mulberryhousesoftware.com/) & [Pennant](https://pennant.vega.xyz/)) for [Vega](https://vega.xyz/), a decentralized derivatives trading network."
       ]
     },
     {
@@ -43,7 +57,7 @@
       "position": "Trainee Product Manager",
       "url": "https://www.red-gate.com/",
       "endDate": "2016-05",
-      "startDate": "2015-09",
+      "startDate": "2015-07",
       "summary": "Enhanced product visibility and usage for a newly acquired database deployment tool.",
       "highlights": [
         "Increased awareness and adoption through targeted marketing and outreach strategies.",
@@ -55,7 +69,7 @@
       "name": "Redgate",
       "position": "Software Developer",
       "url": "https://www.red-gate.com/",
-      "endDate": "2015-09",
+      "endDate": "2015-07",
       "startDate": "2014-06",
       "summary": "Developed solutions to streamline SQL Server database deployment for users of popular release management tools."
     },
@@ -117,11 +131,10 @@
     {
       "name": "Newcastle University",
       "position": "Research Assistant",
-      "endDate": "1999-07",
-      "startDate": "1999-09",
+      "date": "Summer 1998 & 1999",
       "highlights": [
         "Conducted data analysis and modelling for a mass spectrometry experiment in Fortran.",
-        "Co-authored a peer-reviewed paper: 'Hyperfine-resolved spectrum of the molecular dication DCl²⁺'."
+        "Co-authored a peer-reviewed paper: ['Hyperfine-resolved spectrum of the molecular dication DCl²⁺'](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.61.050501)."
       ]
     }
   ],
@@ -131,32 +144,59 @@
       "startDate": "2002-09",
       "area": "Mathematical Modelling and Scientific Computing",
       "studyType": "MSc",
-      "institution": "University of Oxford"
+      "institution": "University of Oxford",
+      "highlights": [
+        "Studied mathematical modelling, numerical linear algebra, numerical optimisation and distributed computing for computational finance.",
+        "Explored the numerical solution of magnetic fluid flow in my dissertation."
+      ]
     },
     {
-      "endDate": "2003-06",
+      "endDate": "2002-06",
       "startDate": "1999-10",
       "area": "Mathematics",
       "studyType": "BA",
-      "institution": "University of Cambridge"
+      "institution": "University of Cambridge",
+      "highlights": [
+        "Studied a wide variety of topics with an emphasis on applied mathematics, statistics and theoretical physics."
+      ]
     }
   ],
   "skills": [
     {
-      "keywords": ["Typescript", "JavaScript", "C#", "MATLAB"],
-      "name": "Software development"
+      "keywords": [
+        "TypeScript",
+        "JavaScript",
+        "CSS",
+        "C#",
+        "MATLAB"
+      ],
+      "name": "Languages"
     },
     {
-      "keywords": ["Public speaking", "technical presentations"],
-      "name": "Communication"
+      "keywords": [
+        "React",
+        "Node.js",
+        "D3",
+        "Git",
+        "Next.js"
+      ],
+      "name": "Frameworks & tools"
     },
     {
-      "keywords": ["Data visualisation", "API design", "data analysis"],
+      "keywords": [
+        "Data visualisation",
+        "data analysis",
+        "API design"
+      ],
       "name": "Specialised expertise"
     },
     {
-      "keywords": ["Technical mentoring", "product management"],
-      "name": "Management experience"
+      "keywords": [
+        "Technical mentoring",
+        "product management",
+        "public speaking"
+      ],
+      "name": "Soft skills"
     }
   ]
 }
