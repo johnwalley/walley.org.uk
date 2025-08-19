@@ -66,12 +66,9 @@ export default function About() {
             </h1>
             <div className="prose mt-6 space-y-7 text-base text-zinc-600 dark:prose-invert dark:text-zinc-400">
               <p>
-                As the founder of{' '}
-                <a href="https://www.mulberryhousesoftware.com">
-                  Mulberry House Software
-                </a>{' '}
-                I’m passionate about transforming data into captivating
-                interactive visualisations, infographics, and reports.
+                Full-stack developer and entrepreneur with over 15 years of experience delivering robust applications and
+                innovative software solutions. Expert in TypeScript, JavaScript, and data visualisation, with a proven track
+                record of leading cross-industry projects from conception to deployment.
               </p>
             </div>
             <Link href="/cv">

@@ -23,6 +23,7 @@ import logoRedgate from '@/images/logos/redgate.svg'
 import logoFidelity from '@/images/logos/fidelity.png'
 import logoSungard from '@/images/logos/sungard.png'
 import logoMulberryHouseSoftware from '@/images/logos/mulberry-house-software.svg'
+import logoCambridgeIntelligence from '@/images/logos/cambridge-intelligence.png'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
@@ -112,14 +113,21 @@ function SocialLink({ icon: Icon, ...props }) {
 function Resume() {
   let resume = [
     {
-      company: 'Mulberry House Software',
-      title: 'CEO',
-      logo: logoMulberryHouseSoftware,
-      start: '2016',
+      company: 'Cambridge Intelligence',
+      title: 'Software Developer',
+      logo: logoCambridgeIntelligence,
+      start: '2025',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
       },
+    },
+    {
+      company: 'Mulberry House Software',
+      title: 'CEO',
+      logo: logoMulberryHouseSoftware,
+      start: '2016',
+      end: '2025',
     },
     {
       company: 'Redgate',
@@ -182,9 +190,8 @@ function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
-                }`}
+                aria-label={`${role.start.label ?? role.start} until ${role.end.label ?? role.end
+                  }`}
               >
                 <time dateTime={role.start.dateTime ?? role.start}>
                   {role.start.label ?? role.start}
@@ -254,12 +261,6 @@ export default function Home({ articles }) {
           </h1>
           <p className="prose mt-6 text-base dark:prose-invert">
             I’m John, a software engineer and entrepreneur based in Cambridge.
-            I’m the founder and CEO of{' '}
-            <a href="https://www.mulberryhousesoftware.com">
-              Mulberry House Software
-            </a>
-            , where we develop products and services to help turn data into
-            interactive visualisations, infographics and reports.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
