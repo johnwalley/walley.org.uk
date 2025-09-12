@@ -9,7 +9,7 @@ export const meta = {
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
 
-JavaScript is single-threaded and blocking. Nothing else can happen while JavaScript is running. This is a problem because the main thread isn't just responsible for your app's logic. It also has to handle layout, painting, and responding to user interactions. If you block the main thread for more than a few tens of milliseconds your users *will* notice. To maintain smooth scrolling you better not take more than 16ms, and user's get agitated if responding to a button click takes more than 100ms.
+JavaScript is single-threaded and blocking. Nothing else can happen while JavaScript is running. This is a problem because the main thread isn't just responsible for your app's logic. It also has to handle layout, painting, and responding to user interactions. If you block the main thread for more than a few tens of milliseconds your users *will* notice. To maintain smooth scrolling you better not take more than 16ms, and users get agitated if responding to a button click takes more than 100ms.
 
 A Web Worker is a way to run JavaScript in a background thread separate from the main thread. You send data to a worker via `postMessage`, and the it posts a message back with the result. Because workers don't have access to the DOM, theuy're best suited for pure computation or data processing - think number crunching, parsing large files, image processing, or running AI models.
 
