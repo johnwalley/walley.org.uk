@@ -15,7 +15,7 @@ export default (props) => <ArticleLayout meta={meta} {...props} />
 - __Three axes to decide up front__:
   1. __Local-only__ vs __published__ packages (what's purely internal vs what goes to a registry)
   1. __Direct-export (`src/`)__ vs __pre-built (`dist/`)__ libraries
-  1. __Tooling__: Vite for apps, Vite library mode for libs
+  1. __Tooling__: Vite for apps, Rollup/Vite library mode for libs
 - For the fastest inner loop: __local-only__ + __direct-export__ + __Vite__
 - For anything published: __separate build__ + __type declarations__
 
@@ -24,12 +24,12 @@ export default (props) => <ArticleLayout meta={meta} {...props} />
 If we further distinguish between __internally published__ and __externally published__ packages then we can describe three types:
 
 - __local only__ - not published, may, or may not, have a build step.
-- __internally published__ - published to an internal regitry, may, or may not, have a build step
-- __externally published__ - published to a public regsitry; always have a build step
+- __internally published__ - published to an internal registry, may, or may not, have a build step
+- __externally published__ - published to a public registry; always have a build step
 
 References: [vite-ts-monorepo-rfc](https://github.com/vitejs/vite-ts-monorepo-rfc/blob/main/RFC-v1.md#package-types), [Turborepo](https://turborepo.com/docs/core-concepts/internal-packages#just-in-time-packages)
 
-Axis 2 - Direct-export vs pre-built
+## Axis 2 - Direct-export vs pre-built
 
 Two ways to make a library consumable:
 
@@ -37,7 +37,7 @@ Two ways to make a library consumable:
 
 Point your `exports` at the TypeScript source so it can be compiled on the fly.
 
-```ts
+```json
 // package.json
 {
   "name": "@acme/lib-a",
@@ -52,9 +52,9 @@ __Trade-offs__: consumers must have a TypeScript pipeline; no single compiled ar
 
 ### Pre-built (`dist/`)
 
-Run a buld first and export compiled output + declarations.
+Run a build first and export compiled output + declarations.
 
-```ts
+```json
 // package.json
 {
   "name": "@acme/lib-b",
@@ -66,7 +66,7 @@ Run a buld first and export compiled output + declarations.
       "require": "./dist/index.cjs"
     }
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts"
 }
 ```
 
@@ -74,7 +74,7 @@ __When to use__: anything published externally.
 
 __Hybrid__: conditional exports for DX in dev, stable `dist/` in prod:
 
-```ts
+```json
 // package.json (hybrid)
 {
   "exports": {
@@ -86,7 +86,7 @@ __Hybrid__: conditional exports for DX in dev, stable `dist/` in prod:
 
 And in the app’s Vite config:
 
-```ts
+```json
 // vite.config.ts
 import { defineConfig } from 'vite';
 
@@ -95,7 +95,7 @@ export default defineConfig(({ mode }) => ({
 }));
 ```
 
-## Axis 3 - Tooling: where Vite, Rollup, and `tsc` first
+## Axis 3 - Tooling: where Vite and Rollup fit
 
 - __Vite__ is your app dev server + production bundler (Rollup under the hood). It transpiles TypeScript with esbuild, __does not type-check__.
 - __Library bundlers__: Rollup/Vite library mode to emit ESM/CJS plus `.d.ts` (via plugin).
@@ -103,7 +103,7 @@ export default defineConfig(({ mode }) => ({
 __Baseline that works__:
 
 - Apps: Vite for dev/build.
-- Libraries: Build JavaScript with Rollup. Emit types with `vite-plugin-dts`.
+- Libraries: Build JavaScript with Vite/Rollup. Emit types with `vite-plugin-dts`.
 
 ## Publishing clean artifacts with pnpm
 
