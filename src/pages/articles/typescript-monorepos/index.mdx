@@ -42,7 +42,6 @@ Point your `exports` at the TypeScript source so it can be compiled on the fly.
 {
   "name": "@acme/lib-a",
   "exports": { ".": "./src/index.ts" },
-  "types": "./src/index.ts"
 }
 ```
 
@@ -86,7 +85,7 @@ __Hybrid__: conditional exports for DX in dev, stable `dist/` in prod:
 
 And in the app’s Vite config:
 
-```json
+```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
 
