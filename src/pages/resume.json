@@ -5,8 +5,8 @@
   "basics": {
     "name": "John Walley",
     "label": "Software Developer",
-    "email": "john.walley@mulberryhousesoftware.com",
-    "summary": "Full-stack developer and entrepreneur with over 15 years of experience delivering robust applications and innovative software solutions. Expert in TypeScript, JavaScript, and data visualisation, with a proven track record of leading cross-industry projects from conception to deployment.",
+    "email": "john@walley.org.uk",
+    "summary": "Full-stack developer and founder with 15+ years of experience designing and delivering scalable applications, data visualization platforms, and open-source tools. Proven track record leading technical teams, driving product strategy, and contributing to projects used by tens of thousands of developers worldwide.",
     "url": "https://www.walley.org.uk",
     "location": {
       "city": "Cambridge",
@@ -36,7 +36,7 @@
       "position": "Software Developer",
       "url": "https://cambridge-intelligence.com/",
       "startDate": "2025-06",
-      "summary": "Developing innovative data visualisation solutions.",
+      "summary": "Senior engineer working on high-performance data visualisation tools used by analysts to explore complex graph, temporal and geosptial data. Contributing across product architecture, developer experience, and performance critical UI components.",
       "highlights": []
     },
     {
@@ -175,25 +175,45 @@
     {
       "keywords": [
         "React",
-        "Node.js",
+        "HTML Canvas",
+        "Web Workers",
         "D3",
-        "Git",
-        "Next.js"
+        "high-performance rendering",
+        "large-scale data visualisation"
       ],
-      "name": "Frameworks & tools"
+      "name": "Frontend & visualisation"
+    },
+    {
+      "keywords": [
+        "Node.js",
+        "Next.js",
+        "Astro",
+        "Vite",
+        "Webpack",
+        "pnpm",
+        "git",
+        "monorepos"
+      ],
+      "name": "Platform & tooling"
     },
     {
       "keywords": [
         "Data visualisation",
-        "data analysis",
-        "API design"
+        "API design",
+        "data analysis"
       ],
       "name": "Specialised expertise"
     },
     {
       "keywords": [
-        "Technical mentoring",
-        "product management",
+        "Technical leadership",
+        "decision-making",
+        "mentoring",
+        "cross-functional work",
+        "product focus",
+        "architecture reviews",
+        "engineering standards",
+        "technical communication",
         "public speaking"
       ],
       "name": "Soft skills"
