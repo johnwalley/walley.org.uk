@@ -31,7 +31,7 @@
       "position": "Software Developer",
       "url": "https://cambridge-intelligence.com/",
       "startDate": "2025-06",
-      "summary": "Senior engineer working on high-performance data visualisation tools used by analysts to explore complex graph, temporal and geospatial data. Contributing across product architecture, developer experience, and performance critical UI components.",
+      "summary": "Senior engineer working on high-performance data visualisation tools used by analysts to explore complex graph, temporal and geospatial data. Contributing across product architecture, developer experience, and performance-critical UI components.",
       "highlights": []
     },
     {
@@ -76,14 +76,14 @@
       "startDate": "2012-03",
       "highlights": [
         "Contributed to a scalable framework powering a high-performance risk analytics service.",
-        "Developed a tracing just-in-time compile enabling C# financial models to run efficiently on GPUs."
+        "Developed a tracing just-in-time compiler enabling C# financial models to run efficiently on GPUs."
       ]
     },
     {
       "name": "Earlier Career",
       "endDate": "2012",
       "startDate": "2004",
-      "summary": "Held technical roles spanning high performance computing, applied research, and customer-facing engineering, including:",
+      "summary": "Held technical roles spanning high-performance computing, applied research, and customer-facing engineering, including:",
       "highlights": [
         "High Performance Computing Developer at [Fidelity](https://www.fidelity.co.uk/)",
         "Application Engineer at [MathWorks](https://www.mathworks.com/) (UK technical contact for parallel computing tools)",
