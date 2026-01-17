@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import data from './resume.json'
 
 import { Container } from '@/components/Container'
+import { Button } from '@/components/Button'
 import {
   TwitterIcon,
   YouTubeIcon,
@@ -183,6 +184,11 @@ export default function CV() {
             <h2 className="text-4xl font-bold text-[#0d71ba]">
               {data.basics.label}
             </h2>
+            <div className="mt-4">
+              <a href="/John_Walley_CV.pdf" download className="inline-block">
+                <Button variant="secondary">Download CV</Button>
+              </a>
+            </div>
           </div>
           <div></div>
           {/*           <div className="md:col-start-2 md:row-start-1">
