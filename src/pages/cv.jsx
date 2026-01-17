@@ -13,10 +13,76 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
-function formatYearMonth(ym) {
-  const [year, month] = ym.split('-')
-  const date = new Date(`${year}-${month}-01`)
-  return date.toLocaleString('en-GB', { month: 'long', year: 'numeric' })
+function formatYearMonth(value) {
+  if (!value) return '';
+
+  const parts = value.split('-');
+
+  // YYYY
+  if (parts.length === 1) {
+    const year = Number(parts[0]);
+    if (Number.isNaN(year)) return value;
+    return String(year);
+  }
+
+  // YYYY-MM
+  if (parts.length === 2) {
+    const [year, month] = parts.map(Number);
+    if (
+      Number.isNaN(year) ||
+      Number.isNaN(month) ||
+      month < 1 ||
+      month > 12
+    ) {
+      return value;
+    }
+
+    const date = new Date(Date.UTC(year, month - 1, 1));
+    return date.toLocaleString('en-GB', {
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  // Anything else → pass through unchanged
+  return value;
+}
+
+function parseMarkdownLinks(text) {
+  if (!text) return '';
+
+  const parts = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    // Add text before the link
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+
+    // Add the link
+    const [, linkText, href] = match;
+    parts.push(
+      <a
+        key={match.index}
+        href={href}
+        className="border-b border-sky-600 font-semibold text-[#0f172a] hover:border-b-2 dark:text-white"
+      >
+        {linkText}
+      </a>
+    );
+
+    lastIndex = regex.lastIndex;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
 }
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -63,7 +129,13 @@ function H2({ children }) {
 function H3({ left, right }) {
   return (
     <h3 className="text-lg font-bold text-slate-900 dark:text-slate-200">
-      {left} / <span className="font-normal">{right}</span>
+      {left}
+      {right && (
+        <>
+          {" / "}
+          <span className="font-normal">{right}</span>
+        </>
+      )}
     </h3>
   )
 }
@@ -136,11 +208,11 @@ export default function CV() {
                       {date ? date : `${formatYearMonth(startDate)} - ${endDate ? formatYearMonth(endDate) : 'Present'}`}
                     </Subtitle>
                     <Description>
-                      {summary && <p>{summary}</p>}
+                      {summary && <p className="mb-4">{parseMarkdownLinks(summary)}</p>}
                       {highlights && (
                         <Ul>
                           {highlights.map((highlight, index) => (
-                            <li key={index}>{highlight}</li>
+                            <li key={index}>{parseMarkdownLinks(highlight)}</li>
                           ))}
                         </Ul>
                       )}
@@ -152,6 +224,15 @@ export default function CV() {
           </div>
           <div className="">
             <div className="pb-6">
+              <H2>Skills</H2>
+              {data.skills.map(({ name, keywords }) => (
+                <div key={name}>
+                  <span className="font-bold">{name}: </span>
+                  <span>{keywords.join(' • ')}</span>
+                </div>
+              ))}
+            </div>
+            <div className="">
               <H2>Education</H2>
               {data.education.map(
                 ({ institution, area, studyType, startDate, endDate }) => (
@@ -164,15 +245,6 @@ export default function CV() {
                   </div>
                 ),
               )}
-            </div>
-            <div className="text-black dark:text-white">
-              <H2>Skills</H2>
-              {data.skills.map(({ name, keywords }) => (
-                <div key={name}>
-                  <span className="font-bold">{name}: </span>
-                  <span>{keywords.join(' • ')}</span>
-                </div>
-              ))}
             </div>
           </div>
         </div>
