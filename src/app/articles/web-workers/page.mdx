@@ -1,0 +1,116 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'John Walley',
+  date: '2025-09-12',
+  title: 'Web Workers Beyond Applications',
+  description: "Trade-offs for JavaScript Libraries",
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+JavaScript is single-threaded and blocking. Nothing else can happen while JavaScript is running. This is a problem because the main thread isn't just responsible for your app's logic. It also has to handle layout, painting, and responding to user interactions. If you block the main thread for more than a few tens of milliseconds your users *will* notice. To maintain smooth scrolling you better not take more than 16ms, and users get agitated if responding to a button click takes more than 100ms.
+
+A Web Worker is a way to run JavaScript in a background thread separate from the main thread. You send data to a worker via `postMessage`, and it posts a message back with the result. Because workers don't have access to the DOM, they're best suited for pure computation or data processing - think number crunching, parsing large files, image processing, or running AI models.
+
+### Basic example
+
+```js
+// worker.js
+self.onmessage = (event) => {
+  const numbers = event.data;
+  const sum = numbers.reduce((a, b) => a + b, 0);
+  postMessage(sum);
+};
+```
+
+```js
+// main.js
+const worker = new Worker(new URL("./worker.js", import.meta.url), { type: "module" });
+
+worker.onmessage = (event) => {
+  console.log("Result from worker:", event.data);
+};
+
+worker.postMessage([1, 2, 3, 4, 5]); // sends data to the worker
+```
+
+Most articles about Web Workers frame them as an application-level tool: push heavy work off the main thread, keep the UI smooth, job done. But if you’re writing a JavaScript library, the stakes are higher. Your users aren’t just running your code in isolation - they’re embedding it into applications that already have their own performance bottlenecks. That’s exactly why libraries should lean on workers: don’t steal time from the main thread that belongs to the host application. The challenge isn’t whether to use workers, it’s designing an API and distribution approach that makes them a natural fit.
+
+## Considerations
+
+### Bundle and distribution
+
+Inside an application, bundlers like Webpack or Vite can handle workers for you. You write `new Worker(new URL(“worker.js”, import.meta.url))`, and the toolchain generates a separate file or inlines the code as needed.
+
+But for a library, it’s not that simple. You don’t know what bundler your consumers are using, or whether they’re using one at all. Node.js has its own Worker API, older browsers may lack support, and SSR frameworks like Next can break on worker imports during build.
+
+The modern, bundler-friendly pattern is:
+
+```js
+new Worker(new URL('./worker.js', import.meta.url))
+```
+
+This relies on ESM and is what Vite/Webpack optimise for.
+
+CommonJS/UMD don't have `import.meta.url`. Webpack explicitly notes that CJS workers are not supported.
+
+If we don't want to rely on a separate worker file then use a Blob URL to create the worker. However, tere are some downsides:
+
+- CSP friction: Many sites disallow `blob:` by default.
+- Worse developer experience for debugging: Stack traces and dev tool sources are less friendly.
+
+References: [Vite docs](https://vite.dev/guide/features.html#web-workers), [Webpack docs](https://webpack.js.org/guides/web-workers/)
+
+### Configuration + control
+
+When you build an application, you can spin up as many workers as you like, decide when to terminate them, and fine-tune depending on the workload. In a library, you don't get the same freedom.
+
+If your library spawns a worker for every instance, you risk hogging system resources. More frighteningly, imagine a page that embeds multiple libraries, each spawning a pool of workers!
+
+Worker usage should be configurable, but with sensible defaults.
+
+### Environment constraints
+
+An application developer knows their target environment. Maybe they only care about evergreen broswers running desktops/laptops, or they know they'll be running in Node.js. But a library could end up running anywhere. That means you might need to handle:
+
+- SSR, where worker code can't run at build time
+- Node.js, where `Worker` exists but has a different API
+
+References: [MDN Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API), [Node.js Workers](https://nodejs.org/api/worker_threads.html)
+
+### Testing + debugging
+
+### Performance implications
+
+References: [web.dev - Use web workers to run JavaScript off the browser's main thread](https://web.dev/articles/off-main-thread)
+
+## Best practices
+
+- Default to workers in libraries (where heavy computation is integral to the library)
+- Provide a synchronous fallback
+- Make worker usage configurable
+- Document bundler setup clearly
+
+## Examples
+
+### Mapbox GL JS
+
+Mapbox GL JS is a well-known example of a library that defaults to workers. It spawns a pool of background threads to parse tiles and apply styles, leaving the main thread free for smooth rendering. Crucially, Mapbox exposes configuration points like [workerCount](https://docs.mapbox.com/mapbox-gl-js/api/properties/#workercount) and [workerUrl](https://docs.mapbox.com/mapbox-gl-js/api/properties/#workerurl), showing how a library can be opinionated about using workers while still giving control back to the host application.
+
+The `workerUrl` option is instructive for showing how to support environments with a strict CSP (Content Security Policy) where you cannot load code from a [Blob URL](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) (which is default behaviour). Note that workers must also obey the [same-origin-policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy).
+
+### PDF.js
+
+Another example is [PDF.js](https://github.com/mozilla/pdf.js), Mozilla's library for rendering PDFs in the browser. To keep scrolling and zooming smooth, PDF.js runs the parsing stage inside a Web Worker by default. For environments where workers aren’t available or bundling is problematic, the library also provides a synchronous fallback (older versions exposed this via PDFJS.disableWorker = true).
+
+### Conclusion
+
+Web Workers aren’t just a nice-to-have for libraries - they’re a sign of respect for the host application. By offloading heavy computation, you’re giving the main thread back to the developer who embedded your code, and ultimately the end user. The real work for a library author isn’t deciding if workers are worth it, but making sure the API, bundling, and configuration are flexible enough that consumers can adopt them without friction. If you care about playing well inside larger applications, workers should be the default, not an afterthought.
+
+References: [The subjective nature of JS libraries exposing an off the main thread API](https://nickb.dev/blog/the-subjective-nature-of-js-libraries-exposing-an-off-the-main-thread-api/), [Hacker News thread](https://news.ycombinator.com/item?id=37037039)

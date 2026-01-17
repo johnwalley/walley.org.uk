@@ -1,0 +1,36 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import chart from './kHWnb-github-repositories-using-allotment.png'
+import chartNow from './8SJw8-github-repositories-using-allotment.png'
+import downloads from './downloads.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2024-05-23',
+  title: 'Dependents revisited',
+  description: 'Who uses my library?',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Exactly one year ago I looked at who was using my most popular open-source library [Allotment](https://allotment.mulberryhousesoftware.com/).
+Let's take a look at how things have changed.
+
+We've seen an increase from 20 thousand downloads per week to over 40 thousand. There are also currently 70 open issues (ouch!).
+
+<Image src={downloads} alt="Downloads" />
+
+The top ten repositories which depend on Allotment by number of stars is mostly the same.
+
+<Image src={chartNow} alt="GitHub repositories using Allotment 2024" />
+
+The only new entry is teable with over 7 thousand stars.
+
+[Teable](https://teable.io/) is a Super fast, Real-time, Professional, Developer friendly, No-code database built on Postgres
+
+I've not spent much time on the project over the past 12 months so it's good to see it is still being used. The most challenging part is handling the number of issues which come in. Even if I recieve a PR it's still difficult to test it sufficiently. Let alone finding the time to fix a bug or add a feature!

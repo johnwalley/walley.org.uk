@@ -1,0 +1,84 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Chart from './chart'
+
+export const article = {
+  author: 'John Walley',
+  date: '2015-01-04',
+  title: 'Deranged',
+  description: "I'm developing a super simple Android app: Tony Facts.",
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+I'm developing a super simple Android app: [Tony Facts](https://play.google.com/store/appsdetails?id=com.walley.tonyfacts).
+
+It's sole purpose is to display a plausible sounding fact which is entirely made-up. The user can swipe through a list of such facts. I added a button which would shuffle the order of the facts. A simple enough job for java.util.Collections.shuffle. However this leaves us with a little UX quirk whereby the current fact can end up in the same position after shuffling. This means there is no visual cue to provide feedback that anything has happened when the user presses the shuffle button.
+
+One way to avoid this is to ensure that a different fact ends up in the current position. Without putting much thought into the problem the most pragmatic solution is to check the result of a shuffle and repeat if we end up with the current fact in the same position.
+
+This should be a rare event. Really we're only seeing this at the moment due to the low number of facts. Given n items this will occur with probability 1/n. In short this will never hurt us and it goes without saying that performance for a feature such as this will never become problematic.
+
+However, where's the fun in that? Let's come up with our own solution! A derangement is a permutation of a set of elements such that none of the elements appear in their initial positions. Sounds like it fits the bill.
+
+Consider the derangements of ABCD
+
+- BADC
+- BCDA
+- BDAC
+- CADB
+- CDAB
+- CDBA
+- DABC
+- DACB
+- DCDB
+
+We can come up with a recurrence formula by considering the first element in a list of n elements. Let D(n) be the number of derangements for n items. There are n-1 choices for this first element. If the first element goes to the second then the remaining n-2 elements can be arranged in D(n-2) ways. If the first element does not go to the second element then we have the same problem but for n-1 elements. Hence
+
+$D(n) = (n-1)(D(n-1) + D(n-2))$
+
+This scales like so.
+
+<Chart />
+
+The implementation below is based on the algorithm described in [Generating Random Derangements](http://www.cs.upc.edu/~conrado/research/talks/analco08.pdf).
+
+```java
+public static <T> void derange(ArrayList<T> list) {
+    int n = list.size();
+    boolean[] mark = new boolean[n];
+
+    int i = n - 1;
+    int u = n ;
+
+    Random rng = new Random();
+
+    while (u >= 2) {
+        if (!mark[i]) {
+
+            int j;
+
+            do {
+                j = rng.nextInt(i);
+            } while (mark[j]);
+
+            Collections.swap(list, i, j);
+
+            double p = rng.nextDouble();
+
+            if (p < (u - 1) * D(u - 2) / D(u)) {
+                mark[j] = true;
+                u = u - 1;
+            }
+
+            u = u - 1;
+        }
+
+        i = i - 1;
+    }
+}
+```

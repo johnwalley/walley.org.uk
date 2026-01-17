@@ -1,0 +1,113 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import paper from './paper.jpg'
+
+export const article = {
+  author: 'John Walley',
+  date: '2017-01-08',
+  title: 'Memoization',
+  description:
+    'While refactoring some of the data manipulation behind www.cambridgebumps.com I came across an obvious place to apply some memoization.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+While refactoring some of the data manipulation behind [www.cambridgebumps.com](http://www.cambridgebumps.com/) I came across an obvious place to apply some memoization. This is where we cache a, usually expensive, function call so that subsequent calls simply return the cached value. It's a performance optimization.
+
+<Image src={paper} alt="Paper" />
+
+Now, full disclosure, I actually pulled in the [reselect](https://github.com/reactjs/reselect) library to do this for me rather than implement something myself. I know, I know, I represent everything that is wrong with modern web development practices! Ironically, I'm now about going to spend a few minutes describing how to do this by hand.
+
+If you look around you'll often find the problem of computing [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) used as a simple example of where memoization helps. It is a nice example and most people will already be familiar with the algorithm.
+
+The following Javascript function computes the nth Fibonacci number recursively.
+
+```js
+function fibonacci(n) {
+  if (n <= 1) {
+    return 1
+  }
+
+  return fibonacci(n - 1) + fibonacci(n - 2)
+}
+```
+
+This function performs spectacularly poorly. Each function call kicks off another two calls until we hit the base case (n = 0 or 1). The runtime is exponential in n. Even worse, we'll blow through our call stack for larger inputs even if performance were acceptable.
+
+Here's a version which uses memoization.
+
+```js
+var cache = {}
+
+function fibonacci(n) {
+  if (cache.hasOwnProperty(n)) {
+    return cache[n]
+  }
+
+  if (n <= 1) {
+    return 1
+  } else {
+    var result = fibonacci(n - 1) + fibonacci(n - 2)
+    cache[n] = result
+    return result
+  }
+}
+```
+
+This requires at most n evaluations and performance is restored. There are a couple of points to note about this example.
+
+1. The function arguments consist of a single number which makes storing and looking up in the cache trivial. More thought should be expended for the general case
+1. We've modified the function to take advantage of memoization
+
+Is it possible to memoize a function without explicitly rewriting it? The answer is yes with one exception. Funnily enough the exception is recursive functions; such as the Fibonacci function above. We'll come back to this at the end of the post.
+
+Here's a function we can use to memoize our Fibonacci calculation.
+
+```js
+function memoize(func) {
+  var cache = {}
+
+  return function (n) {
+    if (cache.hasOwnProperty(n)) {
+      return cache[n]
+    }
+
+    var result = func(n)
+    cache[n] = result
+    return result
+  }
+}
+```
+
+It's basically acting as a [decorator](https://en.wikipedia.org/wiki/Decorator_pattern) which wraps the function and applies the same caching strategy we saw before.
+
+Here's a more general version which can handle multiple arguments. It hands off computing a single key value from multiple inputs to a user-provided hash function.
+
+```js
+function memoize(func, hash) {
+  var cache = {};
+
+  return function() {
+    var key = hash(arguments);
+
+    if (cache.hasOwnProperty(key)) {
+      return cache[key];
+    }
+
+    var result = func(key);
+    cache[key] = result;
+    return result;
+  }
+}
+
+var memoizedFibonacci = memoize(fibonacci, args => args[0);
+```
+
+There we are. A simple method to speed up repetitive calculations. My original motivation was [computing derived data](http://redux.js.org/docs/recipes/ComputingDerivedData.html) on demand. With memoization I can keep my application state to a minimum but avoid a costly performance hit every time I need to re-derive a piece of data.
+
+Oh, and if you're curious about applying this to recursive functions. It's mostly around ensuring the recursive call inside the function is calling he memoized version of the function. The [Underscore](http://underscorejs.org/) documentation has a short [example](http://underscorejs.org/#memoize).

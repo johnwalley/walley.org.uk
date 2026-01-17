@@ -1,0 +1,250 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import result1 from './john.walley_Image_A_cute_cat_wearing_a_hat_scarf_and_gloves._De_3232898c-1e91-4ea4-a130-5767fd7d35eb.png'
+import result2 from './john.walley_Image_A_stylish_cat_wearing_a_winter_hat_cozy_scarf_0db1703b-619e-48f2-81da-7da56a8a2261.png'
+import result3 from './john.walley_Image_A_magical_cat_wearing_a_witchs_hat_casting_a__da70f00b-b6ce-47f5-99b4-ec102f3d2b87.png'
+import result4 from './john.walley_Image_An_adventurous_anthropomorphic_cat_wearing_a__d5fe8480-ef7e-4034-a9d8-7b364426035e.png'
+import result5 from './john.walley_Image_A_futuristic_cyberpunk_cat_sporting_a_high-te_f1485755-b022-4240-b7a9-86d5e7e76fd8.png'
+import result6 from './john.walley_Image_A_mystical_sorcerer_cat_wearing_a_magical_hat_4fb80f8e-9bea-4b5b-a0cb-3411c238b6a3.png'
+import result7 from './john.walley_Image_A_superhero_cat_donning_a_caped_crusaders_hat_3819bd42-511a-4b9f-810c-201ce9a278fa.png'
+import result8 from './john.walley_Image_A_steampunk-inspired_cat_with_a_mechanical_to_536a78ba-2adc-4c3c-be9a-5db6e8e9cb8e.png'
+import result9 from './john.walley_Image_A_majestic_cosmic_cat_wearing_a_celestial-the_a883e447-4cf6-42c8-aa2b-47dab0b7b14f.png'
+
+import result10 from './john.walley_Image_An_adventurous_anthropomorphic_cat_wearing_a__207a2c3f-e596-4317-821b-14020e5b9942.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2023-08-02',
+  title: 'ChatGPT + MidJourney',
+  description: 'Using ChatGPT and MidJourney to generate art.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+If you want to create better prompts for [MidJourney](https://www.midjourney.com/app/) or learn a few different keywords you can try experimenting with using [ChatGPT](https://chat.openai.com/) to generate prompts for MidJourney.
+
+This post is just a bit of fun and anything original comes from this video [Chat GPT + Midjourney V5.2 = Insane AI Art! (Process to Generate Prompts)](https://www.youtube.com/watch?v=0RCvbd5uLDY).
+
+The first novel idea to me is training ChatGPT. We want to give ChatGPT an understanding of what a MidJourney prompt is. To do this we give it an instruction and paste in the contents of the [MidJourney documentation](https://docs.midjourney.com/docs/prompts) on prompts.
+
+> Here are some notes for creating Midjourney Prompts I'd like you to understand:
+>
+> A Prompt is a short text phrase that the Midjourney Bot interprets to produce an image. The Midjourney Bot breaks down the words and phrases in a prompt into smaller pieces, called tokens...
+
+ChatGPT replies with
+
+> Got it! I have reviewed the notes for creating Midjourney prompts, and I understand the key concepts and tips for generating images using the Midjourney Bot. If you have any specific prompts or requests in mind, feel free to share them, and I'll do my best to assist you in creating the images you want. Remember to keep the prompts simple, descriptive, and specific to get the best results.
+
+We now create a formula for ChatGPT to use
+
+> I want you to use this formula to write Midjourney Prompts:
+> (image we're prompting), (5 descriptive keywords or phrases), (camera model and lens), (lighting), (style of photograph)
+>
+> Do you understand this formula? Say "yes" if you understand
+
+To which ChatGPT replies with
+
+> Yes, I understand the formula for writing Midjourney prompts. The format should include the following elements:
+>
+> 1. Image we're prompting
+> 1. 5 descriptive keywords or phrases
+> 1. Camera model and lens
+> 1. Lighting
+> 1. Style of photograph
+>
+> If you have specific image prompts you'd like me to generate using this formula, please provide the details, and I'll be happy to assist you!
+
+Let's create a prompt!
+
+> Using the formula provided, write me a prompt for a cat with hat, scarf and gloves
+
+> Sure! Here's a Midjourney prompt using the formula you provided:
+>
+> Image: A cute cat wearing a hat, scarf, and gloves.
+> Descriptive Keywords: Playful, Cozy, Winter, Fashionable, Adorable.
+> Camera Model and Lens: Nikon D750 with a 50mm prime lens.
+> Lighting: Soft natural light from a nearby window, creating warm shadows.
+> Style of Photograph: Closeup portrait with bokeh background, highlighting the cat's expression and winter accessories.
+>
+> With this prompt, the Midjourney Bot will aim to generate a cute and cozy image of a cat wearing a hat, scarf, and gloves, capturing the essence of playfulness and winter fashion.
+
+<Image src={result1} alt="A cute cat wearing a hat, scarf, and gloves" />
+
+> Excellent, write me 6 MidJourney prompts for a cat wearing a hat, scarf and boots
+
+> Certainly! Here are six Midjourney prompts for a cat wearing a hat, scarf, and boots:
+>
+> 1. Image: A stylish cat wearing a winter hat, cozy scarf, and adorable little boots.
+>    Descriptive Keywords: Fashionable, Whimsical, Snowy, Playful, Charming.
+>    Camera Model and Lens: Canon EOS 5D Mark IV with a 35mm lens.
+>    Lighting: Soft and warm indoor lighting, casting gentle shadows.
+>    Style of Photograph: Full-body shot capturing the cat's playful pose and winter attire.
+> 2. Image: An elegant cat with a trendy hat, colorful scarf, and cute boots.
+>    Descriptive Keywords: Classy, Vibrant, Winter Wonderland, Dapper, Graceful.
+>    Camera Model and Lens: Sony Alpha a7 III with a 50mm prime lens.
+>    Lighting: Natural light with a touch of golden hour glow, creating a magical ambiance.
+>    Style of Photograph: Artistic composition, emphasizing the cat's poise and winter accessories.
+> 3. Image: A mischievous cat donning a quirky hat, patterned scarf, and funky boots.
+>    Descriptive Keywords: Playful, Eccentric, Snow Adventure, Fun-loving, Expressive.
+>    Camera Model and Lens: Fujifilm X-T4 with a 24-70mm zoom lens.
+>    Lighting: Dynamic lighting to capture the cat in motion, surrounded by snowy flakes.
+>    Style of Photograph: Candid shot, freezing the cat's playful movements and winter fashion.
+> 4. Image: A regal cat wearing a luxurious hat, elegant scarf, and classy boots.
+>    Descriptive Keywords: Majestic, Sophisticated, Frosty Elegance, Noble, Refined.
+>    Camera Model and Lens: Nikon Z7 II with a 85mm prime lens.
+>    Lighting: Subtle backlighting, adding a touch of glamour to the cat's winter ensemble.
+>    Style of Photograph: Portrait in a regal setting, highlighting the cat's grace and winter attire.
+> 5. Image: A curious cat in a cute hat, cozy scarf, and tiny boots, ready for winter adventures.
+>    Descriptive Keywords: Curious, Adventurous, Snowy Trails, Enthusiastic, Inquisitive.
+>    Camera Model and Lens: Olympus OM-D E-M1 Mark III with a 14-150mm lens.
+>    Lighting: Natural light with soft shadows, enhancing the cat's endearing expressions.
+>    Style of Photograph: Candid outdoor shot, capturing the cat's excitement and winter outfit.
+> 6. Image: A playful cat wearing a colorful hat, cheerful scarf, and adorable little boots.
+>    Descriptive Keywords: Playful, Colorful Winter, Cheerful, Lively, Joyful.
+>    Camera Model and Lens: Panasonic Lumix GH5 with a 25mm prime lens.
+>    Lighting: Bright and vibrant lighting, reflecting the cat's exuberant personality.
+>    Style of Photograph: Dynamic shot in action, showcasing the cat's playful spirit and winter fashion.
+>
+> With these prompts, the Midjourney Bot should be able to generate a variety of images featuring a cat dressed in a hat, scarf, and boots, each with its own unique style and character.
+
+<Image
+  src={result2}
+  alt="A stylish cat wearing a winter hat, cozy scarf, and adorable little boots"
+/>
+
+Let's try a different forumula.
+
+> I'd like to change the formula to:
+> (image we're prompting), (5 descriptive keywords or phrases), (art style), (artist name), (art medium)
+>
+> Type yes if you understand
+
+> Yes, I understand the updated formula for writing Midjourney prompts. The format now includes the following elements:
+>
+> 1. Image we're prompting
+> 1. 5 descriptive keywords or phrases
+> 1. Art style
+> 1. Artist name
+> 1. Art medium
+>    If you have specific image prompts you'd like me to generate using this new formula, please provide the details, and I'll be happy to assist you!
+
+> Excellent, write me 6 MidJourney prompts for a cat wearing a hat
+
+> Of course! Here are six Midjourney prompts for a cat wearing a hat:
+>
+> 1. Image: An adorable cat with a stylish hat, posing confidently.
+>    Descriptive Keywords: Fashionable, Confident, Playful, Charismatic, Whimsical.
+>    Art Style: Cartoon Illustration.
+>    Artist Name: Emily Cartwright.
+>    Art Medium: Digital Illustration.
+> 2. Image: A majestic cat adorned with an elegant hat, looking regal.
+>    Descriptive Keywords: Majestic, Graceful, Refined, Noble, Sophisticated.
+>    Art Style: Realistic Portrait.
+>    Artist Name: Alexander Williams.
+>    Art Medium: Oil Painting.
+> 3. Image: A mischievous cat wearing a funny hat, showing a playful expression.
+>    Descriptive Keywords: Playful, Quirky, Amusing, Humorous, Cheeky.
+>    Art Style: Caricature.
+>    Artist Name: Jessica Johnson.
+>    Art Medium: Pen and Ink.
+> 4. Image: A serene cat with a cozy hat, enjoying a peaceful moment.
+>    Descriptive Keywords: Serene, Cozy, Tranquil, Content, Relaxed.
+>    Art Style: Impressionism.
+>    Artist Name: William Turner.
+>    Art Medium: Watercolor.
+> 5. Image: A futuristic cat wearing a high-tech hat, looking futuristic.
+>    Descriptive Keywords: Futuristic, Hi-Tech, Innovative, Cyberpunk, Cool.
+>    Art Style: Sci-Fi Digital Art.
+>    Artist Name: NeoTechArt.
+>    Art Medium: Digital Artwork.
+> 6. Image: A magical cat wearing a witch's hat, casting a spell.
+>    Descriptive Keywords: Magical, Enchanting, Mystical, Whimsical, Bewitching.
+>    Art Style: Fantasy Illustration.
+>    Artist Name: Luna Starlight.
+>    Art Medium: Colored Pencils and Mixed Media.
+>
+> With these prompts, the Midjourney Bot will have a range of options to create artistic representations of cats wearing hats, each with a distinct style and feel.
+
+<Image
+  src={result3}
+  alt="A magical cat wearing a witch's hat, casting a spell"
+/>
+
+> I love it! Can we try the same again but with a focus on cinematic 3D CGI
+
+> Certainly! Here are six Midjourney prompts for a cinematic 3D CGI representation of a cat wearing a hat:
+>
+> 1. Image: An adventurous anthropomorphic cat wearing a rugged explorer hat.
+>    Descriptive Keywords: Adventurous, Anthropomorphic, Courageous, Explorer, Dynamic.
+>    Art Style: Cinematic 3D CGI Animation.
+>    Artist Name: Stellar Studios.
+>    Art Medium: 3D Computer Graphics.
+> 2. Image: A futuristic cyberpunk cat sporting a high-tech augmented reality hat.
+>    Descriptive Keywords: Cyberpunk, Futuristic, Hi-Tech, Techno-Adventurer, Edgy.
+>    Art Style: Cinematic 3D CGI.
+>    Artist Name: Digital Frontier.
+>    Art Medium: 3D Modeling and Rendering.
+> 3. Image: A mystical sorcerer cat wearing a magical hat, casting spells in a fantasy world.
+>    Descriptive Keywords: Mystical, Sorcerer, Fantasy Adventure, Enigmatic, Spellbinding.
+>    Art Style: Cinematic 3D CGI Fantasy.
+>    Artist Name: Enchanted Realms Animation.
+>    Art Medium: Digital Animation and Visual Effects.
+> 4. Image: A superhero cat donning a caped crusader's hat, ready to save the day.
+>    Descriptive Keywords: Superhero, Caped Crusader, Vigilante, Dynamic, Fearless.
+>    Art Style: Cinematic 3D CGI Superhero.
+>    Artist Name: Heroic Visions Studios.
+>    Art Medium: 3D Animation and Compositing.
+> 5. Image: A steampunk-inspired cat with a mechanical top hat, in a Victorian-era setting.
+>    Descriptive Keywords: Steampunk, Victorian, Mechanical Hat, Retro-Futuristic, Whimsical.
+>    Art Style: Cinematic 3D CGI Steampunk.
+>    Artist Name: Clockwork Creations.
+>    Art Medium: 3D Modeling and Texturing.
+> 6. Image: A majestic cosmic cat wearing a celestial-themed hat, floating among stars.
+>    Descriptive Keywords: Cosmic, Celestial, Astral Explorer, Majestic, Enchanting.
+>    Art Style: Cinematic 3D CGI Space Fantasy.
+>    Artist Name: Nebula Dreams Animation.
+>    Art Medium: Digital Animation and VFX with a cosmic touch.
+>
+> With these prompts, the Midjourney Bot will be guided to create cinematic 3D CGI scenes featuring cats wearing hats, each set in a unique and captivating environment to bring out the cinematic feel in the artwork.
+
+<Image
+  src={result4}
+  alt="An adventurous anthropomorphic cat wearing a rugged explorer hat"
+/>
+
+<Image
+  src={result5}
+  alt="A futuristic cyberpunk cat sporting a high-tech augmented reality hat"
+/>
+
+<Image
+  src={result6}
+  alt="A mystical sorcerer cat wearing a magical hat, casting spells in a fantasy world"
+/>
+
+<Image
+  src={result7}
+  alt="A superhero cat donning a caped crusader's hat, ready to save the day"
+/>
+
+<Image
+  src={result8}
+  alt="A steampunk-inspired cat with a mechanical top hat, in a Victorian-era setting"
+/>
+
+<Image
+  src={result9}
+  alt="A majestic cosmic cat wearing a celestial-themed hat, floating among stars"
+/>
+
+Possibly my favourite is the explorer cat.
+
+<Image
+  src={result10}
+  alt="An adventurous anthropomorphic cat wearing a rugged explorer hat"
+/>

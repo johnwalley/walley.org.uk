@@ -1,0 +1,75 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import result1 from './john.walley_the_most_stereotypical_woman_in_Belfast_2fe9379d-d0b0-4bbc-8b81-7167ff5856ed.png'
+import result2 from './john.walley_the_most_stereotypical_woman_in_Birmingham_61da4f52-2043-4666-a2ad-37d975ea32ae.png'
+import result3 from './john.walley_the_most_stereotypical_woman_in_brighton_c22b919d-1839-40b4-9f25-990368b17506.png'
+import result4 from './john.walley_the_most_stereotypical_woman_in_Bristol_584b7f95-f7dd-49a0-9b8b-a86bda36b90c.png'
+import result5 from './john.walley_the_most_stereotypical_woman_in_Cambridge_71acd69c-7a3b-42ed-977d-f217edc4d1c2.png'
+import result6 from './john.walley_the_most_stereotypical_woman_in_Cardiff_4167569e-a452-47fa-8e4a-436ce3a97a39.png'
+import result7 from './john.walley_the_most_stereotypical_woman_in_Glasgow_2f96126e-fb3d-4614-9f42-fc87399bb47a.png'
+import result8 from './john.walley_the_most_stereotypical_woman_in_Leeds_922f0f5a-21e2-4e9f-b380-96db261bd123.png'
+import result9 from './john.walley_the_most_stereotypical_woman_in_Manchester_73876901-42cb-46c2-9b75-00a88461cdb9.png'
+import result10 from './john.walley_the_most_stereotypical_woman_in_Newcastle_af0dfd39-1774-47fa-ba0d-4653ffaafe28.png'
+import result11 from './john.walley_the_most_stereotypical_woman_in_Oxford_fcf573cf-6ff0-4ba6-98f7-0882308fdd91.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2023-08-21',
+  title: 'Stereotypes 2',
+  description: 'The most stereotypical person in UK cities.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Asking the AI image tool, [MidJourney](https://www.midjourney.com/app/), to generate "the most stereotypical **woman** from..." a variety of UK cities.
+
+Presented without comment.
+
+## Belfast
+
+<Image src={result1} alt="The most steroetypical woman in Belfast" />
+
+## Birmingham
+
+<Image src={result2} alt="The most steroetypical woman in Birmingham" />
+
+## Brighton
+
+<Image src={result3} alt="The most steroetypical woman in Brighton" />
+
+## Bristol
+
+<Image src={result4} alt="The most steroetypical woman in Bristol" />
+
+## Cambridge
+
+<Image src={result5} alt="The most steroetypical woman in Cambridge" />
+
+## Cardiff
+
+<Image src={result6} alt="The most steroetypical woman in Cardiff" />
+
+## Glasgow
+
+<Image src={result7} alt="The most steroetypical woman in Glasgow" />
+
+## Leeds
+
+<Image src={result8} alt="The most steroetypical woman in Leeds" />
+
+## Manchester
+
+<Image src={result9} alt="The most steroetypical woman in Manchester" />
+
+## Newcastle
+
+<Image src={result10} alt="The most steroetypical woman in Newcastle" />
+
+## Oxford
+
+<Image src={result11} alt="The most steroetypical woman in Oxford" />

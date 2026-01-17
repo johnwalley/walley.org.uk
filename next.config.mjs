@@ -1,18 +1,14 @@
+import rehypePrism from '@mapbox/rehype-prism'
+import rehypeKatex from 'rehype-katex'
 import nextMDX from '@next/mdx'
 import remarkGfm from 'remark-gfm'
-import rehypePrism from '@mapbox/rehype-prism'
-import rehypeMathJax from 'rehype-mathjax'
 import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['jsx', 'mdx'],
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    newNextLinkBehavior: true,
-    scrollRestoration: true,
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  outputFileTracingIncludes: {
+    '/articles/*': ['./src/app/articles/**/*.mdx'],
   },
   async redirects() {
     return [

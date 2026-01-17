@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Container } from '@/components/Container'
+import { ContainerInner, ContainerOuter } from '@/components/Container'
 
 function NavLink({ href, children }) {
   return (
@@ -15,12 +15,12 @@ function NavLink({ href, children }) {
 
 export function Footer() {
   return (
-    <footer className="mt-32">
-      <Container.Outer>
-        <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
-          <Container.Inner>
-            <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+    <footer className="mt-32 flex-none">
+      <ContainerOuter>
+        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
+          <ContainerInner>
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/cv">CV</NavLink>
                 <NavLink href="/articles">Articles</NavLink>
@@ -32,9 +32,9 @@ export function Footer() {
                 reserved.
               </p>
             </div>
-          </Container.Inner>
+          </ContainerInner>
         </div>
-      </Container.Outer>
+      </ContainerOuter>
     </footer>
   )
 }

@@ -1,0 +1,105 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import fastTrack from './fast-track.jpg'
+import diagram from './diagram.jpg'
+
+export const article = {
+  author: 'John Walley',
+  date: '2017-01-15',
+  title: 'Prioritization',
+  description:
+    "The list of ideas and features you and your team could come up with is likely enough to last a lifetime. There's both an art and science to choosing what to work on next as well as what you will not take on.",
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+The list of ideas and features you and your team could come up with is likely enough to last a lifetime. There's both an art and science to choosing what to work on next as well as what you will not take on.
+
+<Image src={fastTrack} alt="Fast-track" />
+
+Let's look at some of the motivations behind prioritization, a couple of specific techniques, and finally some of the wrinkles that make this messy in the real-world.
+
+## Why prioritize?
+
+Specifically, we need to choose what to work on right this minute. Purely from a productivity perspective we want to ensure there's always a pipeline of work ready to go.
+
+More broadly, it's important to use the team's time wisely. Which features will have the greatest impact? Which will affect the largest number of users?
+
+Overall, and this isn't always the case, it's generally preferable to link product work to the company goals. How does our product contribute the company as a whole and any other products it offers? It can be a sign of difficulties to come if this piece isn't clear.
+
+## Techniques
+
+There are a plethora of techniques and processes available to us. I'm going to call out two. One, the Kano method, is something I've only used superficially but I appreciate its ability to categorize types of feature. The other, grouping by themes, I've found it to be a solid way of breaking deadlocks and ensuring smaller features get the attention they deserve.
+
+## Kano method
+
+This method helps categorize three main types of customer requirements and give insight into balancing customer satisfaction and development effort depending on the type. Let's consider each of the types.
+
+### Performance
+
+Often at the top of your customer's mind. These are the most visible requirements. In general, the better you execute on these the more satisfaction they bring. Conversely, if executed poorly, the more dissatisfaction you can expect to see.
+
+Consider delivery time for a company like Amazon. Long delivery times will cause dissatisfaction. Equally, shorter times will lead to more satisfaction.
+
+### Must-have
+
+Requirements that customers expect and take for granted. If they are missing you can expect the customer to notice. However, there are often diminishing returns and customers likely will not notice if you pour a ton of effort into such requirements.
+
+We nowadays expect software to cope seamlessly as we switch between different devices. You simply would not use a note taking application that could not keep notes taken on your laptop and phone in sync.
+
+### Delighters
+
+Something that customers do not expect but makes their day. Execution does not have to be perfect.
+
+I remember the first time I stayed in a catered chalet on a skiing holiday. The hosts baked a cake ready for when you get back at the end of the day. Not something I was expecting, and the quality wasn't important, but appreciated nonetheless.
+
+<Image src={diagram} alt="Chart showing satisfaction vs investment" />
+
+We can plot these types of requirement against the two axes: satisfaction and investment.
+
+It's also important to know that requirements shift type over time. Yesterday's delighter can become today's must-have feature. Take the cloud syncing example I used above. Rewind ten-fifteen years and this feature would have made you go "Wow, isn't that neat?".
+
+## Themes
+
+Choosing a set of features to work on which fall under a specific theme has proven to be one of my most reliable methods. Here are just two benefits it can offer.
+
+### Communication and purpose
+
+The theme provides a clear label for what the team is working on. This is great for letting management and the rest of the organisation know what's going on. It also helps provide a sense of purpose to the team and might even encourage them to suggest ideas.
+
+### Tie together disparate feature sizes and types
+
+There's a good chance the work required for the theme will involve working in similar areas of the product. This brings with it some efficiency from reduced context switching. In addition, smaller features which might otherwise lose out to larger, more vital features can be scheduled in more easily because they support the theme. Central to this last idea is that the theme provides focus. The theme is what the team, or part of the team, is working on now and not unrelated features (however important).
+
+## It ain't so simple
+
+Of course, the world imposes its own set of requirements and challenges on any attempt to apply theory to prioritization. Here are three examples.
+
+### Technical debt
+
+The most compelling of your inputs to your prioritization process will come from customer related sources and perhaps internal business drivers. It's important that engineering inputs are weighted appropriately too.
+
+All teams take on technical debt. In an ideal world this should be deliberate. We choose to build a product a certain sub-optimal way to achieve important product goals. Of course, no team is omniscient and the product will tend to accrue problems steadily of its own accord. Note that I'm not talking about bugs here (they deserve their own post). Instead these are the hidden dangers which are often invisible to customers and the business but can cause headaches in the future as they slow down development and even block seemingly simple future work.
+
+Like everything else, the engineering team should be in involved in coming up with solutions. A simple technique I've used with success in the past is to assign a score (1-3) to each piece of technical debt. The team has a cap (say 12) which when it's reached we prioritize a piece of remedial work to bring the score back down. It's effective in that it empowers the engineers through giving them something concrete to use in discussions with the product manager/owner.
+
+### Small vs large
+
+I touched on this challenge when talking about grouping features by theme.
+
+In theory, this shouldn't be an issue. We have techniques, e.g. impact vs effort, for trading off tasks of different sizes. In practice, time and time again I've seen small, particularly tiny, changes pushed down the backlog to make way for flashier, meatier features.
+
+### The wow factor
+
+Some features are unreasonably effective at getting customers attention. They may not gel well with other work that's going on. They might, heaven forbid, feel gimmicky. All that said, some features just make for great demos, attention grabbing email updates and compelling release notes!
+
+Every product deserves to have a few such wow features sprinkled in. How many, and how often is up to you. To get started, we could try the Kano method we looked at earlier to help identify likely candidates.
+
+## Conclusion
+
+Thanks for reading to the end. We've briefly looked at why you should prioritize, a couple of techniques to help you do so, and a nod to some of the real-world challenges which make this such an interesting challenge.

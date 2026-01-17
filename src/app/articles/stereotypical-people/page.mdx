@@ -1,0 +1,75 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import result1 from './john.walley_the_most_stereotypical_person_in_Cambridge_7d21c35f-030e-47a6-9104-2f3cc2d92eab.png'
+import result2 from './john.walley_the_most_stereotypical_person_in_Cardiff_5d29b7de-1b7f-4470-9327-a7159db46d2c.png'
+import result3 from './john.walley_the_most_stereotypical_person_in_Glasgow_02a50d50-0d77-42b6-9464-df36dbe59125.png'
+import result4 from './john.walley_the_most_stereotypical_person_in_Manchester_f41057e4-f47e-4612-a309-6d8ce5ab473a.png'
+import result5 from './john.walley_the_most_stereotypical_person_in_Newcastle_Upon_Tyn_c58e4032-59e4-468f-a362-cbe8ddc93088.png'
+import result6 from './john.walley_the_most_stereotypical_person_in_Birmingham_c22152fc-7f2a-4732-b42f-a6ae2cf23272.png'
+import result7 from './john.walley_the_most_stereotypical_person_in_Brighton_7e99c8d6-cd91-4ea4-b55f-a82b684bf341.png'
+import result8 from './john.walley_the_most_stereotypical_person_in_Bristol_6a1e4cbf-3152-4ccd-86b9-26a9511a9a98.png'
+import result9 from './john.walley_the_most_stereotypical_person_in_Belfast_1ec2659d-ab85-44e3-89ac-a50d0525cd2d.png'
+import result10 from './john.walley_the_most_stereotypical_person_in_Leeds_597db38b-054b-445f-a91c-ead5c50b0b91.png'
+import result11 from './john.walley_the_most_stereotypical_person_in_Oxford_2428ed1f-02a7-434d-974e-e4a3701a1d56.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2023-08-20',
+  title: 'Stereotypes',
+  description: 'The most stereotypical person in UK cities.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Asking the AI image tool, [MidJourney](https://www.midjourney.com/app/), to generate "the most stereotypical person from..." a variety of UK cities.
+
+Presented without comment.
+
+## Belfast
+
+<Image src={result9} alt="The most steroetypical person in Belfast" />
+
+## Birmingham
+
+<Image src={result6} alt="The most steroetypical person in Birmingham" />
+
+## Brighton
+
+<Image src={result7} alt="The most steroetypical person in Brighton" />
+
+## Bristol
+
+<Image src={result8} alt="The most steroetypical person in Bristol" />
+
+## Cambridge
+
+<Image src={result1} alt="The most steroetypical person in Cambridge" />
+
+## Cardiff
+
+<Image src={result2} alt="The most steroetypical person in Cardiff" />
+
+## Glasgow
+
+<Image src={result3} alt="The most steroetypical person in Glasgow" />
+
+## Leeds
+
+<Image src={result10} alt="The most steroetypical person in Leeds" />
+
+## Manchester
+
+<Image src={result4} alt="The most steroetypical person in Manchester" />
+
+## Newcastle
+
+<Image src={result5} alt="The most steroetypical person in Newcastle" />
+
+## Oxford
+
+<Image src={result11} alt="The most steroetypical person in Oxford" />
