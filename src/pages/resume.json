@@ -6,7 +6,7 @@
     "name": "John Walley",
     "label": "Software Developer",
     "email": "john@walley.org.uk",
-    "summary": "Full-stack developer and founder with 15+ years of experience designing and delivering scalable applications, data visualization platforms, and open-source tools. Proven track record leading technical teams, driving product strategy, and contributing to projects used by tens of thousands of developers worldwide.",
+    "summary": "Senior software engineer with deep experience building data-intensive and performance-critical web applications, specialising in data visualisation and complex UI systems. Strong background in TypeScript, React, and modern frontend architecture, with a track record of designing maintainable systems, improving developer experience, and tackling hard technical problems. Comfortable operating as a senior individual contributor, influencing technical direction, mentoring engineers, and collaborating closely with product and design to deliver high-quality outcomes.",
     "url": "https://www.walley.org.uk",
     "location": {
       "city": "Cambridge",
@@ -36,7 +36,7 @@
       "position": "Software Developer",
       "url": "https://cambridge-intelligence.com/",
       "startDate": "2025-06",
-      "summary": "Senior engineer working on high-performance data visualisation tools used by analysts to explore complex graph, temporal and geosptial data. Contributing across product architecture, developer experience, and performance critical UI components.",
+      "summary": "Senior engineer working on high-performance data visualisation tools used by analysts to explore complex graph, temporal and geospatial data. Contributing across product architecture, developer experience, and performance critical UI components.",
       "highlights": []
     },
     {
