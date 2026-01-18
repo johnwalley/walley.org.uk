@@ -50,7 +50,7 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 export const metadata = {
   title: 'About',
   description:
-    "I'm John Walley. I live in Cambridge, where I design the future.",
+    'Senior software engineer specialising in data visualisation and complex UI systems.',
 }
 
 export default function About() {
@@ -73,11 +73,16 @@ export default function About() {
           </h1>
           <div className="prose mt-6 space-y-7 text-base text-zinc-600 dark:prose-invert dark:text-zinc-400">
             <p>
-              Full-stack developer and entrepreneur with over 15 years of
-              experience delivering robust applications and innovative software
-              solutions. Expert in TypeScript, JavaScript, and data
-              visualisation, with a proven track record of leading
-              cross-industry projects from conception to deployment.
+              Senior software engineer with deep experience building
+              data-intensive and performance-critical web applications,
+              specialising in data visualisation and complex UI systems. Strong
+              background in TypeScript, React, and modern frontend architecture,
+              with a track record of designing maintainable systems, improving
+              developer experience, and tackling hard technical problems.
+              Comfortable operating as a senior individual contributor,
+              influencing technical direction, mentoring engineers, and
+              collaborating closely with product and design to deliver
+              high-quality outcomes.
             </p>
           </div>
           <Link href="/cv">
