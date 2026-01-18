@@ -3,15 +3,24 @@
 import * as d3 from 'd3'
 import { useEffect } from 'react'
 
+interface Action {
+  type: 'increment' | 'longest'
+  i: number
+  j: number
+}
+
 const Viz = () => {
   useEffect(() => {
-    var count = 0,
-      overshoot = 300
+    let count = 0
+    const overshoot = 300
 
-    function whenBoundsVisible(computeBounds, callback) {
-      var id = '.visible-' + ++count,
-        self = d3.select(window),
-        bounds
+    function whenBoundsVisible(
+      computeBounds: () => [number, number],
+      callback: (arg: null) => void
+    ) {
+      const id = '.visible-' + ++count
+      const self = d3.select(window)
+      let bounds: [number, number]
 
       if (document.readyState === 'loading') self.on('load' + id, loaded)
       else loaded()
@@ -37,55 +46,52 @@ const Viz = () => {
       }
     }
 
-    const beforeVisible = function (element, callback) {
+    const whenFullyVisible = function (
+      element: Element,
+      callback: (arg: null) => void
+    ) {
       return whenBoundsVisible(function () {
-        var rect = element.getBoundingClientRect()
+        const rect = element.getBoundingClientRect()
         return [
-          rect.top + pageYOffset - innerHeight - overshoot,
-          rect.bottom + pageYOffset + overshoot,
-        ]
-      }, callback)
-    }
-
-    const whenFullyVisible = function (element, callback) {
-      return whenBoundsVisible(function () {
-        var rect = element.getBoundingClientRect()
-        return [rect.bottom + pageYOffset - innerHeight, rect.top + pageYOffset]
+          rect.bottom + pageYOffset - innerHeight,
+          rect.top + pageYOffset,
+        ] as [number, number]
       }, callback)
     }
 
     if (!document.querySelector('p#longestString>svg')) {
-      var array = 'abcaabbccaaabbbcccaaaabbbbcccc'.split('')
-      var intArray = array.map(function (x) {
+      const array = 'abcaabbccaaabbbcccaaaabbbbcccc'.split('')
+      const intArray = array.map(function (x) {
         return x.charCodeAt(0)
       })
 
-      var n = array.length
+      const n = array.length
 
-      var pointers = [0, 1]
+      const pointers = [0, 1]
 
-      var margin = { top: 60, right: 20, bottom: 60, left: 20 },
-        width =
-          d3.select('#longestString').node().getBoundingClientRect().width -
+      const margin = { top: 60, right: 20, bottom: 60, left: 20 }
+      const width =
+        (d3.select('#longestString').node() as Element)?.getBoundingClientRect()
+          .width -
           margin.left -
-          margin.right,
-        height = 180 - margin.top - margin.bottom
+          margin.right || 600
+      const height = 180 - margin.top - margin.bottom
 
-      var x = d3
-        .scalePoint()
+      const x = d3
+        .scalePoint<number>()
         .domain(d3.range(n + 1))
         .range([0, width])
 
-      var p = d3.select('#longestString').on('click', click)
+      const p = d3.select('#longestString').on('click', click)
 
-      var svg = p
+      const svg = p
         .append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-      var gText = svg.append('g')
+      const gText = svg.append('g')
 
       gText
         .selectAll('text')
@@ -100,7 +106,7 @@ const Viz = () => {
         .attr('text-anchor', 'middle')
         .attr('font-size', (32 * width) / 700)
 
-      var gLine = svg.append('g').attr('class', 'line')
+      const gLine = svg.append('g').attr('class', 'line')
 
       gLine
         .selectAll('line')
@@ -113,40 +119,43 @@ const Viz = () => {
 
       p.append('button').text('▶ Play')
 
-      whenFullyVisible(p.node(), click)
+      const node = p.node()
+      if (node) whenFullyVisible(node as Element, click)
 
       function click() {
-        var actions = longestSubstring(intArray, 2)
+        const actions = longestSubstring(intArray, 2)
 
-        var line = gLine
+        const line = gLine
           .selectAll('line')
           .attr('transform', transform)
           .attr('class', 'line--inactive')
           .interrupt()
 
-        var transition = svg
+        let transition = svg
           .transition()
           .duration(150)
           .on('start', function start() {
-            var action = actions.pop()
+            const action = actions.pop()
+            if (!action) return
+
             switch (action.type) {
               case 'increment': {
-                var i = action.i
-                var j = action.j
+                const i = action.i
+                const j = action.j
 
                 line.data([i, j])
 
                 transition.each(function () {
-                  line.transition().attr('transform', transformPosition)
+                  line.transition().attr('transform', transformPosition as unknown as string)
                 })
 
                 break
               }
               case 'longest': {
-                var i = action.i
-                var j = action.j
+                const i = action.i
+                const j = action.j
 
-                gText.selectAll('text').attr('class', function (d, idx) {
+                gText.selectAll('text').attr('class', function (_d, idx) {
                   return idx >= i && idx < j ? 'text--active' : 'text--inactive'
                 })
 
@@ -162,36 +171,30 @@ const Viz = () => {
           })
       }
 
-      function transform(d, i) {
+      function transform(_d: unknown, i: number) {
         return 'translate(' + x(i) + ',' + height + ')'
       }
 
-      function transformPosition(d, i) {
+      function transformPosition(d: number) {
         return 'translate(' + x(d) + ',' + 0.5 * height + ')'
       }
 
-      function longestSubstring(a, m) {
-        var actions = []
+      function longestSubstring(a: number[], m: number): Action[] {
+        const actions: Action[] = []
 
-        var i = 0
-        var j = 1
+        let i = 0
+        let j = 1
 
-        var longestString = [i, j]
+        let longestString = [i, j]
 
-        var hist = Array(128).fill(0)
+        const hist = Array(128).fill(0)
         hist[a[i]]++
 
         while (j < a.length) {
           hist[a[j]]++
 
           if (
-            hist
-              .map(function (x) {
-                return x > 0
-              })
-              .reduce(function (a, b) {
-                return a + b
-              }) <= m
+            hist.filter((x: number) => x > 0).length <= m
           ) {
             j++
           } else {

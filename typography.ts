@@ -1,3 +1,5 @@
+import { type Config } from 'tailwindcss'
+
 export default {
   theme: {
     typography: ({ theme }) => ({
@@ -281,4 +283,4 @@ export default {
       },
     }),
   },
-}
+} satisfies Config

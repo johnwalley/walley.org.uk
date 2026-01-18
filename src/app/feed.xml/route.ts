@@ -2,7 +2,9 @@ import assert from 'assert'
 import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
 
-export async function GET(req) {
+import { getAllArticles } from '@/lib/articles'
+
+export async function GET(req: Request) {
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 
   if (!siteUrl) {
@@ -28,11 +30,8 @@ export async function GET(req) {
     },
   })
 
-  let articleIds = require
-    .context('../articles', true, /\/page\.mdx$/)
-    .keys()
-    .filter((key) => key.startsWith('./'))
-    .map((key) => key.slice(2).replace(/\/page\.mdx$/, ''))
+  let articles = await getAllArticles()
+  let articleIds = articles.map((article) => article.slug)
 
   for (let id of articleIds) {
     let url = String(new URL(`/articles/${id}`, req.url))

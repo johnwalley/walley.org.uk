@@ -12,7 +12,17 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
-function SocialLink({ className, href, children, icon: Icon }) {
+function SocialLink({
+  className,
+  href,
+  children,
+  icon: Icon,
+}: {
+  className?: string
+  href: string
+  children: React.ReactNode
+  icon: React.ComponentType<{ className?: string }>
+}) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
@@ -26,7 +36,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
-function MailIcon(props) {
+function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path

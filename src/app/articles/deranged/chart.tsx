@@ -3,10 +3,15 @@
 import * as d3 from 'd3'
 import { useEffect } from 'react'
 
+interface DataPoint {
+  x: number
+  y: number
+}
+
 const Chart = () => {
   useEffect(() => {
     if (!document.querySelector('div#example>svg')) {
-      var D = function (n) {
+      const D = function (n: number): number {
         if (n <= 0) return 1
 
         if (n <= 1) return 0
@@ -14,29 +19,26 @@ const Chart = () => {
         return (n - 1) * (D(n - 1) + D(n - 2))
       }
 
-      var data = [],
-        n = 100,
-        a = 1,
-        b = 2
+      const data: DataPoint[] = []
 
-      for (var k = 2; k < 20; k++) {
+      for (let k = 2; k < 20; k++) {
         data.push({ x: k, y: D(k) })
       }
 
-      var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-        width = 710 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom
+      const margin = { top: 20, right: 20, bottom: 30, left: 50 }
+      const width = 710 - margin.left - margin.right
+      const height = 500 - margin.top - margin.bottom
 
-      var x = d3.scaleLinear().range([0, width])
+      const x = d3.scaleLinear().range([0, width])
 
-      var y = d3.scaleLog().range([height, 0])
+      const y = d3.scaleLog().range([height, 0])
 
-      var xAxis = d3.axisBottom(x)
+      const xAxis = d3.axisBottom(x)
 
-      var yAxis = d3.axisLeft(y)
+      const yAxis = d3.axisLeft(y)
 
-      var line = d3
-        .line()
+      const line = d3
+        .line<DataPoint>()
         .x(function (d) {
           return x(d.x)
         })
@@ -44,14 +46,14 @@ const Chart = () => {
           return y(d.y)
         })
 
-      var svg = d3
+      const svg = d3
         .select('div#example')
         .append('svg')
         .attr(
           'viewBox',
           `0 0 ${width + margin.left + margin.right} ${
             height + margin.top + margin.bottom
-          }`,
+          }`
         )
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
@@ -59,12 +61,12 @@ const Chart = () => {
       x.domain(
         d3.extent(data, function (d) {
           return d.x
-        }),
+        }) as [number, number]
       )
       y.domain(
         d3.extent(data, function (d) {
           return d.y
-        }),
+        }) as [number, number]
       )
 
       svg

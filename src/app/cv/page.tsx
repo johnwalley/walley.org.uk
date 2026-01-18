@@ -1,10 +1,9 @@
-import Link from 'next/link'
 import data from './resume.json'
 
 import { Container } from '@/components/Container'
 import { Button } from '@/components/Button'
 
-function formatYearMonth(value) {
+function formatYearMonth(value: string | undefined): string {
   if (!value) return ''
 
   const parts = value.split('-')
@@ -39,10 +38,10 @@ function formatYearMonth(value) {
   return value
 }
 
-function parseMarkdownLinks(text) {
+function parseMarkdownLinks(text: string | undefined): React.ReactNode {
   if (!text) return ''
 
-  const parts = []
+  const parts: React.ReactNode[] = []
   const regex = /\[([^\]]+)\]\(([^)]+)\)/g
   let lastIndex = 0
   let match
@@ -76,7 +75,7 @@ function parseMarkdownLinks(text) {
   return parts.length > 0 ? parts : text
 }
 
-function Ul({ children }) {
+function Ul({ children }: { children: React.ReactNode }) {
   return (
     <ul className="list-inside list-disc space-y-2 leading-normal">
       {children}
@@ -84,7 +83,7 @@ function Ul({ children }) {
   )
 }
 
-function H2({ children }) {
+function H2({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-slate-200">
       {children}
@@ -92,7 +91,7 @@ function H2({ children }) {
   )
 }
 
-function H3({ left, right }) {
+function H3({ left, right }: { left: string; right?: string }) {
   return (
     <h3 className="text-lg font-bold text-slate-900 dark:text-slate-200">
       {left}
@@ -106,7 +105,7 @@ function H3({ left, right }) {
   )
 }
 
-function Subtitle({ children }) {
+function Subtitle({ children }: { children: React.ReactNode }) {
   return (
     <h4 className="mb-2 text-base italic text-slate-500 dark:text-slate-400">
       {children}
@@ -114,7 +113,7 @@ function Subtitle({ children }) {
   )
 }
 
-function Description({ children }) {
+function Description({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-4 text-base text-slate-900 dark:text-slate-200">
       {children}
@@ -149,24 +148,11 @@ export default function CV() {
           <div className="">
             <H2>Experience</H2>
             {data.work.map(
-              (
-                {
-                  name,
-                  position,
-                  startDate,
-                  endDate,
-                  date,
-                  summary,
-                  highlights,
-                },
-                index
-              ) => (
+              ({ name, position, startDate, endDate, summary, highlights }, index) => (
                 <div key={index}>
                   <H3 left={name} right={position} />
                   <Subtitle>
-                    {date
-                      ? date
-                      : `${formatYearMonth(startDate)} - ${endDate ? formatYearMonth(endDate) : 'Present'}`}
+                    {`${formatYearMonth(startDate)} - ${endDate ? formatYearMonth(endDate) : 'Present'}`}
                   </Subtitle>
                   <Description>
                     {summary && (

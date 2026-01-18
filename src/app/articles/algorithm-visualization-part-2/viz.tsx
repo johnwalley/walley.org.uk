@@ -3,15 +3,47 @@
 import * as d3 from 'd3'
 import { useEffect } from 'react'
 
+type ActionType = 'move' | 'blocked' | 'success' | 'reset' | 'search'
+
+interface MoveAction {
+  type: 'move'
+  index: number
+  amount: number
+}
+
+interface BlockedAction {
+  type: 'blocked'
+  index: number
+}
+
+interface SuccessAction {
+  type: 'success'
+}
+
+interface ResetAction {
+  type: 'reset'
+  x?: number
+}
+
+interface SearchAction {
+  type: 'search'
+  range: [number, number, number]
+}
+
+type Action = MoveAction | BlockedAction | SuccessAction | ResetAction | SearchAction
+
 const Viz = () => {
   useEffect(() => {
-    var count = 0,
-      overshoot = 300
+    let count = 0
+    const overshoot = 300
 
-    function whenBoundsVisible(computeBounds, callback) {
-      var id = '.visible-' + ++count,
-        self = d3.select(window),
-        bounds
+    function whenBoundsVisible(
+      computeBounds: () => [number, number],
+      callback: (arg: null) => void
+    ) {
+      const id = '.visible-' + ++count
+      const self = d3.select(window)
+      let bounds: [number, number]
 
       if (document.readyState === 'loading') self.on('load' + id, loaded)
       else loaded()
@@ -37,55 +69,52 @@ const Viz = () => {
       }
     }
 
-    const beforeVisible = function (element, callback) {
+    const whenFullyVisible = function (
+      element: Element,
+      callback: (arg: null) => void
+    ) {
       return whenBoundsVisible(function () {
-        var rect = element.getBoundingClientRect()
+        const rect = element.getBoundingClientRect()
         return [
-          rect.top + pageYOffset - innerHeight - overshoot,
-          rect.bottom + pageYOffset + overshoot,
-        ]
-      }, callback)
-    }
-
-    const whenFullyVisible = function (element, callback) {
-      return whenBoundsVisible(function () {
-        var rect = element.getBoundingClientRect()
-        return [rect.bottom + pageYOffset - innerHeight, rect.top + pageYOffset]
+          rect.bottom + pageYOffset - innerHeight,
+          rect.top + pageYOffset,
+        ] as [number, number]
       }, callback)
     }
 
     if (!document.querySelector('p#kingdomAndTrees>svg')) {
-      var array = [9, 5, 11, 2, 11, 3]
-      array = d3.range(6).map(function (x) {
+      let array = [9, 5, 11, 2, 11, 3]
+      array = d3.range(6).map(function () {
         return Math.floor(Math.random() * 20) + 1
       })
 
-      var n = array.length
-      var maxX = 20
+      const n = array.length
+      const maxX = 20
 
-      var margin = {
-          top: 60,
-          right: 20,
-          bottom: 60,
-          left: 40,
-        },
-        width =
-          d3.select('#kingdomAndTrees').node().getBoundingClientRect().width -
+      const margin = {
+        top: 60,
+        right: 20,
+        bottom: 60,
+        left: 40,
+      }
+      const width =
+        (d3.select('#kingdomAndTrees').node() as Element)?.getBoundingClientRect()
+          .width -
           margin.left -
-          margin.right,
-        height = 400 - margin.top - margin.bottom
+          margin.right || 600
+      const height = 400 - margin.top - margin.bottom
 
-      var x = d3.scaleBand().range([0, width]).padding(0.1)
+      const x = d3.scaleBand<number>().range([0, width]).padding(0.1)
 
-      var y = d3.scaleLinear().range([height, 0])
+      const y = d3.scaleLinear().range([height, 0])
 
-      var xAxis = d3.axisBottom(x)
+      const xAxis = d3.axisBottom(x)
 
-      var yAxis = d3.axisLeft(y)
+      const yAxis = d3.axisLeft(y)
 
-      var p = d3.select('#kingdomAndTrees').on('click', click)
+      const p = d3.select('#kingdomAndTrees').on('click', click)
 
-      var svg = p
+      const svg = p
         .append('svg')
         .attr('width', width + margin.left + margin.top)
         .attr('height', height + margin.top + margin.bottom)
@@ -93,7 +122,7 @@ const Viz = () => {
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
       x.domain(d3.range(0, n))
-      y.domain([0, d3.max(array)])
+      y.domain([0, d3.max(array) ?? 20])
 
       svg
         .append('g')
@@ -112,9 +141,9 @@ const Viz = () => {
         .style('text-anchor', 'end')
         .text('Height')
 
-      var mid = Math.floor((maxX - 1) / 2)
+      const mid = Math.floor((maxX - 1) / 2)
 
-      var title = svg
+      const title = svg
         .append('text')
         .attr('x', (width / maxX) * mid)
         .attr('y', 0 - margin.top / 1.5)
@@ -130,7 +159,7 @@ const Viz = () => {
         .attr('y', 0 - margin.top / 2)
         .attr('height', 20)
 
-      var searchRange = svg
+      const searchRange = svg
         .append('rect')
         .attr('class', 'range')
         .attr('x', 0)
@@ -144,8 +173,8 @@ const Viz = () => {
         .enter()
         .append('rect')
         .attr('class', 'bar')
-        .attr('x', function (d, i) {
-          return x(i)
+        .attr('x', function (_d, i) {
+          return x(i) ?? 0
         })
         .attr('width', x.bandwidth())
         .attr('y', function (d) {
@@ -155,23 +184,26 @@ const Viz = () => {
           return height - y(d)
         })
 
-      whenFullyVisible(p.node(), click)
+      const node = p.node()
+      if (node) whenFullyVisible(node as Element, click)
 
       function click() {
-        var actions = kingdomAndTrees(array, maxX)
+        const actions = kingdomAndTrees(array, maxX)
 
-        var bar = svg
+        const bar = svg
           .selectAll('.bar, .bar-blocked')
           .attr('class', 'bar')
           .interrupt()
 
-        var data = array.slice()
+        let data = array.slice()
 
-        var transition = svg
+        let transition = svg
           .transition()
           .duration(600)
           .on('start', function start() {
-            var action = actions.pop()
+            const action = actions.pop()
+            if (!action) return
+
             switch (action.type) {
               case 'move': {
                 data[action.index] += action.amount
@@ -181,16 +213,16 @@ const Viz = () => {
                 transition.each(function () {
                   bar
                     .transition()
-                    .attr('x', function (d, i) {
-                      return x(i)
+                    .attr('x', function (_d, i) {
+                      return x(i) ?? 0
                     })
                     .attr('y', function (d) {
-                      return y(d)
+                      return y(d as number)
                     })
                     .attr('height', function (d) {
-                      return height - y(d)
+                      return height - y(d as number)
                     })
-                    .attr('class', function (d, idx) {
+                    .attr('class', function (_d, idx) {
                       return idx === action.index ? 'bar-active' : 'bar'
                     })
                 })
@@ -199,7 +231,7 @@ const Viz = () => {
               }
               case 'blocked': {
                 transition.each(function () {
-                  bar.transition().attr('class', function (d, idx) {
+                  bar.transition().attr('class', function (_d, idx) {
                     return idx === action.index ? 'bar-blocked' : 'bar'
                   })
                 })
@@ -219,14 +251,14 @@ const Viz = () => {
 
                 bar
                   .transition()
-                  .attr('x', function (d, i) {
-                    return x(i)
+                  .attr('x', function (_d, i) {
+                    return x(i) ?? 0
                   })
                   .attr('y', function (d) {
-                    return y(d)
+                    return y(d as number)
                   })
                   .attr('height', function (d) {
-                    return height - y(d)
+                    return height - y(d as number)
                   })
                   .attr('class', 'bar')
                 break
@@ -239,7 +271,7 @@ const Viz = () => {
                     .attr(
                       'width',
                       (width / (maxX - 1)) *
-                        (action.range[2] - action.range[0]),
+                        (action.range[2] - action.range[0])
                     )
                     .attr('y', 0 - margin.top / 2)
                     .attr('height', 20)
@@ -262,12 +294,12 @@ const Viz = () => {
           })
       }
 
-      function kingdomAndTrees(a, x) {
-        var actions = []
+      function kingdomAndTrees(a: number[], maxX: number): Action[] {
+        const actions: Action[] = []
 
-        var lo = 1
-        var hi = x
-        var mid
+        let lo = 1
+        let hi = maxX
+        let mid: number
 
         while (lo < hi) {
           mid = Math.floor((hi + lo) / 2)
@@ -280,7 +312,7 @@ const Viz = () => {
             x: mid,
           })
 
-          var success = hasSolution(a, mid, actions)
+          const success = hasSolution(a, mid, actions)
 
           if (success) {
             hi = mid
@@ -303,9 +335,9 @@ const Viz = () => {
         return actions.reverse()
       }
 
-      function hasSolution(a, j, actions) {
-        var lastHeight = 0
-        var i
+      function hasSolution(a: number[], j: number, actions: Action[]): boolean {
+        let lastHeight = 0
+        let i: number
         for (i = 0; i < a.length; i++) {
           if (a[i] + j > lastHeight) {
             lastHeight = Math.max(lastHeight + 1, a[i] - j)
@@ -334,6 +366,8 @@ const Viz = () => {
           })
           return true
         }
+
+        return false
       }
     }
   }, [])

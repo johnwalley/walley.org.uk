@@ -1,10 +1,12 @@
+import { type Metadata } from 'next'
+
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 
 import '@/styles/tailwind.css'
 import 'katex/dist/katex.min.css'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     template: '%s - John Walley',
     default: 'John Walley - Software engineer, founder, and amateur coxswain',
@@ -18,7 +20,11 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className="flex h-full bg-zinc-50 dark:bg-black">

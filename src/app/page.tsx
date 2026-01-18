@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
@@ -25,8 +25,9 @@ import logoMulberryHouseSoftware from '@/images/logos/mulberry-house-software.sv
 import logoCambridgeIntelligence from '@/images/logos/cambridge-intelligence.png'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { type ArticleWithSlug } from '@/lib/articles'
 
-function BriefcaseIcon(props) {
+function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -49,7 +50,7 @@ function BriefcaseIcon(props) {
   )
 }
 
-function ArrowDownIcon(props) {
+function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -62,7 +63,7 @@ function ArrowDownIcon(props) {
   )
 }
 
-function Article({ article }) {
+function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <Card as="article">
       <Card.Title href={`/articles/${article.slug}`}>
@@ -77,7 +78,12 @@ function Article({ article }) {
   )
 }
 
-function SocialLink({ icon: Icon, ...props }) {
+function SocialLink({
+  icon: Icon,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Link> & {
+  icon: React.ComponentType<{ className?: string }>
+}) {
   return (
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
@@ -85,7 +91,15 @@ function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
-function Role({ role }) {
+interface Role {
+  company: string
+  title: string
+  logo: ImageProps['src']
+  start: string | { label: string; dateTime: string }
+  end: string | { label: string; dateTime: string }
+}
+
+function Role({ role }: { role: Role }) {
   let startLabel =
     typeof role.start === 'string' ? role.start : role.start.label
   let startDate =
@@ -123,7 +137,7 @@ function Role({ role }) {
 }
 
 function Resume() {
-  let resume = [
+  let resume: Role[] = [
     {
       company: 'Cambridge Intelligence',
       title: 'Software Developer',

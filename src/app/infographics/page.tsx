@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
@@ -13,7 +13,13 @@ import marathons from '@/images/infographics/marathons.png'
 import river_crossings from '@/images/infographics/river_crossings.png'
 import tyne_bridges from '@/images/infographics/tyne_bridges.jpg'
 
-function InfographicsSection({ children, ...props }) {
+function InfographicsSection({
+  children,
+  ...props
+}: {
+  title: string
+  children: React.ReactNode
+}) {
   return (
     <Section {...props}>
       <div className="space-y-16">{children}</div>
@@ -21,7 +27,19 @@ function InfographicsSection({ children, ...props }) {
   )
 }
 
-function Infographic({ title, description, cta, href, imgSrc }) {
+function Infographic({
+  title,
+  description,
+  cta,
+  href,
+  imgSrc,
+}: {
+  title: string
+  description: string
+  cta: string
+  href: string
+  imgSrc?: StaticImageData
+}) {
   return (
     <Card as="article" className="gap-5 md:flex-row md:gap-10">
       {imgSrc && (

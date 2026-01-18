@@ -2,8 +2,9 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { type ArticleWithSlug } from '@/lib/articles'
 
-function Article({ article }) {
+function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
