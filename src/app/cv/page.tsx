@@ -58,7 +58,7 @@ function parseMarkdownLinks(text: string | undefined): React.ReactNode {
       <a
         key={match.index}
         href={href}
-        className="border-b border-sky-600 font-semibold text-[#0f172a] hover:border-b-2 dark:text-white"
+        className="border-b border-teal-500 font-semibold text-teal-500 transition hover:border-b-2 dark:border-teal-400 dark:text-teal-400"
       >
         {linkText}
       </a>
@@ -134,7 +134,7 @@ export default function CV() {
           <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-200">
             {data.basics.name}
           </h1>
-          <h2 className="text-4xl font-bold text-[#0d71ba]">
+          <h2 className="text-4xl font-bold text-teal-500 dark:text-teal-400">
             {data.basics.label}
           </h2>
           <div className="mt-4">
