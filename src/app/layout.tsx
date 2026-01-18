@@ -6,16 +6,58 @@ import { Layout } from '@/components/Layout'
 import '@/styles/tailwind.css'
 import 'katex/dist/katex.min.css'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.walley.org.uk'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     template: '%s - John Walley',
-    default: 'John Walley - Software engineer, founder, and amateur coxswain',
+    default: 'John Walley - Software Engineer & Data Visualisation Specialist',
   },
   description:
-    "I'm John, a software engineer and entrepreneur based in Cambridge.",
+    'Senior software engineer specialising in data visualisation and complex UI systems. Expert in TypeScript, React, and modern frontend architecture.',
+  keywords: [
+    'software engineer',
+    'data visualisation',
+    'TypeScript',
+    'React',
+    'frontend development',
+    'web applications',
+    'Cambridge',
+  ],
+  authors: [{ name: 'John Walley', url: siteUrl }],
+  creator: 'John Walley',
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: siteUrl,
+    siteName: 'John Walley',
+    title: 'John Walley - Software Engineer & Data Visualisation Specialist',
+    description:
+      'Senior software engineer specialising in data visualisation and complex UI systems. Expert in TypeScript, React, and modern frontend architecture.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'John Walley - Software Engineer & Data Visualisation Specialist',
+    description:
+      'Senior software engineer specialising in data visualisation and complex UI systems.',
+    creator: '@johnmwalley',
+  },
   alternates: {
+    canonical: siteUrl,
     types: {
-      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
+      'application/rss+xml': `${siteUrl}/feed.xml`,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
 }
