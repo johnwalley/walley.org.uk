@@ -7,7 +7,6 @@ import logoPennant from '@/images/logos/pennant.svg'
 import logoPubMap from '@/images/logos/pubmap.png'
 import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
 import logoChangingPlaces from '@/images/logos/changing-places.svg'
-import logoWallE from '@/images/logos/wall-e.png'
 
 const projects = [
   {
@@ -53,16 +52,6 @@ const projects = [
       label: 'app.changingplacesinternational.org',
     },
     logo: logoChangingPlaces,
-  },
-  {
-    name: "Where's Wall-E?",
-    description:
-      'A travel photo album documenting Wall-E\'s adventures around the world. A fun personal project capturing memorable moments from different destinations.',
-    link: {
-      href: 'https://photos.app.goo.gl/ygstkZKUJw7rYdzAA',
-      label: 'Google Photos album',
-    },
-    logo: logoWallE,
   },
 ]
 
