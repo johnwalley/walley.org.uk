@@ -12,7 +12,8 @@ import logoWallE from '@/images/logos/wall-e.png'
 const projects = [
   {
     name: 'Allotment',
-    description: 'React split-pane component.',
+    description:
+      'A VSCode-inspired React component for creating resizable split views. Built on the same codebase as VSCode with support for dynamic panes. 1.2k+ GitHub stars.',
     link: {
       href: 'https://allotment.mulberryhousesoftware.com/',
       label: 'Allotment',
@@ -22,20 +23,21 @@ const projects = [
   {
     name: 'Pennant',
     description:
-      'React component library for visualising historical and streaming financial market data.',
+      'High-performance React charting library for financial data. Built on Canvas API for 60fps rendering with technical indicators like Bollinger Bands, EMA, and MACD.',
     link: { href: 'https://pennant.vega.xyz/', label: 'Pennant' },
     logo: logoPennant,
   },
   {
     name: 'Cambridge Pub Map',
     description:
-      'A Cambridge Pub Map in the Style of the London Underground Map.',
+      'An interactive map of Cambridge pubs styled after the iconic London Underground map. A fun way to explore the city\'s pub scene.',
     link: { href: 'https://www.pubmap.co.uk/', label: 'pubmap.co.uk' },
     logo: logoPubMap,
   },
   {
     name: 'Cambridge Bumps',
-    description: 'Latest results, historical charts and more.',
+    description:
+      'Interactive charts and historical results for Cambridge University rowing races. Explore over 200 years of bumps racing data with visualisations and statistics.',
     link: {
       href: 'https://www.cambridgebumps.com/',
       label: 'cambridgebumps.com',
@@ -45,7 +47,7 @@ const projects = [
   {
     name: 'Changing Places International Map',
     description:
-      'Changing Places Toilets enable anyone, regardless of their disability, to go to the shops, attend hospital appointments, enjoy community life, socialise and travel.',
+      'Interactive map helping people find Changing Places toilets worldwide. These fully accessible facilities enable people with complex disabilities to participate in everyday life.',
     link: {
       href: 'https://app.changingplacesinternational.org/',
       label: 'app.changingplacesinternational.org',
@@ -54,7 +56,8 @@ const projects = [
   },
   {
     name: "Where's Wall-E?",
-    description: 'Travels around the world.',
+    description:
+      'A travel photo album documenting Wall-E\'s adventures around the world. A fun personal project capturing memorable moments from different destinations.',
     link: {
       href: 'https://photos.app.goo.gl/ygstkZKUJw7rYdzAA',
       label: 'Google Photos album',
@@ -76,14 +79,14 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata = {
   title: 'Projects',
-  description: "Things I've made trying to put my dent in the universe.",
+  description: 'Open-source libraries, data visualisations, and side projects.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Things I've made trying to put my dent in the universe."
-      intro="I've worked on tons of little projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+      title="Projects and open-source work"
+      intro="I enjoy building tools that help developers and creating data visualisations that make information more accessible. From React component libraries to interactive maps and charts, these are the projects I'm most proud of."
     >
       <ul
         role="list"
