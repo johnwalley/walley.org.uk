@@ -50,7 +50,7 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 export const metadata = {
   title: 'About',
   description:
-    'Senior software engineer specialising in data visualisation and complex UI systems.',
+    'Software engineer in Cambridge, passionate about data visualisation and making complex information accessible.',
 }
 
 export default function About() {
