@@ -86,7 +86,7 @@ export default function Projects() {
   return (
     <SimpleLayout
       title="Projects and open-source work"
-      intro="I enjoy building tools that help developers and creating data visualisations that make information more accessible. From React component libraries to interactive maps and charts, these are the projects I'm most proud of."
+      intro="I enjoy building developer tools and data visualisations that make complex information accessible, from React component libraries to interactive maps and charts."
     >
       <ul
         role="list"
