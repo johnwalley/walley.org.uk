@@ -64,14 +64,15 @@ function Infographic({
 
 export const metadata = {
   title: 'Infographics',
-  description: "Some of the infographics and videos I've created.",
+  description:
+    'Data visualisations, videos, and posters exploring topics from rowing to urban geography.',
 }
 
 export default function Infographics() {
   return (
     <SimpleLayout
-      title="Some of the infographics and videos I've created."
-      intro="One of my favorite ways to share my ideas is through videos, posters and interactive websites."
+      title="Infographics and data visualisations"
+      intro="I enjoy turning interesting data into visual stories. These posters, videos, and interactive websites explore topics I find fascinating, from rowing and cycling to bridges and demographics."
     >
       <div className="space-y-8">
         <InfographicsSection title="Videos">
@@ -87,15 +88,14 @@ export default function Infographics() {
           <Infographic
             href="/posters/The ten oldest universities in the UK.pdf"
             title="The 10 oldest universities in the UK"
-            description="A quick overview of the oldest universities in the United Kingdom."
+            description="From Oxford's 11th-century origins to the Victorian redbricks, a visual guide to Britain's oldest seats of learning and their founding dates."
             cta="View poster"
             imgSrc={oldest_unis}
           />
           <Infographic
             href="/posters/Pedestrian Crossings.pdf"
             title="Pedestrian crossings in the United Kingdom"
-            description="The use of amusing animal names began in 1951
-            with the introduction of 'Zebra' Crossings."
+            description="From Zebras to Puffins and Toucans, a guide to the UK's menagerie of pedestrian crossings and what makes each one different."
             cta="View poster"
             imgSrc={pedestrian_crossings}
           />
@@ -123,7 +123,7 @@ export default function Infographics() {
           <Infographic
             href="/posters/Twenty-five ways to cross the River Cam.pdf"
             title="Twenty-five ways to cross the River Cam"
-            description="Cambridge's bridges."
+            description="A visual catalogue of Cambridge's bridges, from the famous Mathematical Bridge to lesser-known footbridges, mapped along the river's course through the city."
             cta="View poster"
             imgSrc={river_crossings}
           />
