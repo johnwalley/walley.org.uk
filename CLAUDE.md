@@ -11,37 +11,35 @@ npm run lint     # Run ESLint
 npm start        # Start production server
 ```
 
+## Environment Setup
+
+Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` to the site's public URL (used for RSS feed generation).
+
 ## Architecture
 
-This is a personal website/blog built with Next.js 15 and the Tailwind Plus "Spotlight" template.
+Personal website/blog built with Next.js 15 and the Tailwind Plus "Spotlight" template.
 
 ### Key Technologies
 - **Next.js 15** with App Router (`src/app/`)
 - **React 19** with Server and Client Components
 - **TypeScript** with strict mode
-- **MDX 3** for blog articles with math support (KaTeX) and syntax highlighting (Prism)
-- **Tailwind CSS v4** with `@tailwindcss/postcss` and typography plugin
+- **MDX 3** for blog articles with remark-gfm, remark-math/rehype-katex (math), and rehype-prism (syntax highlighting)
+- **Tailwind CSS v4** with typography plugin; Prettier uses tailwindcss plugin for class sorting
 - **D3.js** for data visualizations in some articles
 
 ### Project Structure
 
 - `src/app/` - Next.js App Router pages and layouts
-  - `layout.tsx` - Root layout with metadata and providers
-  - `page.tsx` - Homepage
-  - `providers.tsx` - Theme provider (next-themes) and context
   - `articles/` - Blog articles, each in `{slug}/page.mdx`
   - `about/`, `cv/`, `projects/`, `infographics/` - Static pages
   - `feed.xml/route.ts` - RSS feed route handler
-- `src/components/` - Reusable React components (`.tsx`)
-- `src/lib/` - Utility functions (date formatting, article loading) (`.ts`)
-- `src/images/` - Static images and logos
-- `src/styles/` - Global CSS (Tailwind and Prism)
-- `typography.ts` - Tailwind typography configuration
-- `mdx-components.tsx` - MDX component overrides
+- `src/components/` - Reusable React components
+- `src/lib/` - Utility functions (date formatting, article loading via fast-glob)
+- `src/styles/` - Global CSS (Tailwind and Prism themes)
 
 ### Article Format
 
-Articles are MDX files in `src/app/articles/{slug}/page.mdx`. Each article exports an `article` object and uses `ArticleLayout`:
+Articles are MDX files in `src/app/articles/{slug}/page.mdx`. Each exports an `article` object:
 
 ```tsx
 import { ArticleLayout } from '@/components/ArticleLayout'
@@ -63,16 +61,12 @@ export default (props) => <ArticleLayout article={article} {...props} />
 // MDX content here
 ```
 
-Articles can include images (co-located in the article folder) and custom React components for interactive visualizations. D3-based visualization components must include `'use client'` directive.
+Articles can include co-located images and custom React components. D3-based visualization components require the `'use client'` directive.
 
 ### Client Components
 
-Components that use browser APIs, D3, or React hooks like `useEffect` must include `'use client'` directive at the top:
-- `src/components/Header.tsx`
-- `src/components/ArticleLayout.tsx`
-- `src/app/providers.tsx`
-- D3 visualization components in article folders (e.g., `viz.tsx`, `chart.tsx`)
+Components using browser APIs, D3, or React hooks like `useEffect` must include `'use client'` directive at the top.
 
 ### Path Aliases
 
-Uses `@/` alias pointing to `src/` directory (configured in `tsconfig.json`).
+Uses `@/` alias pointing to `src/` directory.
