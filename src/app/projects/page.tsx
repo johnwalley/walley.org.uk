@@ -7,6 +7,7 @@ import logoPennant from '@/images/logos/pennant.svg'
 import logoPubMap from '@/images/logos/pubmap.png'
 import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
 import logoChangingPlaces from '@/images/logos/changing-places.svg'
+import { createPageMetadata } from '@/lib/metadata'
 
 const featuredProject = {
   name: 'Allotment',
@@ -72,11 +73,11 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-export const metadata = {
-  alternates: { canonical: '/projects' },
+export const metadata = createPageMetadata({
   title: 'Projects',
   description: 'Open-source libraries, data visualisations, and side projects.',
-}
+  path: '/projects',
+})
 
 export default function Projects() {
   return (
@@ -134,7 +135,9 @@ export default function Projects() {
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              <Card.Link href={project.link.href} external>
+                {project.name}
+              </Card.Link>
             </h2>
             <Card.Description>{project.description}</Card.Description>
             <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">

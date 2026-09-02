@@ -12,6 +12,7 @@ import bike_theft from '@/images/infographics/bike_theft.jpg'
 import marathons from '@/images/infographics/marathons.png'
 import river_crossings from '@/images/infographics/river_crossings.png'
 import tyne_bridges from '@/images/infographics/tyne_bridges.jpg'
+import { createPageMetadata } from '@/lib/metadata'
 
 function InfographicsSection({
   children,
@@ -52,7 +53,7 @@ function Infographic({
         </Card.Media>
       )}
       <Card.Content>
-        <Card.Title as="h3" href={href}>
+        <Card.Title as="h3" href={href} external>
           {title}
         </Card.Title>
         <Card.Description>{description}</Card.Description>
@@ -62,12 +63,12 @@ function Infographic({
   )
 }
 
-export const metadata = {
-  alternates: { canonical: '/infographics' },
+export const metadata = createPageMetadata({
   title: 'Infographics',
   description:
     'Data visualisations, videos, and posters exploring topics from rowing to urban geography.',
-}
+  path: '/infographics',
+})
 
 export default function Infographics() {
   return (

@@ -1,6 +1,7 @@
 import data from './resume.json'
 
 import { Container } from '@/components/Container'
+import { createPageMetadata } from '@/lib/metadata'
 
 function formatYearMonth(value: string | undefined): string {
   if (!value) return ''
@@ -120,11 +121,12 @@ function Description({ children }: { children: React.ReactNode }) {
   )
 }
 
-export const metadata = {
-  alternates: { canonical: '/cv' },
+export const metadata = createPageMetadata({
   title: 'CV',
-  description: 'CV - John Walley',
-}
+  description:
+    'The career history of John Walley, a senior software engineer in Cambridge specialising in data visualisation and developer tools.',
+  path: '/cv',
+})
 
 export default function CV() {
   return (

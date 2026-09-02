@@ -11,6 +11,7 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import { createPageMetadata } from '@/lib/metadata'
 
 function SocialLink({
   className,
@@ -47,12 +48,12 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-export const metadata = {
-  alternates: { canonical: '/about' },
+export const metadata = createPageMetadata({
   title: 'About',
   description:
     'Software engineer in Cambridge, passionate about data visualisation and making complex information accessible.',
-}
+  path: '/about',
+})
 
 export default function About() {
   return (
@@ -70,20 +71,40 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Hi, I&apos;m John Walley. I live in the beautiful city of Cambridge
+            Hi, I&apos;m John Walley. I live in the beautiful city of Cambridge.
           </h1>
           <div className="prose mt-6 space-y-7 text-base text-zinc-600 dark:prose-invert dark:text-zinc-400">
             <p>
-              Senior software engineer with deep experience building
-              data-intensive and performance-critical web applications,
-              specialising in data visualisation and complex UI systems. Strong
-              background in TypeScript, React, and modern frontend architecture,
-              with a track record of designing maintainable systems, improving
-              developer experience, and tackling hard technical problems.
-              Comfortable operating as a senior individual contributor,
-              influencing technical direction, mentoring engineers, and
-              collaborating closely with product and design to deliver
-              high-quality outcomes.
+              I&apos;m a senior software engineer at Cambridge Intelligence,
+              where I work on visualisation tools that analysts use to explore
+              complex graph, temporal and geospatial data. Most of my time goes
+              on performance-critical interfaces, API design, and the kind of
+              frontend architecture that has to stay maintainable for years.
+            </p>
+            <p>
+              Before that I spent nine years running Mulberry House Software, my
+              own consultancy, building data-driven applications for clients in
+              pensions, property and finance. Along the way I created{' '}
+              <Link
+                href="https://allotment.mulberryhousesoftware.com/"
+                className="font-semibold text-teal-500 transition hover:text-teal-600 dark:hover:text-teal-400"
+              >
+                Allotment
+              </Link>
+              , an open-source React component for resizable split views, which
+              is now downloaded around a quarter of a million times a week.
+            </p>
+            <p>
+              The thread running through all of it is making complicated
+              information legible. That is my job, and it is also what I do for
+              fun: interactive charts covering two centuries of Cambridge bumps
+              racing, a map of the city&apos;s pubs drawn in the style of the
+              London Underground, and posters about everything from marathon
+              courses to the UK&apos;s strangely named pedestrian crossings.
+            </p>
+            <p>
+              When I&apos;m not at a keyboard I&apos;m usually somewhere near
+              the Cam, coxing.
             </p>
           </div>
           <Link href="/cv">

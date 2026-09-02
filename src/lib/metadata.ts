@@ -7,12 +7,54 @@ interface Article {
   date: string
 }
 
+function ogImageUrl(title: string) {
+  return `/og?title=${encodeURIComponent(title)}`
+}
+
+export function createPageMetadata({
+  title,
+  description,
+  path,
+  ogTitle = `${title} - John Walley`,
+}: {
+  title: string
+  description: string
+  path: string
+  ogTitle?: string
+}): Metadata {
+  const ogImage = ogImageUrl(ogTitle)
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: path,
+    },
+    openGraph: {
+      type: 'website',
+      locale: 'en_GB',
+      siteName: 'John Walley',
+      title: ogTitle,
+      description,
+      url: path,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: ogTitle }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description,
+      creator: '@johnmwalley',
+      images: [ogImage],
+    },
+  }
+}
+
 export function createArticleMetadata(
   article: Article,
   slug: string,
 ): Metadata {
   const path = `/articles/${slug}`
-  const ogImage = `/og?title=${encodeURIComponent(article.title)}`
+  const ogImage = ogImageUrl(article.title)
 
   return {
     title: article.title,

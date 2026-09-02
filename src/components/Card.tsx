@@ -38,15 +38,20 @@ export function Card<T extends React.ElementType = 'div'>({
 
 Card.Link = function CardLink({
   children,
+  // Targets that aren't app routes — static files and other sites — want a
+  // plain anchor, so the router doesn't prefetch them as navigations.
+  external = false,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Link>) {
+}: React.ComponentPropsWithoutRef<typeof Link> & { external?: boolean }) {
+  let Component = external ? 'a' : Link
+
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-0 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
-      <Link {...props}>
+      <Component {...props}>
         <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
-      </Link>
+      </Component>
     </>
   )
 }
@@ -64,16 +69,24 @@ Card.Content = function CardContent<T extends React.ElementType = 'div'>({
 Card.Title = function CardTitle<T extends React.ElementType = 'h2'>({
   as,
   href,
+  external = false,
   children,
 }: Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'href'> & {
   as?: T
   href?: string
+  external?: boolean
 }) {
   let Component = as ?? 'h2'
 
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-      {href ? <Card.Link href={href}>{children}</Card.Link> : children}
+      {href ? (
+        <Card.Link href={href} external={external}>
+          {children}
+        </Card.Link>
+      ) : (
+        children
+      )}
     </Component>
   )
 }

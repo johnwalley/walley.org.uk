@@ -24,7 +24,6 @@ import logoAllotment from '@/images/logos/allotment.svg'
 import logoPennant from '@/images/logos/pennant.svg'
 import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
 import { getAllArticles } from '@/lib/articles'
-import { formatDate } from '@/lib/formatDate'
 import { type ArticleWithSlug } from '@/lib/articles'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.walley.org.uk'
@@ -128,11 +127,11 @@ function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+function ArrowRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
+        d="M8.75 4.75 12.25 8m0 0-3.5 3.25M12.25 8h-8.5"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -158,9 +157,6 @@ function Article({ article }: { article: ArticleWithSlug }) {
       <Card.Title href={`/articles/${article.slug}`}>
         {article.title}
       </Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
-      </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
       <Card.Cta>Read article</Card.Cta>
     </Card>
@@ -191,7 +187,9 @@ function Project({
         <Image src={project.logo} alt="" className="h-8 w-8" unoptimized />
       </div>
       <h3 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-        <Card.Link href={project.link.href}>{project.name}</Card.Link>
+        <Card.Link href={project.link.href} external>
+          {project.name}
+        </Card.Link>
       </h3>
       <Card.Description>{project.description}</Card.Description>
       <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
@@ -319,7 +317,7 @@ function Resume() {
       </p>
       <Button href="/cv" variant="secondary" className="group mt-6 w-full">
         CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowRightIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
   )
@@ -356,9 +354,17 @@ function Photos() {
 
 export default async function Home() {
   let allArticles = await getAllArticles()
-  let articles = selectedArticleSlugs
-    .map((slug) => allArticles.find((article) => article.slug === slug))
-    .filter((article): article is ArticleWithSlug => article !== undefined)
+  // These are curated rather than chronological, so a renamed article should
+  // fail the build instead of quietly disappearing from the homepage.
+  let articles = selectedArticleSlugs.map((slug) => {
+    let article = allArticles.find((article) => article.slug === slug)
+    if (!article) {
+      throw new Error(
+        `Selected article "${slug}" has no matching directory in src/app/articles`,
+      )
+    }
+    return article
+  })
 
   return (
     <>

@@ -3,6 +3,7 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 import { type ArticleWithSlug } from '@/lib/articles'
+import { createPageMetadata } from '@/lib/metadata'
 
 function Article({ article }: { article: ArticleWithSlug }) {
   return (
@@ -33,12 +34,12 @@ function Article({ article }: { article: ArticleWithSlug }) {
   )
 }
 
-export const metadata = {
-  alternates: { canonical: '/articles' },
+export const metadata = createPageMetadata({
   title: 'Articles',
   description:
     'My long-form thoughts on programming, data visualization, and more, collected in chronological order.',
-}
+  path: '/articles',
+})
 
 export default async function ArticlesIndex() {
   let articles = await getAllArticles()
