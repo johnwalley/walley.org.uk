@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import result1 from './john.walley_Image_A_cute_cat_wearing_a_hat_scarf_and_gloves._De_3232898c-1e91-4ea4-a130-5767fd7d35eb.png'
 import result2 from './john.walley_Image_A_stylish_cat_wearing_a_winter_hat_cozy_scarf_0db1703b-619e-48f2-81da-7da56a8a2261.png'
@@ -19,10 +20,7 @@ export const article = {
   description: 'Using ChatGPT and MidJourney to generate art.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'chatgpt-plus-midjourney')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

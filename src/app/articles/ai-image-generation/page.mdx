@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import catAstronaut from './cat-astronaut.png'
 import tudorCat from './tudor-cat.png'
@@ -10,10 +11,7 @@ export const article = {
   description: 'A quick look at generating images with AI.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'ai-image-generation')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

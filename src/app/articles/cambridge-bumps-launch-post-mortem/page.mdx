@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import analytics from './analytics.png'
 import demographics from './demographics.png'
@@ -16,10 +17,7 @@ export const article = {
     'I launched cambridgebumps.com this week during the annual Cambridge Town Bumps event.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'cambridge-bumps-launch-post-mortem')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import cannon from './cannon.jpg'
 
@@ -10,10 +11,7 @@ export const article = {
     "The Cambridge Town Bumps start tomorrow and I'm taking part as a cox (the shouty person at the stern who also steers).",
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'bumps-cannon')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

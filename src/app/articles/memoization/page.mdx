@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import paper from './paper.jpg'
 
@@ -10,10 +11,7 @@ export const article = {
     'While refactoring some of the data manipulation behind www.cambridgebumps.com I came across an obvious place to apply some memoization.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'memoization')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

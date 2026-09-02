@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import beaver from './beaver.jpg'
 import equation1 from './equation-1.png'
@@ -20,10 +21,7 @@ export const article = {
     'The idea of playing a game where you and a partner take turns at naming a number bigger than the last has always amused me. In reality, I think it would be deathly dull but it does raise the question of what, truly, is a big number?',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'whats-the-biggest-number-you-can-think-of')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

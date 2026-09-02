@@ -8,17 +8,23 @@ import logoPubMap from '@/images/logos/pubmap.png'
 import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
 import logoChangingPlaces from '@/images/logos/changing-places.svg'
 
-const projects = [
-  {
-    name: 'Allotment',
-    description:
-      'A VSCode-inspired React component for creating resizable split views. Built on the same codebase as VSCode with support for dynamic panes. 1.2k+ GitHub stars.',
-    link: {
+const featuredProject = {
+  name: 'Allotment',
+  eyebrow: 'Open-source developer tool',
+  description:
+    'A VS Code-inspired React component for building resizable split views. Built on the same codebase as VS Code with support for dynamic panes. Created and maintained by me, with 240k+ weekly npm downloads and 1.2k+ GitHub stars.',
+  logo: logoAllotment,
+  links: [
+    { href: 'https://github.com/johnwalley/allotment', label: 'GitHub' },
+    { href: 'https://www.npmjs.com/package/allotment', label: 'npm' },
+    {
       href: 'https://allotment.mulberryhousesoftware.com/',
-      label: 'Allotment',
+      label: 'Documentation',
     },
-    logo: logoAllotment,
-  },
+  ],
+}
+
+const projects = [
   {
     name: 'Pennant',
     description:
@@ -67,6 +73,7 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 export const metadata = {
+  alternates: { canonical: '/projects' },
   title: 'Projects',
   description: 'Open-source libraries, data visualisations, and side projects.',
 }
@@ -77,6 +84,41 @@ export default function Projects() {
       title="Projects and open-source work"
       intro="I enjoy building developer tools and data visualisations that make complex information accessible, from React component libraries to interactive maps and charts."
     >
+      <div className="mb-16 rounded-2xl border border-zinc-100 p-8 dark:border-zinc-700/40">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+          <div className="flex h-16 w-16 flex-none items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <Image
+              src={featuredProject.logo}
+              alt=""
+              className="h-10 w-10"
+              unoptimized
+            />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-teal-500 dark:text-teal-400">
+              {featuredProject.eyebrow}
+            </p>
+            <h2 className="mt-2 text-xl font-semibold text-zinc-800 dark:text-zinc-100">
+              {featuredProject.name}
+            </h2>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              {featuredProject.description}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+              {featuredProject.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="flex text-sm font-medium text-zinc-500 transition hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
+                >
+                  <LinkIcon className="h-6 w-6 flex-none" />
+                  <span className="ml-2">{link.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
       <ul
         role="list"
         className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"

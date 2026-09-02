@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import fastTrack from './fast-track.jpg'
 import diagram from './diagram.jpg'
@@ -11,10 +12,7 @@ export const article = {
     "The list of ideas and features you and your team could come up with is likely enough to last a lifetime. There's both an art and science to choosing what to work on next as well as what you will not take on.",
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'prioritization')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

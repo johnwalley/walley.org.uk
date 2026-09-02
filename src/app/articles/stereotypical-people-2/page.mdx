@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import result1 from './john.walley_the_most_stereotypical_woman_in_Belfast_2fe9379d-d0b0-4bbc-8b81-7167ff5856ed.png'
 import result2 from './john.walley_the_most_stereotypical_woman_in_Birmingham_61da4f52-2043-4666-a2ad-37d975ea32ae.png'
@@ -19,10 +20,7 @@ export const article = {
   description: 'The most stereotypical person in UK cities.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'stereotypical-people-2')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

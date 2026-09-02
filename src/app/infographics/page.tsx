@@ -63,6 +63,7 @@ function Infographic({
 }
 
 export const metadata = {
+  alternates: { canonical: '/infographics' },
   title: 'Infographics',
   description:
     'Data visualisations, videos, and posters exploring topics from rowing to urban geography.',

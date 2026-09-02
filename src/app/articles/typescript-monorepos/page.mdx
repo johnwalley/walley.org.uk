@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 
 export const article = {
   author: 'John Walley',
@@ -7,10 +8,7 @@ export const article = {
   description: "How to structure packages, wire up tooling, and ship clean artifacts.",
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'typescript-monorepos')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

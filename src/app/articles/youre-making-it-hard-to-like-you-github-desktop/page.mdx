@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import branches from './branches.png'
 
@@ -10,10 +11,7 @@ export const article = {
     'Every few months I revisit the git client landscape. I know enough about the git command-line to be dangerous but sometimes I just want to forget the syntax and click on some buttons.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'youre-making-it-hard-to-like-you-github-desktop')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

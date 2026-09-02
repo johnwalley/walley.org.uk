@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import docker from './docker.png'
 import diagram1 from './diagram-1.png'
@@ -13,10 +14,7 @@ export const article = {
     "Docker has intrigued me for some time now so I thought I'd take a closer look. Purely in a personal capacity, as until Docker supports Windows containers there are few applications at work.",
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'taking-docker-for-a-spin')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

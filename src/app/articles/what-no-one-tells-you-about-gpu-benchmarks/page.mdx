@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Image from 'next/image'
 import speedUp from './image-asset.jpeg'
 
@@ -10,10 +11,7 @@ export const article = {
     'In several past roles I have spent time thinking about difficult numerical computing problems. Before joining Red Gate I was lucky enough to get to work on the problem of taking numerically intense C# code and generating CPU code at run-time.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'what-no-one-tells-you-about-gpu-benchmarks')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

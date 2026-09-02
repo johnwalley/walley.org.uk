@@ -1,7 +1,6 @@
 import data from './resume.json'
 
 import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
 
 function formatYearMonth(value: string | undefined): string {
   if (!value) return ''
@@ -122,6 +121,7 @@ function Description({ children }: { children: React.ReactNode }) {
 }
 
 export const metadata = {
+  alternates: { canonical: '/cv' },
   title: 'CV',
   description: 'CV - John Walley',
 }
@@ -137,11 +137,6 @@ export default function CV() {
           <h2 className="text-4xl font-bold text-teal-500 dark:text-teal-400">
             {data.basics.label}
           </h2>
-          <div className="mt-4">
-            <a href="/John_Walley_CV.pdf" download className="inline-block">
-              <Button variant="secondary">Download CV</Button>
-            </a>
-          </div>
         </div>
         <div></div>
         <div className="">

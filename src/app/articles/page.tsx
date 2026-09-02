@@ -34,6 +34,7 @@ function Article({ article }: { article: ArticleWithSlug }) {
 }
 
 export const metadata = {
+  alternates: { canonical: '/articles' },
   title: 'Articles',
   description:
     'My long-form thoughts on programming, data visualization, and more, collected in chronological order.',

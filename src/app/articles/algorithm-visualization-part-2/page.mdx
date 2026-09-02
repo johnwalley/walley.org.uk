@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 import Viz from './viz'
 
 export const article = {
@@ -9,10 +10,7 @@ export const article = {
     'The second problem in our series of algorithm katas is Kingdom And Trees from Top Coder.',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'algorithm-visualization-part-2')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 

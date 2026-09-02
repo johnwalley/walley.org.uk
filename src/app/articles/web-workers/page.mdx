@@ -1,4 +1,5 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/articleMetadata'
 
 export const article = {
   author: 'John Walley',
@@ -7,10 +8,7 @@ export const article = {
   description: "Trade-offs for JavaScript Libraries",
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, 'web-workers')
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
@@ -60,7 +58,7 @@ This relies on ESM and is what Vite/Webpack optimise for.
 
 CommonJS/UMD don't have `import.meta.url`. Webpack explicitly notes that CJS workers are not supported.
 
-If we don't want to rely on a separate worker file then use a Blob URL to create the worker. However, tere are some downsides:
+If we don't want to rely on a separate worker file then use a Blob URL to create the worker. However, there are some downsides:
 
 - CSP friction: Many sites disallow `blob:` by default.
 - Worse developer experience for debugging: Stack traces and dev tool sources are less friendly.
@@ -77,7 +75,7 @@ Worker usage should be configurable, but with sensible defaults.
 
 ### Environment constraints
 
-An application developer knows their target environment. Maybe they only care about evergreen broswers running desktops/laptops, or they know they'll be running in Node.js. But a library could end up running anywhere. That means you might need to handle:
+An application developer knows their target environment. Maybe they only care about evergreen browsers running desktops/laptops, or they know they'll be running in Node.js. But a library could end up running anywhere. That means you might need to handle:
 
 - SSR, where worker code can't run at build time
 - Node.js, where `Worker` exists but has a different API
@@ -86,7 +84,21 @@ References: [MDN Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/W
 
 ### Testing + debugging
 
+Workers make testing awkward. The usual unit test setup - Node.js plus a simulated DOM like jsdom - doesn't implement `Worker` at all, so any code path that spawns one either fails or has to be mocked.
+
+The practical answer is to structure your library so most of it doesn't need a worker to be tested. Keep the computation in pure functions, and make the worker a thin shell that receives a message, calls those functions, and posts back the result. The functions get ordinary unit tests; the worker plumbing gets a handful of integration tests running in a real browser via something like Playwright or Vitest's browser mode.
+
+Debugging is better than its reputation. Browser dev tools show each worker as a separate thread with its own console and breakpoints. The main caveat is one we've already met: workers created from Blob URLs have less friendly stack traces and sources than workers loaded from a real file.
+
+References: [Vitest browser mode](https://vitest.dev/guide/browser/), [Chrome DevTools - debug background services](https://developer.chrome.com/docs/devtools/javascript/)
+
 ### Performance implications
+
+Workers aren't free. Spawning one takes time and memory, and every `postMessage` pays a serialization cost: data is copied between threads using the [structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm). For large payloads the copying can cost more than the computation you moved off the main thread - the worst outcome being a library that's slower *and* more complicated.
+
+There are two escape hatches. [Transferable objects](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects) like `ArrayBuffer` can be moved between threads without copying, at the price of the sender losing access. And `SharedArrayBuffer` allows genuine shared memory, though it requires cross-origin isolation headers that a library can't guarantee its host application has set.
+
+For library authors the rule of thumb is: only reach for a worker when the workload is large enough to clear the messaging overhead, prefer one long-lived worker (or a small pool) over spawning per call, and design your messages so large binary data can be transferred rather than cloned.
 
 References: [web.dev - Use web workers to run JavaScript off the browser's main thread](https://web.dev/articles/off-main-thread)
 

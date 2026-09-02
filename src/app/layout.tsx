@@ -35,16 +35,24 @@ export const metadata: Metadata = {
     title: 'John Walley - Software Engineer & Data Visualisation Specialist',
     description:
       'Senior software engineer specialising in data visualisation and complex UI systems. Expert in TypeScript, React, and modern frontend architecture.',
+    images: [
+      {
+        url: '/og',
+        width: 1200,
+        height: 630,
+        alt: 'John Walley - Software Engineer & Data Visualisation Specialist',
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'John Walley - Software Engineer & Data Visualisation Specialist',
     description:
       'Senior software engineer specialising in data visualisation and complex UI systems.',
     creator: '@johnmwalley',
+    images: ['/og'],
   },
   alternates: {
-    canonical: siteUrl,
     types: {
       'application/rss+xml': `${siteUrl}/feed.xml`,
     },
