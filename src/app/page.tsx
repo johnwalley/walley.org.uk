@@ -248,10 +248,10 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software engineer, founder, and amateur coxswain.
+            Software engineer, data visualisation specialist, and amateur coxswain.
           </h1>
           <p className="prose mt-6 text-base dark:prose-invert">
-            I&apos;m John, a software engineer and entrepreneur based in Cambridge.
+            I&apos;m John, a senior software engineer based in Cambridge. I build data visualisations, developer tools and complex frontend systems.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
