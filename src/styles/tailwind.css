@@ -10,6 +10,12 @@
   html {
     scrollbar-gutter: stable;
   }
+
+  /* Let wide display equations scroll rather than overflow the page on small screens */
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
 }
 
 @theme {

@@ -77,7 +77,7 @@ const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkGfm, remarkMath],
-    rehypePlugins: [rehypePrism, rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypePrism],
   },
 })
 
