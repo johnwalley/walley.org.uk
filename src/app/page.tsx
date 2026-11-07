@@ -17,6 +17,7 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
+import portraitImage from '@/images/portrait.jpg'
 import logoRedgate from '@/images/logos/redgate.svg'
 import logoMulberryHouseSoftware from '@/images/logos/mulberry-house-software.svg'
 import logoCambridgeIntelligence from '@/images/logos/cambridge-intelligence.png'
@@ -40,7 +41,11 @@ export const metadata: Metadata = {
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
   name: 'John Walley',
+  givenName: 'John',
+  familyName: 'Walley',
+  image: new URL(portraitImage.src, siteUrl).href,
   jobTitle: 'Senior Software Engineer',
   url: siteUrl,
   address: {
@@ -53,6 +58,18 @@ const personJsonLd = {
     name: 'Cambridge Intelligence',
     url: 'https://cambridge-intelligence.com/',
   },
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of Cambridge',
+      url: 'https://www.cam.ac.uk/',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of Oxford',
+      url: 'https://www.ox.ac.uk/',
+    },
+  ],
   knowsAbout: [
     'Data visualisation',
     'TypeScript',
@@ -65,6 +82,8 @@ const personJsonLd = {
     'https://github.com/johnwalley',
     'https://www.linkedin.com/in/johnwalley',
     'https://twitter.com/johnmwalley',
+    'https://www.npmjs.com/~johnwalley',
+    'https://www.youtube.com/channel/UCC3Xz6EXWE4jLIUVikQOvcw',
   ],
 }
 
