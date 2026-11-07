@@ -12,6 +12,8 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 import { createPageMetadata } from '@/lib/metadata'
+import { personJsonLd } from '@/lib/person'
+import { siteUrl } from '@/lib/siteUrl'
 
 function SocialLink({
   className,
@@ -55,9 +57,24 @@ export const metadata = createPageMetadata({
   path: '/about',
 })
 
+// Bump this whenever the page content changes.
+const ABOUT_DATE_MODIFIED = '2026-09-03'
+
+const profilePageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: `${siteUrl}/about`,
+  dateModified: ABOUT_DATE_MODIFIED,
+  mainEntity: personJsonLd,
+}
+
 export default function About() {
   return (
     <Container className="mt-16 sm:mt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+      />
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
@@ -73,7 +90,7 @@ export default function About() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
             Hi, I&apos;m John Walley. I live in the beautiful city of Cambridge.
           </h1>
-          <div className="prose mt-6 space-y-7 text-base text-zinc-600 dark:prose-invert dark:text-zinc-400">
+          <div className="prose dark:prose-invert mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
               I&apos;m a senior software engineer at Cambridge Intelligence,
               where I work on visualisation tools that analysts use to explore
