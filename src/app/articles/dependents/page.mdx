@@ -18,7 +18,7 @@ export default (props) => <ArticleLayout article={article} {...props} />
 My open-source library, [Allotment](https://allotment.mulberryhousesoftware.com/), has been slowly gaining traction. It's around 20 thousand downloads per week.
 While it isn't a huge number, it isn't nothing. There is also enough interest that a healthy number of issues and feature requests get submitted.
 
-<Image src={downloads} alt="Downloads" />
+<Image src={downloads} alt="Downloads" className="dark:bg-white dark:p-4" />
 
 One statistic GitHub makes available is which other repositories use you as a dependency. The UI isn't great as you can't sort by stars so I used [ghtopdep](https://github.com/github-tooling/ghtopdep) to give me the top ten repositories by number of stars.
 

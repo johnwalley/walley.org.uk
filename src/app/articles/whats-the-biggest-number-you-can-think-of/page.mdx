@@ -2,15 +2,6 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import { createArticleMetadata } from '@/lib/metadata'
 import Image from 'next/image'
 import beaver from './beaver.jpg'
-import equation1 from './equation-1.png'
-import equation2 from './equation-2.png'
-import equation3 from './equation-3.png'
-import equation4 from './equation-4.png'
-import equation5 from './equation-5.png'
-import equation6 from './equation-6.png'
-import equation7 from './equation-7.png'
-import equation8 from './equation-8.png'
-import equation9 from './equation-9.png'
 import equation10 from './equation-10.jpg'
 
 export const article = {
@@ -57,15 +48,21 @@ Indeed there is, and we can get there by considering the following sequence: add
 
 We can think of multiplying a number a by n as adding together n copies of a.
 
-<Image src={equation1} alt="Multiplication" />
+$$
+a \times n = \underbrace{a + a + \cdots + a}_{n}
+$$
 
 Likewise, we can think of raising a to the power of n as multiplying a together with itself n times.
 
-<Image src={equation2} alt="Exponentiation" />
+$$
+a^n = \underbrace{a \times a \times \cdots \times a}_{n}
+$$
 
 By analogy, [tetration](https://en.wikipedia.org/wiki/Tetration) is the act of raising a to the power of a n times.
 
-<Image src={equation3} alt="Tetration" />
+$$
+{}^{n}a = \underbrace{a^{a^{\cdot^{\cdot^{a}}}}}_{n}
+$$
 
 These are all examples of [hyperoperations](https://en.wikipedia.org/wiki/Hyperoperation). The sequence continues forever, with the next few operations being pentation, hexation etc.
 
@@ -77,15 +74,26 @@ Knuth's Up-Arrow notation is a method writing for very large numbers. It's close
 
 We can use a single up-arrow to represent exponentiation
 
-<Image src={equation4} alt="Knuth's Up-Arrow notation (single arrow)" />
+$$
+a \uparrow b = a^b = \underbrace{a \times a \times \cdots \times a}_{b \text{ copies of } a}
+$$
 
 Two up-arrows give us tetration.
 
-<Image src={equation5} alt="Knuth's Up-Arrow notation (two arrows)" />
+$$
+a \uparrow\uparrow b = {}^{b}a = \underbrace{a^{a^{\cdot^{\cdot^{a}}}}}_{b \text{ copies of } a} = \underbrace{a \uparrow (a \uparrow (\cdots \uparrow a))}_{b \text{ copies of } a}
+$$
 
 We can generalize and make this more concise using by using an index to represent how many arrows are present. This yields a nice recursive definition, i.e. we can define the 2 arrows in terms of 1 arrow, 3 in terms of 2, and so on.
 
-<Image src={equation6} alt="Knuth's Up-Arrow notation (n arrows)" />
+$$
+a \uparrow^n b =
+\begin{cases}
+ab, & \text{if } n = 0; \\
+1, & \text{if } n \ge 1 \text{ and } b = 0; \\
+a \uparrow^{n-1} (a \uparrow^n (b - 1)), & \text{otherwise}
+\end{cases}
+$$
 
 ## Graham's Number
 
@@ -93,7 +101,17 @@ Let's take a quick break from learning about all this notation (it starts to get
 
 Using Knuth's Up-Arrow notation, we can define Graham's Number, G, as
 
-<Image src={equation7} alt="Graham's Number" />
+$$
+G = \left.
+\begin{matrix}
+3 \underbrace{\uparrow\uparrow \cdots\cdots\cdots\cdots\cdots \uparrow} 3 \\
+3 \underbrace{\uparrow\uparrow \cdots\cdots\cdots\cdots \uparrow} 3 \\
+\underbrace{\qquad\;\; \vdots \qquad\;\;} \\
+3 \underbrace{\uparrow\uparrow \cdots\cdot \uparrow} 3 \\
+3 \uparrow\uparrow\uparrow\uparrow 3
+\end{matrix}
+\right\} \text{64 layers}
+$$
 
 where the number of arrows in each layer is given by the value of the layer below it.
 
@@ -107,14 +125,20 @@ We've been looking at individual numbers and tools to write them down. Another f
 
 [Ackerman's Function](https://en.wikipedia.org/wiki/Ackermann_function) is just such a function. As a bonus, it has a simple definition
 
-<Image src={equation8} alt="Ackerman's Function" />
+$$
+A(m, n) =
+\begin{cases}
+n + 1 & \text{if } m = 0 \\
+A(m - 1, 1) & \text{if } m > 0 \text{ and } n = 0 \\
+A(m - 1, A(m, n - 1)) & \text{if } m > 0 \text{ and } n > 0.
+\end{cases}
+$$
 
 This function grows **rapidly** even for very small inputs. For example, A(4,2) is already an integer with 19,729 decimal digits. We can write the function in terms of the indexed form of Knuth's Up-Arrow notation we saw earlier on
 
-<Image
-  src={equation9}
-  alt="Ackerman's Function with Knuth's Up-Arrow notation"
-/>
+$$
+A(m, n) = 2 \uparrow^{m-2} (n + 3) - 3.
+$$
 
 We could stop here but what if I told you we could come up with a function that grows faster than **any** function you could possibly write down?
 
