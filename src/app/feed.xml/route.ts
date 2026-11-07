@@ -3,7 +3,7 @@ import { Feed } from 'feed'
 
 import { getAllArticles } from '@/lib/articles'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.walley.org.uk'
+import { siteUrl } from '@/lib/siteUrl'
 
 // Rewrite root-relative URLs so images and links still resolve in feed readers,
 // which render the content on a different origin.

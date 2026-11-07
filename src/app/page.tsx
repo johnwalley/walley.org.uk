@@ -26,7 +26,7 @@ import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
 import { getAllArticles } from '@/lib/articles'
 import { type ArticleWithSlug } from '@/lib/articles'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.walley.org.uk'
+import { siteUrl } from '@/lib/siteUrl'
 
 export const metadata: Metadata = {
   alternates: {
@@ -176,11 +176,7 @@ function SocialLink({
   )
 }
 
-function Project({
-  project,
-}: {
-  project: (typeof selectedProjects)[number]
-}) {
+function Project({ project }: { project: (typeof selectedProjects)[number] }) {
   return (
     <Card as="li">
       <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
@@ -247,7 +243,7 @@ function Role({ role }: { role: Role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
@@ -375,10 +371,13 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software engineer, data visualisation specialist, and amateur coxswain.
+            Software engineer, data visualisation specialist, and amateur
+            coxswain.
           </h1>
-          <p className="prose mt-6 text-base dark:prose-invert">
-            I&apos;m John, a senior software engineer based in Cambridge. I build data visualisations, developer tools and complex frontend systems.
+          <p className="prose dark:prose-invert mt-6 text-base">
+            I&apos;m John, a senior software engineer based in Cambridge. I
+            build data visualisations, developer tools and complex frontend
+            systems.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

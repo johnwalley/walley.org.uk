@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
+import { siteUrl } from '@/lib/siteUrl'
 
 import { getAllArticles } from '@/lib/articles'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.walley.org.uk'
+  const baseUrl = siteUrl
 
   const articles = await getAllArticles()
 
