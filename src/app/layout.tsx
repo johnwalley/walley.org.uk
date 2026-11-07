@@ -6,7 +6,7 @@ import { Layout } from '@/components/Layout'
 import '@/styles/tailwind.css'
 import 'katex/dist/katex.min.css'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.walley.org.uk'
+import { siteUrl } from '@/lib/siteUrl'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
