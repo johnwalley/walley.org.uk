@@ -5,6 +5,8 @@ interface Article {
   description: string
   author: string
   date: string
+  /** ISO date of the last substantive edit, if any. */
+  dateModified?: string
 }
 
 export interface ArticleWithSlug extends Article {
