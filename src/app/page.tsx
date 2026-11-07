@@ -17,7 +17,6 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import portraitImage from '@/images/portrait.jpg'
 import logoRedgate from '@/images/logos/redgate.svg'
 import logoMulberryHouseSoftware from '@/images/logos/mulberry-house-software.svg'
 import logoCambridgeIntelligence from '@/images/logos/cambridge-intelligence.png'
@@ -27,7 +26,7 @@ import logoCambridgeBumps from '@/images/logos/cambridgebumps.svg'
 import { getAllArticles } from '@/lib/articles'
 import { type ArticleWithSlug } from '@/lib/articles'
 
-import { siteUrl } from '@/lib/siteUrl'
+import { personJsonLd } from '@/lib/person'
 
 export const metadata: Metadata = {
   alternates: {
@@ -36,55 +35,6 @@ export const metadata: Metadata = {
       'application/rss+xml': '/feed.xml',
     },
   },
-}
-
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': `${siteUrl}/#person`,
-  name: 'John Walley',
-  givenName: 'John',
-  familyName: 'Walley',
-  image: new URL(portraitImage.src, siteUrl).href,
-  jobTitle: 'Senior Software Engineer',
-  url: siteUrl,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Cambridge',
-    addressCountry: 'GB',
-  },
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Cambridge Intelligence',
-    url: 'https://cambridge-intelligence.com/',
-  },
-  alumniOf: [
-    {
-      '@type': 'CollegeOrUniversity',
-      name: 'University of Cambridge',
-      url: 'https://www.cam.ac.uk/',
-    },
-    {
-      '@type': 'CollegeOrUniversity',
-      name: 'University of Oxford',
-      url: 'https://www.ox.ac.uk/',
-    },
-  ],
-  knowsAbout: [
-    'Data visualisation',
-    'TypeScript',
-    'React',
-    'D3.js',
-    'Frontend architecture',
-    'Developer tools',
-  ],
-  sameAs: [
-    'https://github.com/johnwalley',
-    'https://www.linkedin.com/in/johnwalley',
-    'https://twitter.com/johnmwalley',
-    'https://www.npmjs.com/~johnwalley',
-    'https://www.youtube.com/channel/UCC3Xz6EXWE4jLIUVikQOvcw',
-  ],
 }
 
 const selectedProjects = [
@@ -198,7 +148,7 @@ function SocialLink({
 function Project({ project }: { project: (typeof selectedProjects)[number] }) {
   return (
     <Card as="li">
-      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image src={project.logo} alt="" className="h-8 w-8" unoptimized />
       </div>
       <h3 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
@@ -262,7 +212,7 @@ function Role({ role }: { role: Role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
@@ -385,7 +335,12 @@ export default async function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            ...personJsonLd,
+          }),
+        }}
       />
       <Container className="mt-9">
         <div className="max-w-2xl">
@@ -394,9 +349,8 @@ export default async function Home() {
             specialist, and amateur coxswain.
           </h1>
           <p className="prose dark:prose-invert mt-6 text-base">
-            I&apos;m a senior software engineer based in Cambridge. I
-            build data visualisations, developer tools and complex frontend
-            systems.
+            I&apos;m a senior software engineer based in Cambridge. I build data
+            visualisations, developer tools and complex frontend systems.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
