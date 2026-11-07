@@ -45,7 +45,6 @@ export function createPageMetadata({
       card: 'summary_large_image',
       title: ogTitle,
       description,
-      creator: '@johnmwalley',
       images: [ogImage],
     },
   }
@@ -80,7 +79,6 @@ export function createArticleMetadata(
       card: 'summary_large_image',
       title: article.title,
       description: article.description,
-      creator: '@johnmwalley',
       images: [ogImage],
     },
   }

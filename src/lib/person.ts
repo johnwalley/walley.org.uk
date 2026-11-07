@@ -45,8 +45,8 @@ export const personJsonLd = {
   sameAs: [
     'https://github.com/johnwalley',
     'https://www.linkedin.com/in/johnwalley',
-    'https://twitter.com/johnmwalley',
     'https://www.npmjs.com/~johnwalley',
+    'https://www.youtube.com/@johnwalley',
     'https://www.youtube.com/channel/UCC3Xz6EXWE4jLIUVikQOvcw',
   ],
 }

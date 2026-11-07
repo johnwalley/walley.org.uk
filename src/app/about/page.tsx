@@ -5,7 +5,6 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { Button } from '@/components/Button'
 import {
-  TwitterIcon,
   YouTubeIcon,
   GitHubIcon,
   LinkedInIcon,
@@ -134,17 +133,10 @@ export default function About() {
         <div className="lg:pl-20">
           <ul role="list">
             <SocialLink
-              href="https://twitter.com/johnmwalley"
-              icon={TwitterIcon}
-            >
-              Follow on Twitter
-            </SocialLink>
-            <SocialLink
-              href="https://www.youtube.com/channel/UCC3Xz6EXWE4jLIUVikQOvcw/"
+              href="https://www.youtube.com/@johnwalley"
               icon={YouTubeIcon}
-              className="mt-4"
             >
-              Follow on YouTube
+              Subscribe on YouTube
             </SocialLink>
             <SocialLink
               href="https://github.com/johnwalley"
