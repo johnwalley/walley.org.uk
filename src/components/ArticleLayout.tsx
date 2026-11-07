@@ -8,7 +8,7 @@ import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { type ArticleWithSlug } from '@/lib/articles'
-import { formatDate } from '@/lib/formatDate'
+import { formatDate, toIsoDateTime } from '@/lib/formatDate'
 import { ogImageUrl } from '@/lib/metadata'
 import { siteUrl } from '@/lib/siteUrl'
 
@@ -42,8 +42,10 @@ export function ArticleLayout({
     headline: article.title,
     description: article.description,
     image: new URL(ogImageUrl(article.title), siteUrl).href,
-    datePublished: article.date,
-    ...(article.dateModified && { dateModified: article.dateModified }),
+    datePublished: toIsoDateTime(article.date),
+    ...(article.dateModified && {
+      dateModified: toIsoDateTime(article.dateModified),
+    }),
     author: {
       '@type': 'Person',
       // Same @id as the Person entity on the homepage, so every article

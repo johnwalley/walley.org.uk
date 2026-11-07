@@ -6,3 +6,9 @@ export function formatDate(dateString: string) {
     timeZone: 'UTC',
   })
 }
+
+// Expands a YYYY-MM-DD date to a full ISO 8601 datetime at midnight UTC, as
+// Google's structured data validator expects (matches formatDate above).
+export function toIsoDateTime(dateString: string) {
+  return `${dateString}T00:00:00+00:00`
+}

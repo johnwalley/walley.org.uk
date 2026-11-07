@@ -11,6 +11,7 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import { toIsoDateTime } from '@/lib/formatDate'
 import { createPageMetadata } from '@/lib/metadata'
 import { personJsonLd } from '@/lib/person'
 import { siteUrl } from '@/lib/siteUrl'
@@ -64,7 +65,7 @@ const profilePageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
   url: `${siteUrl}/about`,
-  dateModified: ABOUT_DATE_MODIFIED,
+  dateModified: toIsoDateTime(ABOUT_DATE_MODIFIED),
   mainEntity: personJsonLd,
 }
 
