@@ -49,7 +49,6 @@ export const metadata: Metadata = {
     title: 'John Walley - Software Engineer & Data Visualisation Specialist',
     description:
       'Senior software engineer specialising in data visualisation and complex UI systems.',
-    creator: '@johnmwalley',
     images: ['/og'],
   },
   alternates: {
