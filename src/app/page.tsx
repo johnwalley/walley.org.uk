@@ -371,11 +371,11 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software engineer, data visualisation specialist, and amateur
-            coxswain.
+            I&apos;m John Walley — software engineer, data visualisation
+            specialist, and amateur coxswain.
           </h1>
           <p className="prose dark:prose-invert mt-6 text-base">
-            I&apos;m John, a senior software engineer based in Cambridge. I
+            I&apos;m a senior software engineer based in Cambridge. I
             build data visualisations, developer tools and complex frontend
             systems.
           </p>
