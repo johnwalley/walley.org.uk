@@ -5,9 +5,11 @@ interface Article {
   description: string
   author: string
   date: string
+  /** ISO date of the last substantive edit, if any. */
+  dateModified?: string
 }
 
-function ogImageUrl(title: string) {
+export function ogImageUrl(title: string) {
   return `/og?title=${encodeURIComponent(title)}`
 }
 
@@ -70,6 +72,7 @@ export function createArticleMetadata(
       description: article.description,
       url: path,
       publishedTime: article.date,
+      ...(article.dateModified && { modifiedTime: article.dateModified }),
       authors: [article.author],
       images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
     },
