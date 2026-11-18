@@ -3,7 +3,7 @@
 import { line, scaleLinear } from 'd3'
 import { useMemo, useState } from 'react'
 
-import { dashedDrivers, pitOnlyMoves, type LapChartData } from './types'
+import { dashedDrivers, displayName, pitOnlyMoves, type LapChartData } from './types'
 
 const ROW = 22
 const MARGIN = { top: 32, right: 56, bottom: 28, left: 64 }
@@ -66,6 +66,7 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
       return {
         num,
         ...info,
+        name: displayName(info.name),
         dashed: dashed.has(num),
         all: path(points) ?? '',
         solid,
@@ -107,12 +108,14 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
 
   return (
     <figure className="not-prose my-10">
-      <div className="mb-2 flex min-h-10 flex-wrap items-baseline justify-between gap-x-4 text-sm">
-        <span className="font-semibold text-zinc-800 dark:text-zinc-100">
+      {/* Fixed-height header: the hover readout's length varies, so it gets a
+          reserved line (two on phones) and is clamped, keeping the chart still. */}
+      <div className="mb-2 text-sm">
+        <div className="font-semibold text-zinc-800 dark:text-zinc-100">
           {data.name} {data.date.slice(0, 4)}
           <span className="font-normal text-zinc-500 dark:text-zinc-400"> · {data.race}</span>
-        </span>
-        <span className="text-zinc-600 dark:text-zinc-400" aria-live="polite">
+        </div>
+        <div className="line-clamp-2 h-10 text-zinc-600 sm:line-clamp-1 sm:h-5 dark:text-zinc-400" aria-live="polite">
           {activeSeries ? (
             <>
               <span className="font-medium text-zinc-800 dark:text-zinc-100">{activeSeries.name}</span> ·{' '}
@@ -122,7 +125,7 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
           ) : (
             'Hover or tap a line to follow a driver'
           )}
-        </span>
+        </div>
       </div>
 
       <div className="-mx-4 overflow-x-auto px-4 [contain:inline-size] sm:mx-0 sm:px-0">
