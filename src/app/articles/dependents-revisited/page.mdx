@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'dependents-revisited')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Exactly one year ago I looked at who was using my most popular open-source library [Allotment](https://allotment.mulberryhousesoftware.com/).
 Let's take a look at how things have changed.

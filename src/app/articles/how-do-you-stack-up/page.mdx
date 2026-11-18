@@ -12,7 +12,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'how-do-you-stack-up')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 In my last post I looked at [visualising distributions](/articles/visualising-distributions). Let's apply what we learnt there to a real world data set. We'll continue our theme of using a set of rowing race results. You can see the result below.
 

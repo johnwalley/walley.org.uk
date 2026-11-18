@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'never-attribute-to-malice-what-can-be-explained-by-incompetence')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 I remind myself of this saying whenever I come across a new and surprising example of poor user interface design. With this in mind I'd like you to consider this ticket machine at Cambridge North station.
 

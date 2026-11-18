@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'whats-the-biggest-number-you-can-think-of')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 The idea of playing a game where you and a partner take turns at naming a number bigger than the last has always amused me. In reality, I think it would be deathly dull but it does raise the question of what, truly, is a big number?
 

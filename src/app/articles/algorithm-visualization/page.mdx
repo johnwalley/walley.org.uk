@@ -11,7 +11,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'algorithm-visualization')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 We've kicked off a series of algorithm coding katas at work. As something of an algorithms and data viz geek I thought I'd take part. One of the first problems is [Broken Keyboard](http://www.spoj.com/problems/BROKEN/) from [Sphere Online Judge](http://www.spoj.com/). The main challenge for me was just understanding what the problem was trying to describe. Once that clicked it's pretty straightforward to propose some sort of sliding window approach which makes use of the fact we don't need to repeat work.
 

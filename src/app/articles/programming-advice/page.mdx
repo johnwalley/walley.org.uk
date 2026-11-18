@@ -11,7 +11,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'programming-advice')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 I start a new Software Developer job next week, and I came across [this blog post](https://mbuffett.com/posts/programming-advice-younger-self/) by Marcus Buffett (via [Theo - t3.gg](https://www.youtube.com/watch?v=3h7Lc85RDLo)). His observations hit home for me, and I want to reflect on the advice and how it might apply to my new role.
 

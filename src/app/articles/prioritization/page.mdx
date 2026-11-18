@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'prioritization')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 The list of ideas and features you and your team could come up with is likely enough to last a lifetime. There's both an art and science to choosing what to work on next as well as what you will not take on.
 

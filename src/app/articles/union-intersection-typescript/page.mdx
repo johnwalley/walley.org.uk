@@ -11,7 +11,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'union-intersection-typescript')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Union and intersection types have fairly suggestive names. Most of what follows isn't programming language specific
 but I'm going to use TypeScript as the example language.

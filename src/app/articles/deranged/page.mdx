@@ -11,7 +11,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'deranged')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 I'm developing a super simple Android app: [Tony Facts](https://play.google.com/store/appsdetails?id=com.walley.tonyfacts).
 

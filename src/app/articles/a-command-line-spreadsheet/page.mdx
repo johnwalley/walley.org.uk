@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'a-command-line-spreadsheet')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 The ability to quickly open, explore, summarize, and analyze datasets is an important part of data visualization. As part of putting together data for an infographic on bike thefts in the UK I wanted to see which post codes saw the most reported thefts. Crime data can be downloaded from: [data.police.uk](https://data.police.uk/data/).
 

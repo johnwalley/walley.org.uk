@@ -11,7 +11,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'rollup-and-d3-plugins')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Mike Bostock outlines a standard for putting together d3 plugins [here](https://bost.ocks.org/mike/d3-plugin/). My first serious attempt is [d3-bumps-chart](https://github.com/johnwalley/d3-bumps-chart/) - a way of visualizing bumps race results. You can see it used at [www.cambridgebumps.com](http://www.cambridgebumps.com/).
 

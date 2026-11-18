@@ -13,7 +13,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'dependents')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 My open-source library, [Allotment](https://allotment.mulberryhousesoftware.com/), has been slowly gaining traction. It's around 20 thousand downloads per week.
 While it isn't a huge number, it isn't nothing. There is also enough interest that a healthy number of issues and feature requests get submitted.

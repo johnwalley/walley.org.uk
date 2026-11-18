@@ -11,7 +11,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'react-and-d3')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 While [React](https://facebook.github.io/react/) and [d3](https://d3js.org/) are designed with different goals in mind they do share a common theme. This is that data should define what you see.
 

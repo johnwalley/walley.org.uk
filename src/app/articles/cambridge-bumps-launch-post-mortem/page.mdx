@@ -19,7 +19,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'cambridge-bumps-launch-post-mortem')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 I launched [cambridgebumps.com](http://www.cambridgebumps.com/) this week during the annual Cambridge Town Bumps event (see the [Cambridgeshire Rowing Association](http://www.crarowing.co.uk/town-bumps) for details). However this post is about the website and not the rowing.
 

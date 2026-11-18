@@ -15,7 +15,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'what-makes-for-a-memorable-oar-design')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Last month I put together a quiz game: [Inspector Oars](https://www.inspectoroars.com/). The intended audience is pretty niche; people involved in rowing at Cambridge and Oxford universities. You’re given the name of a college and asked to pick the rowing oar design used by that college from a selection.
 

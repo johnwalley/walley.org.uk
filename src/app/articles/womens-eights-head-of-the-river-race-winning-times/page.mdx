@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'womens-eights-head-of-the-river-race-winning-times')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 The Women's Eights Head of the River Race is the largest women's rowing race in the world with around 2,880 women racing and 320 crews taking part. The race sees novices and Olympic champions competing together on the same stretch of water in London. It's the same course as the annual Oxford-Cambridge Boat Race (although usually in the opposite direction).
 

@@ -22,7 +22,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'chatgpt-plus-midjourney')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 If you want to create better prompts for [MidJourney](https://www.midjourney.com/app/) or learn a few different keywords you can try experimenting with using [ChatGPT](https://chat.openai.com/) to generate prompts for MidJourney.
 

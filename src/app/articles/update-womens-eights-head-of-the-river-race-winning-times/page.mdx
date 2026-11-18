@@ -15,7 +15,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'update-womens-eights-head-of-the-river-race-winning-times')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 My [last post](/articles/womens-eights-head-of-the-river-race-winning-times) looked at the winning times for one of the world's largest rowing races. We saw that the results were very variable but I wasn't sure what the important factors might be.
 

@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'world-marathon-courses-infographic')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Every now and then I like to put together an infographic poster as quickly as I can. My latest attempt is this poster of World Marathon Courses.
 

@@ -16,7 +16,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'taking-docker-for-a-spin')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 [Docker](https://www.docker.com/) has intrigued me for some time now so I thought I'd take a closer look. Purely in a personal capacity, as until Docker supports Windows containers there are few applications at [work](http://www.red-gate.com/).
 

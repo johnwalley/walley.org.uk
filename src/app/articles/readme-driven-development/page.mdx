@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'readme-driven-development')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 You've joined a new team. IT have set you up with a sweet new machine. You're eager to dive in and start contributing so you jump over to the GitHub repository to check out the readme...
 

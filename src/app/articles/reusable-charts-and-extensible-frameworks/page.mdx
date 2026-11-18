@@ -19,7 +19,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'reusable-charts-and-extensible-frameworks')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 A few months ago, I wrote about [reusable charts](/articles/reusable-charts). The thinking behind the blog post fed into the initial design for a new web application - [Financial Canvas Studio](https://studio.financialcanvas.co.uk/). It helps professionals in the pension industry understand their financial models and the assumptions that go into them - leading to smarter decisions.
 

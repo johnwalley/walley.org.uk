@@ -13,7 +13,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'image-upload-optimisation')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 This week I've been adding a [moodboard](https://en.wikipedia.org/wiki/Mood_board) feature to the Reno bathroom planning [web app](https://www.renovatewithreno.co.uk/).
 
