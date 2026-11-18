@@ -27,7 +27,7 @@ A few months ago, I wrote about [reusable charts](/articles/reusable-charts). Th
 
 At its heart, the application presents the user with a dashboard made up of a number of charts. The design is summarised in the diagram below.
 
-<Image src={diagram} alt="" />
+<Image src={diagram} alt="Architecture diagram. Inside a React application, a Dashboard component reads from a database and contains Bar Chart, Line Chart and Dropdown components. The Bar Chart and Line Chart components each wrap a D3 chart." />
 
 The application is built using React but that's not the topic of this post. What is of interest is that each chart is made up of a React component which then calls the underlying d3 chart implementation. This is important because both [React and d3 want to control your application UI](/articles/react-and-d3). It's best to box one or the other off.
 
@@ -41,13 +41,13 @@ So, what does this have to do with reuse and extensibility? Well, we're going to
 
 All things considered we've been happy with the interface we settled on for our charts.
 
-<Image src={chart} alt="" />
+<Image src={chart} alt="Horizontal bar chart titled “Extra Contributions to remove deficit: £36Mpa”, showing the required contributions falling from £36M at 0% to £4M at 3%." />
 
 For example, we make our React components aware of their width and height using [React Sizeme](https://github.com/ctrlplusb/react-sizeme). Because our charts are required to expose a width and height property we can make all our charts responsive with just a few lines of code.
 
 The best example of reusability was as part of implementing full-screen charts. This is the simple ability to maximise a chart so you can really focus on it.
 
-<Image src={dashboard} alt="" />
+<Image src={dashboard} alt="Animation of the Financial Canvas Studio dashboard, with panels for projected deficit, extra contributions, the impact of planned contributions and a summary table. One chart is maximised to full screen." />
 
 On a technical level, we pop up a modal and draw a brand new chart into it. This
 worked flawlessly for the most part. In fact, it helped us discover which elements
@@ -59,7 +59,7 @@ state. Once we'd identified these issues they were easy to fix.
 
 The chart interface we settled on is for all practical purposes identical to that used by [Britecharts](https://britecharts.github.io/britecharts/).
 
-<Image src={briteCharts} alt="" />
+<Image src={briteCharts} alt="Britecharts examples: a bar chart, a horizontal bar chart, a donut chart, a brush chart and a step chart." />
 
 This isn't a coincidence. This approach is common in the d3 community. It traces its heritage back to the many hundreds of examples Mike Bostock, d3 creator, has produced online.
 
@@ -69,19 +69,19 @@ In practice, this was mostly true. Most of the speed-bumps I hit were to do with
 
 It's this type of more involved questions which make for a successful implementation above and beyond simply exposing a correct API. Prototyping the integration with Britecharts has been illuminating because it shows up areas where I've made design decisions but not been explicit about them. In a similar vein. Having a colleague implement a few charts using the API I designed has also forced me to go back and document, and sometimes change, aspects which only existed in my own head.
 
-<Image src={briteChartsDashboard} alt="" />
+<Image src={briteChartsDashboard} alt="The dashboard rebuilt with Britecharts: a bar chart, a donut chart with a legend and a stacked area chart, each with tooltips." />
 
 ## Doing away with D3
 
 We've got a React application. Using a React-specific chart library should be straightforward? Step forward [vx](https://vx-demo.vercel.app/).
 
-<Image src={vx} alt="" />
+<Image src={vx} alt="Gallery of vx examples, including lines, bars, dots, bar stacks, arcs, patterns, areas, box plots, heatmaps, dendrograms, gradients, legends, a world map, Voronoi diagrams and trees." />
 
 vx is still in beta - no support for interactivity yet for example - but can certainly generate some striking charts. The eagle-eyed among you may have spotted that vx uses d3 under the hood. For our purposes, what's important about vx is that it exposes a purely React-based interface. If anything, this shows how ubiquitous d3 has become.
 
 Dropping in the necessary React components was straightforward and the results look great!
 
-<Image src={vxDashboards} alt="" />
+<Image src={vxDashboards} alt="The dashboard rebuilt with vx charts, with Lines, Areas and Streamgraph panels." />
 
 The work to integrate vx's React charts into our application was actually easier than with Britecharts. If I had to put my finger on the main reason it would be that Britecharts is very similar but subtly different. This results in many small annoyances. Whereas vx is something completely different to the existing charts. It also helps that vx is a set of React components being used within a React application.
 
