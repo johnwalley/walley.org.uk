@@ -4,7 +4,6 @@ import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 
 import '@/styles/tailwind.css'
-import 'katex/dist/katex.min.css'
 
 import { siteUrl } from '@/lib/siteUrl'
 

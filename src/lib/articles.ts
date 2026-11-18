@@ -16,13 +16,18 @@ export interface ArticleWithSlug extends Article {
 async function importArticle(
   articleFilename: string,
 ): Promise<ArticleWithSlug> {
-  let { article } = (await import(`../app/articles/${articleFilename}`)) as {
+  let slug = articleFilename.replace(/(\/page)?\.mdx$/, '')
+
+  // Keep the literal `/page.mdx` suffix: webpack bundles every file matching
+  // this template, and a bare `${articleFilename}` would also pull in each
+  // article's layout.tsx and its CSS (e.g. KaTeX) on every listing page.
+  let { article } = (await import(`../app/articles/${slug}/page.mdx`)) as {
     default: React.ComponentType
     article: Article
   }
 
   return {
-    slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
+    slug,
     ...article,
   }
 }
