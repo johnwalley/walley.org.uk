@@ -36,7 +36,7 @@ const projects = [
   {
     name: 'Cambridge Pub Map',
     description:
-      'An interactive map of Cambridge pubs styled after the iconic London Underground map. A fun way to explore the city\'s pub scene.',
+      "An interactive map of Cambridge pubs styled after the iconic London Underground map. A fun way to explore the city's pub scene.",
     link: { href: 'https://www.pubmap.co.uk/', label: 'pubmap.co.uk' },
     logo: logoPubMap,
   },
@@ -87,12 +87,13 @@ export default function Projects() {
     >
       <div className="mb-16 rounded-2xl border border-zinc-100 p-8 dark:border-zinc-700/40">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-          <div className="flex h-16 w-16 flex-none items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+          <div className="flex h-16 w-16 flex-none items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
             <Image
               src={featuredProject.logo}
               alt=""
+              width={40}
+              height={40}
               className="h-10 w-10"
-              unoptimized
             />
           </div>
           <div>
@@ -126,12 +127,13 @@ export default function Projects() {
       >
         {projects.map((project) => (
           <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <Image
                 src={project.logo}
                 alt=""
+                width={32}
+                height={32}
                 className="h-8 w-8"
-                unoptimized
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
