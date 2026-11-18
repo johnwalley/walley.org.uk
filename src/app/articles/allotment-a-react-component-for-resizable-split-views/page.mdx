@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'allotment-a-react-component-for-resizable-split-views')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 As part of my work with a client, [Vega Protocol](https://vega.xyz/), we identified a need for a simple split pane component to use in their web application. What’s a split pane component you ask? It looks something like this.
 

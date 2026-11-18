@@ -22,7 +22,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'stereotypical-people-2')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Asking the AI image tool, [MidJourney](https://www.midjourney.com/app/), to generate "the most stereotypical **woman** from..." a variety of UK cities.
 

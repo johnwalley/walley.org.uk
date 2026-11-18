@@ -13,7 +13,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'ai-image-generation')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 AI is everywhere at the moment. I've dabbled with ChatGPT and its peers, as well as a brief play about with [MidJourney](https://www.midjourney.com/app/) last year.
 

@@ -43,6 +43,7 @@ Articles are MDX files in `src/app/articles/{slug}/page.mdx`. Each exports an `a
 
 ```tsx
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
 
 export const article = {
   author: 'John Walley',
@@ -51,15 +52,16 @@ export const article = {
   description: 'Article description',
 }
 
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
+export const metadata = createArticleMetadata(article, '{slug}')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 // MDX content here
 ```
+
+Pass only `children` to `ArticleLayout`; never spread `{...props}`. `ArticleLayout` is a client component, so spreading the page props sends Next's `searchParams` to the client, which makes the route render dynamically instead of being prerendered. After `pnpm build`, every article should be listed as `○`, not `ƒ`.
 
 Articles can include co-located images and custom React components. D3-based visualization components require the `'use client'` directive.
 

@@ -13,7 +13,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'reno')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Earlier in the year I worked with a client on an interactive floor planner. Specifically, a small web-based tool which lets you design your bathroom layout. Where should the bath go? Is the toilet in the right place? That sort of thing.
 

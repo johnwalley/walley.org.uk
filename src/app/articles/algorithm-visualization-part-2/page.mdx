@@ -12,7 +12,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'algorithm-visualization-part-2')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 The second problem in our series of algorithm katas is [Kingdom And Trees](https://community.topcoder.com/stat?c=problem_statement&pm=11967) from [Top Coder](https://www.topcoder.com/).
 

@@ -10,7 +10,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'web-workers')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 JavaScript is single-threaded and blocking. Nothing else can happen while JavaScript is running. This is a problem because the main thread isn't just responsible for your app's logic. It also has to handle layout, painting, and responding to user interactions. If you block the main thread for more than a few tens of milliseconds your users *will* notice. To maintain smooth scrolling you better not take more than 16ms, and users get agitated if responding to a button click takes more than 100ms.
 

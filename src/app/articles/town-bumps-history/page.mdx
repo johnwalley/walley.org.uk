@@ -16,7 +16,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'town-bumps-history')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 While the history of University rowing in Cambridge has been extensively documented, much less attention has been given to the early rowing activities of local residents. Comprehensive records of the University Bumps races exist from as early as 1827, and Oxford’s equivalent dates back even further to 1815. However, the same level of detail is not available for Cambridge’s non-University Bumps races. For these, complete results are conveniently recorded from 1950 onward in Ken Drake’s _History of Cantabrigian Rowing Club 1950–2010_. Unfortunately, finding records prior to 1950 has proven to be much more challenging.
 

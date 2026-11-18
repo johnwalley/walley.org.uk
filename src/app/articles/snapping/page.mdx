@@ -19,7 +19,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'snapping')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 [Reno](https://www.renovatewithreno.co.uk) is a home renovation application I am helping to develop. An important part is a floorplanner which lets you design different room layouts.
 This includes your standard overhead view as well as recently added side elevations views.

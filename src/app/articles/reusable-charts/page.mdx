@@ -15,7 +15,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'reusable-charts')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 When it comes to creating visualizations on the web D3 is often your first port of call. Whether by putting together a custom creation from scratch, or making use of one of the many charting libraries and examples available.
 

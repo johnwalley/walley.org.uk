@@ -13,7 +13,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'east-croydon-where-art-though')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 I have a confession. Whenever I have an opportunity to use a ticket machine at a train station I’m secretly hoping to discover some new annoyance I can rant about.
 

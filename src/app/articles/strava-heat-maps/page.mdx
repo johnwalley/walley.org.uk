@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'strava-heat-maps')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 As part of my goal to run 5K every day this January, I’ve been tracking my progress on [Strava](https://www.strava.com/), and the [heatmaps](https://datavizproject.com/data-type/heat-map/) are fascinating. Here’s what they reveal about where I’ve been logging my miles over the years.
 

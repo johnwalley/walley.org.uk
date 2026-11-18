@@ -14,7 +14,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'visualising-distributions')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Visualising the distribution of data is something that crops up frequently. This [blog post](https://www.darkhorseanalytics.com/blog/visualizing-distributions-3) by Dark Horse Analytics does a good job summarising a few of the options available.
 

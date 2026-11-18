@@ -13,7 +13,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'youre-making-it-hard-to-like-you-github-desktop')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 Every few months I revisit the git client landscape. I know enough about the git command-line to be [dangerous](http://xkcd.com/1597/) but sometimes I just want to forget the syntax and click on some buttons.
 

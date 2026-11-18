@@ -16,7 +16,9 @@ export const article = {
 
 export const metadata = createArticleMetadata(article, 'leaflet-d3')
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
 
 This is a demonstration of using [Leaflet](http://leafletjs.com/) and [D3](https://d3js.org/) together.
 
