@@ -65,6 +65,8 @@ Pass only `children` to `ArticleLayout`; never spread `{...props}`. `ArticleLayo
 
 Articles that use math (`$...$` or `$$...$$`) need a co-located `layout.tsx` that imports `katex/dist/katex.min.css` (copy `articles/deranged/layout.tsx`). It is deliberately not loaded in the root layout, because only a couple of articles need it and it would be render-blocking CSS on every page. Don't import it in `page.mdx` either: `getAllArticles()` imports every `page.mdx` for its metadata, so the CSS would leak into the homepage and article index.
 
+The same goes for any article-specific stylesheet (e.g. `articles/algorithm-visualization-part-2/style.css`): import it from a co-located `layout.tsx`, never from `page.mdx` or a component that `page.mdx` imports.
+
 Articles can include co-located images and custom React components. D3-based visualization components require the `'use client'` directive.
 
 ### Client Components
