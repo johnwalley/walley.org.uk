@@ -2,6 +2,7 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import { createArticleMetadata } from '@/lib/metadata'
 import Image from 'next/image'
 import wehorr from './wehorr.jpg'
+import winningTimes from './winning-times.png'
 
 export const article = {
   author: 'John Walley',
@@ -23,7 +24,16 @@ The 2018 race is on the 10th March, a little over a month away. With that in min
 
 The chart below shows the winning times going back to 1993.
 
-<iframe frameBorder="0" src="https://cdn.rawgit.com/johnwalley/8cf264cb5eb7f2277a4b5103d2ede851/raw/d5743f7ba9f498efe3cfa1be2ef74d97cc6da49a/index.html?wmode=opaque" width="100%" data-embed="true" height="600px"></iframe>
+<figure>
+  <Image
+    src={winningTimes}
+    alt="Scatter plot of Women's Eights Head of the River Race winning times from 1993 to 2017, mostly between 18 and 20 minutes, with a nearly flat dashed line of best fit."
+  />
+  <figcaption>
+    Source code on <a href="https://gist.github.com/johnwalley/8cf264cb5eb7f2277a4b5103d2ede851/dd422a4e9986bd145eac3431eea961c724603761">GitHub</a>.
+  </figcaption>
+</figure>
+
 Times are typically between 18 and 20 minutes. There is considerable variation in times from year to year. A lot of this will be due to the variable conditions crews experience. The Thames is tidal at this point and the flow of water can speed up crews to a greater or lesser extent. Factor in the wind and it's true to say that the absolute time a crew posts isn't particularly useful for comparison across the years.
 
 However, we can still ask if there is a long-term trend across the decades. The dashed line represents the line of best fit. As you can see, there has been no statistically significant change in the performances of the winning crews over time.

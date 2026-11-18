@@ -2,6 +2,8 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import { createArticleMetadata } from '@/lib/metadata'
 import Image from 'next/image'
 import tweet from './tweet.png'
+import winningTimesFlow from './winning-times-flow.png'
+import flowCorrelation from './flow-correlation.png'
 
 export const article = {
   author: 'John Walley',
@@ -23,13 +25,29 @@ The organisers were kind enough to point me in the direction of an important var
 
 I've taken the flow rate from the National River Flow Archive. The data comes from measurements taken at Teddington lock a few miles upstream. The average flow rate for each race day is shown below as the orange bars. The dots still represent the winning time.
 
-<iframe frameBorder="0" src="https://cdn.rawgit.com/johnwalley/8cf264cb5eb7f2277a4b5103d2ede851/raw/d5743f7ba9f498efe3cfa1be2ef74d97cc6da49a/index.html?wmode=opaque" width="100%" data-embed="true" height="600px"></iframe>
+<figure>
+  <Image
+    src={winningTimesFlow}
+    alt="Winning times from 1993 to 2017 shown as dots, with the mean river flow on each race day shown as orange bars hanging from the top of the chart."
+  />
+  <figcaption>
+    Source code on <a href="https://gist.github.com/johnwalley/8cf264cb5eb7f2277a4b5103d2ede851/d5743f7ba9f498efe3cfa1be2ef74d97cc6da49a">GitHub</a>.
+  </figcaption>
+</figure>
 
 No clear trend stands out. The course record, set in 2014, did take place with a high flow. However, there were two other years with even higher flow.
 
 A scatter plot of winning time versus flow will help us tease out any relationship.
 
-<iframe frameBorder="0" src="https://cdn.rawgit.com/johnwalley/c996145365611ef9e02816c4864d53aa/raw/c54c7dcc4a5e0331285db7b2bba5ecab08280ae8/index.html?wmode=opaque" width="100%" data-embed="true" height="600px"></iframe>
+<figure>
+  <Image
+    src={flowCorrelation}
+    alt="Scatter plot of winning time against mean daily river flow, with a dashed line of best fit sloping gently downwards."
+  />
+  <figcaption>
+    Source code on <a href="https://gist.github.com/johnwalley/c996145365611ef9e02816c4864d53aa/c54c7dcc4a5e0331285db7b2bba5ecab08280ae8">GitHub</a>.
+  </figcaption>
+</figure>
 
 The line of best fit suggests that there is a correlation between the two variables. Faster flow is associated with lower winning times. That said, it's a weak correlation. A simple statistical measure, [R-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination), gives us a value of 0.2. This suggests that if there is a correlation then the flow will only account for a small proportion of the variability we see in winning times.
 
