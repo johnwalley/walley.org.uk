@@ -15,7 +15,7 @@ export default ({ children }) => (
   <ArticleLayout article={article}>{children}</ArticleLayout>
 )
 
-I'm developing a super simple Android app: [Tony Facts](https://play.google.com/store/appsdetails?id=com.walley.tonyfacts).
+I'm developing a super simple Android app: [Tony Facts](https://github.com/johnwalley/tony-facts).
 
 It's sole purpose is to display a plausible sounding fact which is entirely made-up. The user can swipe through a list of such facts. I added a button which would shuffle the order of the facts. A simple enough job for java.util.Collections.shuffle. However this leaves us with a little UX quirk whereby the current fact can end up in the same position after shuffling. This means there is no visual cue to provide feedback that anything has happened when the user presses the shuffle button.
 
