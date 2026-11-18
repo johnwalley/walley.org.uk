@@ -2,6 +2,7 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import { createArticleMetadata } from '@/lib/metadata'
 import Image from 'next/image'
 import distribution1 from './distribution-1.png'
+import distributions from './distributions.png'
 
 export const article = {
   author: 'John Walley',
@@ -25,14 +26,9 @@ I've also been looking for an opportunity to try out [RoughJS](http://roughjs.co
 
 You can probably see where this is going! Here are the results of mixing a little d3 with RoughJS. I'm pleased with the results. The first chart is a bar-code chart. The second is a bee swarm chart. The points are spread out to avoid overlap. This makes it easier to see individual points but can get out of hand for large numbers of points!
 
-<div style={{ backgroundColor: 'white' }}>
-  <iframe
-    src="https://cdn.rawgit.com/johnwalley/595596f5403acb1cd2da49ad8fa1e8df/raw/0be1a8f01e5dddd4ef81434981d3c4b8e126faf2/index.html?wmode=opaque"
-    width="100%"
-    data-embed="true"
-    frameBorder="0"
-    height="500"
-  />
-</div>
+<Image
+  src={distributions}
+  alt="A hand-drawn style bar-code chart and bee swarm chart of the same finish times, which cluster between 21 and 24 minutes."
+/>
 
-Both charts show the same data (finish times for a rowing race). The source code is also [available](https://bl.ocks.org/johnwalley/595596f5403acb1cd2da49ad8fa1e8df).
+Both charts show the same data (finish times for a rowing race). The source code is also [available](https://gist.github.com/johnwalley/595596f5403acb1cd2da49ad8fa1e8df/0be1a8f01e5dddd4ef81434981d3c4b8e126faf2).

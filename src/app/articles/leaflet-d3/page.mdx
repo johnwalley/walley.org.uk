@@ -26,7 +26,7 @@ We start with a [D3 visualisation](https://github.com/johnwalley/d3-tube-map) wh
 
 This is basically a map. While not being geographically accurate I would like for users to interact with it as they would with any other online map. An experience similar to Google Maps would do nicely.
 
-We can get close using [d3-zoom](https://github.com/d3/d3-zoom). You can see the result [here](https://bl.ocks.org/johnwalley/9b6d8af7a209b95c5b9dff99073db420). The user can now pan and zoom. It's good but, for me, I really miss the inertial scrolling you get with Google Maps. This means when you drag the map and let go, the map takes a while to stop moving. It's a surprisingly ergonomic effect.
+We can get close using [d3-zoom](https://github.com/d3/d3-zoom). You can see the code [here](https://gist.github.com/johnwalley/9b6d8af7a209b95c5b9dff99073db420). The user can now pan and zoom. It's good but, for me, I really miss the inertial scrolling you get with Google Maps. This means when you drag the map and let go, the map takes a while to stop moving. It's a surprisingly ergonomic effect.
 
 Where should we turn? There are many mapping libraries available to us which provide the features we want out of the box. I've used Leaflet before and been pleasantly surprised by how easy it is to get up and running. Can we combine it with D3?
 
@@ -38,7 +38,7 @@ There are a few examples out in the wild.
 
 There's nothing wrong with this approach but it feels like we're working against Leaflet rather than with it. Now, my visualization is static. This means that once we've used D3 to render the SVG we really don't make use of D3 anymore. If we combine this observation with the support for [ImageOverlays](http://leafletjs.com/reference-1.3.0.html#imageoverlay) in Leaflet we can ask, "If I convert my D3 visualization to an SVG image and pass that to Leaflet will everything just work?"
 
-It does! You can see the result [here](https://bl.ocks.org/johnwalley/371800492a010817c0795976e8a172c7).
+It does! You can see the code [here](https://gist.github.com/johnwalley/371800492a010817c0795976e8a172c7).
 
 As usual there are trade-offs involved with this approach. The SVG is embedded as an `<img>` element. This means:
 
