@@ -9,6 +9,8 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   outputFileTracingIncludes: {
     '/articles/*': ['./src/app/articles/**/*.mdx'],
+    // The feed lists articles by globbing for these files at request time.
+    '/feed.xml': ['./src/app/articles/**/*.mdx'],
   },
   async redirects() {
     return [
