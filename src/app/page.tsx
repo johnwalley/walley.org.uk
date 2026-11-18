@@ -7,7 +7,6 @@ import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
-  TwitterIcon,
   YouTubeIcon,
   GitHubIcon,
   LinkedInIcon,
@@ -354,13 +353,8 @@ export default async function Home() {
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://twitter.com/johnmwalley"
-              aria-label="Follow on Twitter"
-              icon={TwitterIcon}
-            />
-            <SocialLink
-              href="https://www.youtube.com/channel/UCC3Xz6EXWE4jLIUVikQOvcw/"
-              aria-label="Follow on YouTube"
+              href="https://www.youtube.com/@johnwalley"
+              aria-label="Subscribe on YouTube"
               icon={YouTubeIcon}
             />
             <SocialLink
