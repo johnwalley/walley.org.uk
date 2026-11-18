@@ -1,0 +1,87 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { LapChart } from '@/components/f1/LapChart'
+import { createArticleMetadata } from '@/lib/metadata'
+
+import kualaLumpur from './kuala-lumpur.json'
+import monza from './monza.json'
+
+export const article = {
+  author: 'John Walley',
+  date: '2026-11-18',
+  title: 'Bumps charts at 300 km/h',
+  description: 'What happens when you take a chart built for rowing races and apply it to Formula 1.',
+}
+
+export const metadata = createArticleMetadata(article, 'bumps-charts-f1')
+
+export default ({ children }) => (
+  <ArticleLayout article={article}>{children}</ArticleLayout>
+)
+
+I've been staring at and drawing bumps charts for well over a decade. In a bumps race, boats set off in a line and try to catch the crew in front. A crew that catches the one ahead has made a *bump*, and the two swap places for the next day's racing. A bumps chart plots that order day by day, one line per crew. I built [Cambridge Bumps](https://www.cambridgebumps.com/) around them.
+
+I'm about to start a new job in Formula 1. F1 has its own version, called a lap chart. It's the same idea, with each driver's position plotted lap by lap. Coming from rowing, I wanted to see what carries over. At first glance, everything looks good, but on closer inspection the charts can start telling you things that didn't happen.
+
+## Why bumps charts work
+
+A bumps chart is straightforward because of how bumps racing works. A crew only changes position by bumping the crew ahead or being bumped by the crew behind. There are no pit stops or safety cars to shuffle the order without anyone catching anyone. So wherever two lines cross, one crew caught another. A flat line means the crew rowed over, finishing the course without catching or being caught.
+
+A lap chart has many more columns, one per lap instead of one per day, but the question is the same. When a line moves, did someone actually race and overtake for that place?
+
+At this year's Italian Grand Prix, mostly yes. A red flag on lap 3 stopped the race, and every car still running changed tyres while they waited. After that, the order was largely decided on track. By my count (more on how later) there were 107 passes and only 30 places changed by pit stops. Follow Kimi Antonelli. He starts 19th and leads by lap 18. His only proper pit stop drops him to sixth, and he works his way back to win.
+
+<LapChart
+  data={monza}
+  highlight={['ANT']}
+  annotations={[{ driver: 'ANT', lap: 18, text: 'Antonelli leads by lap 18, from 19th on the grid', side: 'below', align: 'start' }]}
+/>
+
+Lots of flat lines for long stretches, and where two of them cross, there was an overtake. Monza reads like a bumps chart.
+
+## Overtaking in the pit lane
+
+Monza turns out to be the exception. For all 20 races this season, I compared the order at the end of every lap with the lap before. Every time two drivers swapped places, I checked whether either of them had pitted on that lap or the one before. If so, the swap counts as a pit stop, not a pass.
+
+That gives 1,030 passes and 1,823 places changed by pit stops, plus 42 more under safety cars. Almost two thirds of the movement on an F1 lap chart isn't overtaking.
+
+A pit stop costs about 24 seconds in the pit lane, which is several places on a crowded track. The driver drops down the order, then climbs back up as the cars ahead make their own stops. Nobody has overtaken anyone, but on the chart it looks exactly as if they have.
+
+The Bahrain Grand Prix is a good example. Not the one in Bahrain. This year's race moved to Sepang, outside Kuala Lumpur. Rain delayed the start by an hour and a half, and the first two laps were run behind the safety car before a standing start. After that came two more safety cars, a virtual safety car and 73 pit stops in 55 laps. That's 102 passes and 238 places changed in the pits.
+
+<LapChart data={kualaLumpur} />
+
+The first few laps are a tangle. Nine drivers started on intermediates and thirteen on slicks, and there were seven stops in the first three laps. When the safety car came out on lap 9, 18 of the 22 cars pitted, and the lines cross all over again. From lap 28 the field stops one car at a time, cross-hatching the middle of the race. Somewhere in there are 102 real passes. Good luck finding them!
+
+## Fading out the pit stops
+
+One idea was to mark every pit stop, but that just added clutter. When the safety car comes out and 18 of the 22 cars pit on the same lap, you get a column of markers telling you what you already knew.
+
+Something that worked reasonably well was changing how each step of a line is drawn. If a driver's change of position on a lap came only from pit stops, whether their own or other people's, that step is drawn faded and dotted. Real passes remain solid. A step fades when every swap the driver was part of on that lap involved a car that had pitted on that lap or the one before. If even one swap was a pass, then the step stays solid.
+
+If we follow Charles Leclerc, we can see him start fourth before an early stop on lap 3 drops him to 22nd. That drop fades out, and what's left is a solid line climbing back through the field. He stops three more times, and those drops fade too, along with the places he picks up while other drivers stop.
+
+<LapChart
+  data={kualaLumpur}
+  fadePitMoves
+  highlight={['LEC']}
+  annotations={[
+    { driver: 'LEC', lap: 4, text: 'Early stop drops Leclerc to 22nd', align: 'start' },
+    { driver: 'LEC', lap: 55, text: 'Back to 4th', side: 'below', align: 'end' },
+  ]}
+/>
+
+It's still busier than Monza, but it's now more readable.
+
+### Colour
+
+Lines are coloured by team, which is the F1 convention but awkward for a chart. There are eleven teams with two cars each, so every colour appears twice. Some teams are close enough to confuse anyway: Ferrari and Audi are both red, Cadillac and Haas are both grey, and four teams use blue. Each team's second car is drawn dashed, and every line is labelled at both ends. Hover over or tap a line to pick it out from the rest.
+
+## Check what moves the line
+
+A rank chart only works if every move on it means something happened. In bumps racing that's always true, so the chart stands by itself. In F1 it's less clear cut. At Monza the lines moved because of overtakes, but that was true in only five of this season's 20 races. In the other 15, pit stops moved more places than passes did, so the chart shows strategy more than racing.
+
+Showing why each line moved was enough to make the bumps chart useful again.
+
+## About the data
+
+The data comes from [OpenF1](https://openf1.org), an unofficial, community-run API that isn't associated with Formula 1. Positions are the order cars crossed the line at the end of each lap, so they don't include penalties applied after the race. OpenF1's lap start times are occasionally out by tens of seconds for a single lap, which shows up as a car dropping to the back and returning a lap later. To smooth that out, each crossing time is the median of three estimates: the next lap's start, this lap's start plus its duration, and the previous crossing plus this lap's duration.
