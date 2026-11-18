@@ -64,6 +64,11 @@ export function pitOnlyMoves(data: LapChartData): Map<number, Set<number>> {
   return result
 }
 
+/** OpenF1 writes surnames in capitals ("George RUSSELL"); return "George Russell". */
+export function displayName(name: string): string {
+  return name.replace(/\b(\p{Lu})(\p{Lu}+)\b/gu, (_, first: string, rest: string) => first + rest.toLowerCase())
+}
+
 /** Second driver in each team (higher car number) gets a dashed line. */
 export function dashedDrivers(data: LapChartData): Set<number> {
   const byTeam = new Map<string, number[]>()
