@@ -30,7 +30,7 @@ const projects = [
     name: 'Pennant',
     description:
       'High-performance React charting library for financial data. Built on Canvas API for 60fps rendering with technical indicators like Bollinger Bands, EMA, and MACD.',
-    link: { href: 'https://pennant.vega.xyz/', label: 'Pennant' },
+    link: { href: 'https://github.com/vegaprotocol/pennant', label: 'GitHub' },
     logo: logoPennant,
   },
   {
