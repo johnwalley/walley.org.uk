@@ -24,7 +24,7 @@ This is a demonstration of using [Leaflet](http://leafletjs.com/) and [D3](https
 
 We start with a [D3 visualisation](https://github.com/johnwalley/d3-tube-map) which shows the pubs in the UK city of Cambridge in the style of the London Underground map.
 
-<Image src={d3TubeMap} alt="" />
+<Image src={d3TubeMap} alt="Detail of the Cambridge pub map, drawn in the style of the London Underground map, with coloured lines and pubs such as the Eagle, the Mitre and the Regal as stations." />
 
 This is basically a map. While not being geographically accurate I would like for users to interact with it as they would with any other online map. An experience similar to Google Maps would do nicely.
 
@@ -34,7 +34,7 @@ Where should we turn? There are many mapping libraries available to us which pro
 
 There are a few examples out in the wild.
 
-<Image src={google} alt="" />
+<Image src={google} alt="Google search results for D3 and Leaflet, including Mike Bostock's D3 + Leaflet example, a bl.ocks.org map and the Leaflet.D3SvgOverlay plugin." />
 
 [D3 + Leaflet](https://bost.ocks.org/mike/leaflet/) by Mike Bostock is a quick demonstration of using D3 to render GeoJSON shapes in conjunction with Leaflet. All these examples effectively reach inside the Leaflet map and let you use D3 to draw into a new map layer.
 
@@ -51,7 +51,7 @@ As usual there are trade-offs involved with this approach. The SVG is embedded a
 
 Leaflet supports adding interactive markers and shapes to a map. As a proof of concept, we extract the bounding boxes of the labels and use these to draw a set of rectangles.
 
-<Image src={d3TubeMapDebug} alt="" />
+<Image src={d3TubeMapDebug} alt="The same pub map with a blue rectangle drawn over every station label, showing the label bounding boxes extracted for Leaflet." />
 
 Looking good! We can set the opacity of these rectangles to zero and we have our interactivity back.
 
