@@ -15,7 +15,7 @@ export default ({ children }) => (
   <ArticleLayout article={article}>{children}</ArticleLayout>
 )
 
-While [React](https://facebook.github.io/react/) and [d3](https://d3js.org/) are designed with different goals in mind they do share a common theme. This is that data should define what you see.
+While [React](https://react.dev/) and [d3](https://d3js.org/) are designed with different goals in mind they do share a common theme. This is that data should define what you see.
 
 The following musings are supported by a simple [mortgage calculator example](https://johnwalley.github.io/mortgage-calculator/) you might want to play around with first.
 
@@ -155,6 +155,6 @@ You can see an actual implementation here: [https://github.com/johnwalley/mortga
 
 It's not pretty but it gives you a feel for where this approach might go.
 
-The people behind [React D3](http://www.reactd3.org/) have obviously had similar questions around React/d3 integration but have taken this much, much further. Take a peek at their axis component: [https://github.com/react-d3/react-d3-core/blob/master/src/axis/axis.jsx](https://github.com/react-d3/react-d3-core/blob/master/src/axis/axis.jsx). In fact you'll see that they opted for the react-faux-dom approach.
+The people behind [React D3](https://github.com/react-d3) have obviously had similar questions around React/d3 integration but have taken this much, much further. Take a peek at their axis component: [https://github.com/react-d3/react-d3-core/blob/master/src/axis/axis.jsx](https://github.com/react-d3/react-d3-core/blob/master/src/axis/axis.jsx). In fact you'll see that they opted for the react-faux-dom approach.
 
 You can find my proof of concept, using the above ideas, here: [https://johnwalley.github.io/mortgage-calculator/](https://johnwalley.github.io/mortgage-calculator/). And source code here: [https://github.com/johnwalley/mortgage-calculator](https://github.com/johnwalley/mortgage-calculator).

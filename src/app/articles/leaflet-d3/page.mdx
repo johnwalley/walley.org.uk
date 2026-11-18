@@ -38,7 +38,7 @@ There are a few examples out in the wild.
 
 [D3 + Leaflet](https://bost.ocks.org/mike/leaflet/) by Mike Bostock is a quick demonstration of using D3 to render GeoJSON shapes in conjunction with Leaflet. All these examples effectively reach inside the Leaflet map and let you use D3 to draw into a new map layer.
 
-There's nothing wrong with this approach but it feels like we're working against Leaflet rather than with it. Now, my visualization is static. This means that once we've used D3 to render the SVG we really don't make use of D3 anymore. If we combine this observation with the support for [ImageOverlays](http://leafletjs.com/reference-1.3.0.html#imageoverlay) in Leaflet we can ask, "If I convert my D3 visualization to an SVG image and pass that to Leaflet will everything just work?"
+There's nothing wrong with this approach but it feels like we're working against Leaflet rather than with it. Now, my visualization is static. This means that once we've used D3 to render the SVG we really don't make use of D3 anymore. If we combine this observation with the support for [ImageOverlays](https://leafletjs.com/reference.html#imageoverlay) in Leaflet we can ask, "If I convert my D3 visualization to an SVG image and pass that to Leaflet will everything just work?"
 
 It does! You can see the code [here](https://gist.github.com/johnwalley/371800492a010817c0795976e8a172c7).
 
@@ -134,11 +134,11 @@ function file(file) {
 
 You can see we're adding some preamble to the file to make it a valid SVG document. We're also embedding a stylesheet into the file.
 
-The code can be found here: [https://github.com/johnwalley/d3-tube-map/blob/master/util/create-svg.js](https://github.com/johnwalley/d3-tube-map/blob/master/util/create-svg.js).
+The code can be found here: [create-svg.js](https://github.com/johnwalley/d3-tube-map/blob/0d3e8a6881f31067003767c4c4663ae684c1ac98/util/create-svg.js).
 
 ## Generating bounding box data offline
 
-Using JSDOM won't work here as it does not perform any layout. I'd made a note to myself to check out Puppeteer at some point and this was the perfect opportunity. [Puppeteer](https://github.com/GoogleChrome/puppeteer) is a Node library which provides a high-level API to control [headless](https://developers.google.com/web/updates/2017/04/headless-chrome) Chrome.
+Using JSDOM won't work here as it does not perform any layout. I'd made a note to myself to check out Puppeteer at some point and this was the perfect opportunity. [Puppeteer](https://github.com/GoogleChrome/puppeteer) is a Node library which provides a high-level API to control [headless](https://developer.chrome.com/blog/headless-chrome) Chrome.
 
 ```js
 const fs = require('fs');
@@ -182,7 +182,7 @@ const puppeteer = require('puppeteer');
 
 I was blown away with how easy this was to put together. A big thumbs up to Puppeteer's getting started experience.
 
-The code can be found here: [https://github.com/johnwalley/d3-tube-map/blob/master/util/create-metadata.js](https://github.com/johnwalley/d3-tube-map/blob/master/util/create-metadata.js).
+The code can be found here: [create-metadata.js](https://github.com/johnwalley/d3-tube-map/blob/0d3e8a6881f31067003767c4c4663ae684c1ac98/util/create-metadata.js).
 
 ## Web fonts and SVG Images
 
