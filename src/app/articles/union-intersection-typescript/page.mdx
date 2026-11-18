@@ -6,7 +6,8 @@ export const article = {
   author: 'John Walley',
   date: '2024-11-19',
   title: 'Do union and intersection types mean what you think?',
-  description: "Yes, but it's easy to get mixed up.",
+  description:
+    'A union of object types only lets you read the intersection of their properties, and vice versa. Why the names can trip you up, with TypeScript examples.',
 }
 
 export const metadata = createArticleMetadata(article, 'union-intersection-typescript')
