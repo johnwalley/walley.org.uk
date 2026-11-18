@@ -1,0 +1,70 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import reno from './reno.png'
+import one from './1.png'
+import two from './2.png'
+import three from './3.png'
+import four from './4.png'
+import five from './5.png'
+import six from './6.png'
+
+
+export const article = {
+  author: 'John Walley',
+  date: '2024-06-05',
+  title: 'Seamless',
+  description: 'Developing a snapping algorithm for a floorplanner.',
+}
+
+export const metadata = createArticleMetadata(article, 'snapping')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+[Reno](https://www.renovatewithreno.co.uk) is a home renovation application I am helping to develop. An important part is a floorplanner which lets you design different room layouts.
+This includes your standard overhead view as well as recently added side elevations views.
+
+<Image src={reno} alt="Floorplanner" />
+
+We support bathrooms and bedrooms and are currently working on kitchens. One thing which became clear quickly is that it's very important that your kitchen units line up perfectly. No gaps!
+
+So we need an intuitive method for making this happen. The obvious answer is some form of snapping behaviour. As you drag an item around it should snap, or jump, to another nearby item (or wall) when it gets close enough. Chances are you'll be familiar with this concept already. Simple enough, but how do we implement it?
+
+<Image src={one} alt="Floor planner" />
+
+<Image src={two} alt="Floor planner" />
+
+I played around with a few ideas before settling on the following approach. A key simplifying assumption is that we operate in 2D and that all our items are convex polygons. In fact, all our items are rectangles but the polygon assumption is all that is needed. Oh, and you should know that we allow items to overlap so there is no solid-body collision detection going on.
+
+It's also important to handle items which are at arbitrary angles. While most rooms will be designed with items aligned with the walls, we allow items to be rotated and not every room's walls are at right angles to one another!
+
+<Image src={three} alt="Floor planner" />
+
+Ok, so we have these rectangles. And rectangles are made up of corners and edges. The rectangle in green is the one that is being dragged towards the black rectangle. We are going to project each corner of the green rectangle onto the edges of the other rectangle. We only show the edge closest to the green rectangle in the image below.
+
+<Image src={four} alt="Floor planner" />
+
+Some corners get projected onto the edge (solid blue line) while others get projected past the ends of the edge (dashed blue line). Only considering corners in the first group we then calculate the distance of the corner to the edge (black dashed line). These corners and associated distances are then stored as candidate corners for snapping.
+
+We repeat this process for all edges of the black rectangle. And then for all other items which we can potentially snap to. At this point we have a, potentially long, list of candidate corners along with distances. We find the smallest distance in this list and, as long it is less than the 'snapping threshold', we proceed to snap our green rectangle to the corresponding edge. To be precise we translate the green rectangle such that the chosen corner is at the point where its projection meets the edge.
+
+You might have noticed that if we swap around the green and black in the above description we also get another set of corner/edge pairs which could be used for snapping. This is the case. The only difference is that we still must move the item which is being dragged. So in this case we move the current rectangle so that the projected point on its edge meets the corner of the other rectangle.
+
+This sounds good but falls over in a common use-case. Consider placing an item in the corner of a room (the walls are represented by the black rectangles). Initially we snap to the top wall. As we drag the item to the right eventually we get close enough that we snap to the right wall instead. Another movement up has us snap to the top wall instead. This can lead to some jarring jumping around as you try to position an item in a corner. Worse than that, you're unlikely to ever get the object exactly in the corner because we only ever snap to a single other item. Room corners are made up of two items (walls) and so we never get the behaviour we want.
+
+<Image src={five} alt="Floor planner" />
+
+Could we snap to more than one other edge/corner? It turns out there is a much simpler option. We've considered these two cases so far:
+
+- corner/edge
+- edge/corner
+
+What about corner/corner? You can picture, as we move an item into a corner of a room, one of its corners will naturally come close to the corner of the room.
+
+Let's apply the same approach from earlier but only using corners. The calculations become even easier; just the distance between points. We then choose the smallest distance under the threshold. We also make sure the corner/corner rule is higher priority than the others.
+
+<Image src={six} alt="Floor planner" />
+
+So far this simple algorithm has been working well in internal testing. We expect to release this within the week and look forward to getting real-world feedback.
+
+Just one final point. This is a very simple, naively implemented algorithm. This fits a lean, get-things-done, start-up approach. The main concern is performance. In particular, because we are comparing against every other edge and corner in the floorplan as the number of items increases so will performance suffer. This is something we'll monitor and if/when it becomes a problem we can augment the algorithm with optimisations. There is plenty of scope to only consider other items if they are nearby. Some sort of spatial culling algorithm borrowed from game development (or perhaps something really stupid and simple will suffice?).

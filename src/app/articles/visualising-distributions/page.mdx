@@ -1,0 +1,38 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import distribution1 from './distribution-1.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2018-10-11',
+  title: 'Visualising distributions',
+  description:
+    'Visualising the distribution of data is something that crops up frequently. This blog post by Dark Horse Analytics does a good job summarising a few of the options available.',
+}
+
+export const metadata = createArticleMetadata(article, 'visualising-distributions')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Visualising the distribution of data is something that crops up frequently. This [blog post](https://www.darkhorseanalytics.com/blog/visualizing-distributions-3) by Dark Horse Analytics does a good job summarising a few of the options available.
+
+I particularly like the rough hand-drawn effect used for the examples. Here's a bar-code chart. Just a simple line plotted for every point.
+
+<Image src={distribution1} alt="" />
+
+I've also been looking for an opportunity to try out [RoughJS](http://roughjs.com/). A small Javascript library that lets you draw in a sketchy, hand-drawn-like, style.
+
+You can probably see where this is going! Here are the results of mixing a little d3 with RoughJS. I'm pleased with the results. The first chart is a bar-code chart. The second is a bee swarm chart. The points are spread out to avoid overlap. This makes it easier to see individual points but can get out of hand for large numbers of points!
+
+<div style={{ backgroundColor: 'white' }}>
+  <iframe
+    src="https://cdn.rawgit.com/johnwalley/595596f5403acb1cd2da49ad8fa1e8df/raw/0be1a8f01e5dddd4ef81434981d3c4b8e126faf2/index.html?wmode=opaque"
+    width="100%"
+    data-embed="true"
+    frameBorder="0"
+    height="500"
+  />
+</div>
+
+Both charts show the same data (finish times for a rowing race). The source code is also [available](https://bl.ocks.org/johnwalley/595596f5403acb1cd2da49ad8fa1e8df).

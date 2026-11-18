@@ -1,0 +1,91 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+
+export const article = {
+  author: 'John Walley',
+  date: '2024-11-19',
+  title: 'Do union and intersection types mean what you think?',
+  description: "Yes, but it's easy to get mixed up.",
+}
+
+export const metadata = createArticleMetadata(article, 'union-intersection-typescript')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Union and intersection types have fairly suggestive names. Most of what follows isn't programming language specific
+but I'm going to use TypeScript as the example language.
+
+Let's start with a union type. Typescript defines this as:
+
+> A type formed from two or more other types, representing values that may be any one of those types.
+
+Here is a function that can operate on strings or numbers:
+
+```ts
+function printId(id: number | string) {
+  console.log('Your ID is: ' + id)
+}
+```
+
+It’s easy to provide a value matching a union type - simply provide a type matching any of the union’s members.
+If you have a value of a union type, how do you work with it?
+
+TypeScript will only allow an operation if it is valid for every member of the union. For example, if you have the union string | number, you can’t use methods that are only available on string:
+
+```ts
+function printId(id: number | string) {
+  console.log(id.toUpperCase());
+Property 'toUpperCase' does not exist on type 'string | number'.
+  Property 'toUpperCase' does not exist on type 'number'.
+}
+```
+
+Makes sense. Where this sometimes trips us up is when we apply it to objects. Take the following two types:
+
+```ts
+type A = {
+  a: string
+  b: number
+}
+
+type B = {
+  a: string
+  c: boolean
+}
+```
+
+Let's combine them into one union type:
+
+```ts
+type C = A | B
+```
+
+Just like before we can assign a value matching any of the union's members, e.g.
+
+```ts
+const obj: C = { a: 'foo', b: 1 }
+```
+
+However, when we come to apply an operation to a value of the union type we see something interesting.
+If the operation is reading a property then we can only read a property that is present for every member of the union.
+A property is present for every member if it is in the **intersection** of the properties of all the members.
+In this case only `a` is a valid property.
+
+I must admit that this causes me to pause every now and then.
+It's a **union** type but when working with objects we only get to apply operations that work for the **intersection** of properties.
+
+The same applies to intersection types and objects.
+If we know nothing else about the type but that it's an intersection type then we get to work with the **union** of properties.
+
+It's pretty funny when you think about it.
+
+The terms union and intersection really talk about assignment compatibility.
+What operations you can apply to the types require more thought than just transferring the words union and intersection across.
+Particularly when working with objects.
+
+This does feel related to the concepts of wider and narrow object types.
+Which features a similar flipping of terminology when thinking about object properties.
+
+While I find this makes sense to me now it does remind me of wrapping my head around covariant and contravariant types (specifically in C#).
+That often made me double check that I'd got them the right way around.

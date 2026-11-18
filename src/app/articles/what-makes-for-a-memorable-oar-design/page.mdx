@@ -1,0 +1,36 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import inspectorOars from './inspector-oars.png'
+import chart1 from './chart-1.png'
+import chart2 from './chart-2.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2019-02-01',
+  title: 'What makes for a memorable oar design?',
+  description:
+    'Last month I put together a quiz game: Inspector Oars. The intended audience is pretty niche; people involved in rowing at Cambridge and Oxford universities. You’re given the name of a college and asked to pick the rowing oar design used by that college from a selection.',
+}
+
+export const metadata = createArticleMetadata(article, 'what-makes-for-a-memorable-oar-design')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Last month I put together a quiz game: [Inspector Oars](https://www.inspectoroars.com/). The intended audience is pretty niche; people involved in rowing at Cambridge and Oxford universities. You’re given the name of a college and asked to pick the rowing oar design used by that college from a selection.
+
+<Image src={inspectorOars} alt="" />
+
+An obvious question you might ask is which are the easiest and hardest designs to identify? Well, we have over 1,200 games played and the results are in…
+
+<Image src={chart1} alt="" style={{ backgroundColor: 'white' }} />
+
+Topping the charts is St Catherine’s College. This distinctive design features a Catherine Wheel and is one of the few which doesn’t require any rowing (or college) knowledge to make an educated guess at.
+
+Second through fifth are all similar in design, with vertical coloured lines against a uniform background.
+
+Now to the five designs which players found toughest.
+
+<Image src={chart2} alt="" style={{ backgroundColor: 'white' }} />
+
+Murray Edwards College comes bottom of the table. Followed by Homerton College, First and Third (Trinity), Trinity Hall, and Wolfson College. It’s no coincidence that three of the five designs are a single colour, and fairly non-distinctive colours too. I also wonder if Trinity Hall and First and Third being so similar led to some confusion and wrong answers.
