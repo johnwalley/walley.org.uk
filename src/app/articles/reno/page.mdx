@@ -1,0 +1,28 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import floor_planner from './floor-planner.png'
+import reno from './reno.gif'
+
+export const article = {
+  author: 'John Walley',
+  date: '2023-11-10',
+  title: 'Reno',
+  description: 'From bathroom planners to product launches.',
+}
+
+export const metadata = createArticleMetadata(article, 'reno')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Earlier in the year I worked with a client on an interactive floor planner. Specifically, a small web-based tool which lets you design your bathroom layout. Where should the bath go? Is the toilet in the right place? That sort of thing.
+
+<Image src={floor_planner} alt="Floor planner" />
+
+More recently, the opportunity came up to help them get their larger product ready for launch. And that launch was last month! Try it out at [www.renovatewithreno.co.uk](https://www.renovatewithreno.co.uk).
+
+<Image src={reno} alt="" />
+
+One of the most rewarding aspects has been finding a balance between moving quickly and shipping features while keeping a suitable level of quality.
+
+I'll follow-up with a few posts on the more challenging aspects of the work.

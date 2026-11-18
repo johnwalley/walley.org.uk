@@ -1,0 +1,44 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import allotment from './allotment.gif'
+import pennant from './pennant.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2021-11-25',
+  title: 'Allotment: a React component for resizable split views',
+  description:
+    'As part of my work with a client, Vega Protocol, we identified a need for a simple split pane component to use in their web application. What’s a split pane component you ask? It looks something like this.',
+}
+
+export const metadata = createArticleMetadata(article, 'allotment-a-react-component-for-resizable-split-views')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+As part of my work with a client, [Vega Protocol](https://vega.xyz/), we identified a need for a simple split pane component to use in their web application. What’s a split pane component you ask? It looks something like this.
+
+<Image src={allotment} alt="" />
+
+We tried out a variety of existing libraries but, surprisingly, none proved suitable. Specifically, none behaved as expected when the number of panes changed.
+
+So, the age old journey of doing it yourself began. Where to start? The answer was staring me in the face. VS Code! I use it for most of my front-end coding and have always loved its split pane behaviour. Resizing parts of the editor works just as I expect it should. Just one stumbling block. We wanted the new component to be a React component so it can be easily integrated into the client’s application. VS Code is not a React application.
+
+Fortunately, I’ve built up extensive experience of integrating React and more imperative libraries over the past few years. In particular, it has proven valuable to take some of the amazing data visualisation libraries out there and integrate them into React-based application.
+
+Summary of the plan:
+
+- spin-off an open source library to support client’s project 🎉
+- base on the excellent VS Code 🚀
+
+The result is [allotment](https://github.com/johnwalley/allotment): a React component for resizable split views. It’s proving useful in my client’s application where we’re using it to support stacking multiple charts on top of each other.
+
+<Image src={pennant} alt="" />
+
+The most satisfying outcome of all, however, has been the bug reports and feedback I’ve received.
+
+Firstly, it suggests people other than my client are using the library. And I haven’t gone to any effort to publicise it so far.
+
+Secondly, the quality of the issues filed has been great. Constructive, polite, with reproducible examples. Everything a maintainer could ask for. It’s led to a real improvement in the quality of both the code and documentation.
+
+Regardless of whether allotment takes off, or is just used by a handful of projects, this has been a really positive experience that I’d happily repeat.

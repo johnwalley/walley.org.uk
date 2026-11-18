@@ -1,0 +1,31 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import wehorr from './wehorr.jpg'
+
+export const article = {
+  author: 'John Walley',
+  date: '2018-01-25',
+  title: "Women's Eights Head of the River Race winning times",
+  description:
+    "The Women's Eights Head of the River Race is the largest women's rowing race in the world with around 2,880 women racing and 320 crews taking part. The race sees novices and Olympic champions competing together on the same stretch of water in London. It's the same course as the annual Oxford-Cambridge Boat Race (although usually in the opposite direction).",
+}
+
+export const metadata = createArticleMetadata(article, 'womens-eights-head-of-the-river-race-winning-times')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+The Women's Eights Head of the River Race is the largest women's rowing race in the world with around 2,880 women racing and 320 crews taking part. The race sees novices and Olympic champions competing together on the same stretch of water in London. It's the same course as the annual Oxford-Cambridge Boat Race (although usually in the opposite direction).
+
+<Image src={wehorr} alt="" />
+
+The 2018 race is on the 10th March, a little over a month away. With that in mind let's ask how fast crews have covered the 6.8km (4.25 miles) in the past.
+
+The chart below shows the winning times going back to 1993.
+
+<iframe frameBorder="0" src="https://cdn.rawgit.com/johnwalley/8cf264cb5eb7f2277a4b5103d2ede851/raw/d5743f7ba9f498efe3cfa1be2ef74d97cc6da49a/index.html?wmode=opaque" width="100%" data-embed="true" height="600px"></iframe>
+Times are typically between 18 and 20 minutes. There is considerable variation in times from year to year. A lot of this will be due to the variable conditions crews experience. The Thames is tidal at this point and the flow of water can speed up crews to a greater or lesser extent. Factor in the wind and it's true to say that the absolute time a crew posts isn't particularly useful for comparison across the years.
+
+However, we can still ask if there is a long-term trend across the decades. The dashed line represents the line of best fit. As you can see, there has been no statistically significant change in the performances of the winning crews over time.
+
+Are there any patterns you can see in this data I have missed? If you're taking part this year, or are simply interested, can you think of some aspect of the race which would look cool when visualised?

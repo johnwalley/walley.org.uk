@@ -1,0 +1,36 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import tweet from './tweet.png'
+
+export const article = {
+  author: 'John Walley',
+  date: '2018-02-07',
+  title: "Update: Women's Eights Head of the River Race winning times",
+  description:
+    "My last post looked at the winning times for one of the world's largest rowing races. We saw that the results were very variable but I wasn't sure what the important factors might be.",
+}
+
+export const metadata = createArticleMetadata(article, 'update-womens-eights-head-of-the-river-race-winning-times')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+My [last post](/articles/womens-eights-head-of-the-river-race-winning-times) looked at the winning times for one of the world's largest rowing races. We saw that the results were very variable but I wasn't sure what the important factors might be.
+
+The organisers were kind enough to point me in the direction of an important variable: [fluvial](https://en.wikipedia.org/wiki/Fluvial) flow.
+
+<Image src={tweet} alt="" />
+
+I've taken the flow rate from the National River Flow Archive. The data comes from measurements taken at Teddington lock a few miles upstream. The average flow rate for each race day is shown below as the orange bars. The dots still represent the winning time.
+
+<iframe frameBorder="0" src="https://cdn.rawgit.com/johnwalley/8cf264cb5eb7f2277a4b5103d2ede851/raw/d5743f7ba9f498efe3cfa1be2ef74d97cc6da49a/index.html?wmode=opaque" width="100%" data-embed="true" height="600px"></iframe>
+
+No clear trend stands out. The course record, set in 2014, did take place with a high flow. However, there were two other years with even higher flow.
+
+A scatter plot of winning time versus flow will help us tease out any relationship.
+
+<iframe frameBorder="0" src="https://cdn.rawgit.com/johnwalley/c996145365611ef9e02816c4864d53aa/raw/c54c7dcc4a5e0331285db7b2bba5ecab08280ae8/index.html?wmode=opaque" width="100%" data-embed="true" height="600px"></iframe>
+
+The line of best fit suggests that there is a correlation between the two variables. Faster flow is associated with lower winning times. That said, it's a weak correlation. A simple statistical measure, [R-squared](https://en.wikipedia.org/wiki/Coefficient_of_determination), gives us a value of 0.2. This suggests that if there is a correlation then the flow will only account for a small proportion of the variability we see in winning times.
+
+But we shouldn't be surprised by this. Remember, it's a different crew winning each year. The difference between crews year-to-year could well be the biggest variable of all!

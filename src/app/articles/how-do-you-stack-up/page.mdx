@@ -1,0 +1,29 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+
+export const article = {
+  author: 'John Walley',
+  date: '2018-10-11',
+  title: 'How do you stack up?',
+  description:
+    "In my last post I looked at visualising distributions. Let's apply what we learnt there to a real world data set. We'll continue our theme of using a set of rowing race results. You can see the result below.",
+}
+
+export const metadata = createArticleMetadata(article, 'how-do-you-stack-up')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+In my last post I looked at [visualising distributions](/articles/visualising-distributions). Let's apply what we learnt there to a real world data set. We'll continue our theme of using a set of rowing race results. You can see the result below.
+
+<iframe
+  frameBorder="0"
+  src="https://how-do-you-stack-up.mulberryhousesoftware.com/?wmode=opaque"
+  width="100%"
+  data-embed="true"
+  height="600px"
+></iframe>
+
+This is my first attempt at putting annotation and narrative front and centre in a data visualisation. I've taken inspiration from [Flourish](https://flourish.studio/) and [Tableau stories](https://onlinehelp.tableau.com/current/pro/desktop/en-us/stories.html).
+
+You can find a standalone version at [https://how-do-you-stack-up.mulberryhousesoftware.com/](https://how-do-you-stack-up.mulberryhousesoftware.com/)

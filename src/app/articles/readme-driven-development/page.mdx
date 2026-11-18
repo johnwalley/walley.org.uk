@@ -1,0 +1,65 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import uberForCats from './uber-for-cats.png'
+import robots from './robots.jpg'
+
+export const article = {
+  author: 'John Walley',
+  date: '2017-10-17',
+  title: 'Readme-driven development',
+  description:
+    "You've joined a new team. IT have set you up with a sweet new machine. You're eager to dive in and start contributing so you jump over to the GitHub repository to check out the readme...",
+}
+
+export const metadata = createArticleMetadata(article, 'readme-driven-development')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+You've joined a new team. IT have set you up with a sweet new machine. You're eager to dive in and start contributing so you jump over to the GitHub repository to check out the readme...
+
+<Image src={uberForCats} alt="" />
+
+Unhelpful doesn't begin to sum it up.
+
+You root around in the team docs directory only to find a Word document that was last updated in 2015.
+
+You ask your new colleagues for help. Alice suggests checking out the Getting Started document in Google Drive. Only for Alice to remember five minutes later that it won't actually be useful because we switched from Azure to AWS last month and haven't gotten around to updating the document.
+
+So you go make a cup of coffee before settling down with Alice while he walks you through how to set everything up on a new machine.
+
+We've all been through something similar and if you're like me are always impressed when it's clear someone has put thought into this aspect of software development.
+
+I was first introduced to the wonders of a well-written and well-maintained readme when I joined [Redgate](http://www.red-gate.com/). As a new team member I was able to get up and running and feeling useful on day one.
+
+I've seen two big benefits from a good readme:
+
+1. Onboarding new team members
+1. Facilitating automation
+
+## Onboarding
+
+It's worth making the point that an effective readme is even more critical if you are expecting contributions from external contributors, say for an open-source project. Developer Experience (DX) is really just another form of User Experience (UX) and I encourage everyone to think about both existing and future developers when developing software.
+
+However, there is no free lunch. The chief cost here is the ongoing maintenance of the readme. Much like you should update your tests when the corresponding code changes; so you should update your readme. A problem here is that you can't automate this. Someone needs to check it's still up to date every now and then...
+
+## Automation
+
+Which segues nicely into the subject of automation.
+
+<Image src={robots} alt="" />
+
+Often the first step towards automating existing, or indeed new, processes is to put together a step-by-step list of instructions. Hey, that's one of the things I'd expect to find in a readme. We're up and running!
+
+Time passes. Your automated setup, build and test process is ticking along magnificently. In fact, you and your team have made numerous improvements over the past few months. However we've not been so diligent at updating our readme and it no longer reflects reality. This is yet another example of the code-documentation gap we all struggle with.
+
+There's no easy answer but I do feel that automation can actively help us here. If we can replace several complex manual steps with a single script that can be run on a developer's machine or on a CI server then we reduce the amount of words and code that need to be kept in sync. In the extreme we can reduce our build process to a single command and our code is now our documentation.
+
+We have the tools we need to make this a reality. Package managers, build automation tools, Vagrant, Docker are all examples which can help keep everything up-to-date and useful.
+
+## Further Reading
+
+- [A curated list of awesome READMEs](https://github.com/matiassingers/awesome-readme)
+- [Using issues to host GitHub Pages screenshots](http://blog.davidebbo.com/2014/11/using-issues-for-github-pages-screenshots.html)
+
+This blog post's title is a reference to this [blog post](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) by Tom Preston Werner.

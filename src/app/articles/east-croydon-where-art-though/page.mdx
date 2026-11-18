@@ -1,0 +1,36 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import croydon from './croydon.jpg'
+
+export const article = {
+  author: 'John Walley',
+  date: '2018-11-09',
+  title: 'East Croydon: Where art thou?',
+  description:
+    'I have a confession. Whenever I have an opportunity to use a ticket machine at a train station I’m secretly hoping to discover some new annoyance I can rant about.',
+}
+
+export const metadata = createArticleMetadata(article, 'east-croydon-where-art-though')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+I have a confession. Whenever I have an opportunity to use a ticket machine at a train station I’m secretly hoping to discover some new annoyance I can rant about.
+
+This week I had the pleasure of travelling to Croydon for work. I chose to search for my destination station. C… R… O… Y… D… And nothing. I tried again but with the same result.
+
+<Image src={croydon} alt="" />
+
+A member of staff saw me struggling and asked me where I was going. I was told I’d need to take the tube to get to Croydon. Now, my train was due to leave in a few minutes and I wasn’t in the mood to discuss this so I bought a ticket to Kings Cross and I’d sort this out later on.
+
+There’s a direct Thameslink train from St Pancras to East Croydon so I walked over and found a new ticket machine to spend some quality time with. The eagle-eyed among you might have already spotted the problem. My destination station is EAST CROYDON. Crucially, you need to search E… A… S… T… C… R… to make the search work.
+
+The way the search works is that the machine will match the first letter you type with the first letter of the station name. Then the second with the second and so on. At each stage it will also restrict which letters appear on the keyboard so that you can only enter a valid station name.
+
+You can imagine the logic behind this feature. “We’ll help our users by only allowing them to enter correct station names. That way they won’t make mistakes”.
+
+The problem with this thinking is that it does not match our expectations of search. Google, Amazon, Facebook all will try to match our search terms with anything. It does not matter where in the sentence or name the terms are found. In fact most modern search will go a lot further and suggest spelling corrections and generally try to guess what we mean.
+
+It appears to me that the problem is not that the designers did not think of the users. They did. They even went to the effort of designing a particular method of helping users search for stations. I believe the specific problem is that they didn’t test it on edge cases like East Croydon. I would also add that the larger issue here is that the search feature simply does not match the audience’s current expectations for how search should work.
+
+I want to quickly call out the importance of accessibility when designing user interfaces. Nothing I’ve said above touches on this and I’m happy to be corrected if there is an impact on accessibility I have missed. However, I believe the problem I ran into, not being able to find East Croydon, would also affect a partially sighted person just as much for example.

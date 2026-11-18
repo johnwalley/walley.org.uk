@@ -1,0 +1,74 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import atlas from './atlas.jpg'
+
+export const article = {
+  author: 'John Walley',
+  date: '2020-10-04',
+  title: 'Supporting two major versions of D3',
+  description:
+    'A new version of d3 was released recently. As I maintain a few open source d3-related libraries I was curious what work would be required to support the new version. It turns out not to be too difficult and I wanted to share my experience.',
+}
+
+export const metadata = createArticleMetadata(article, 'supporting-two-major-versions-of-d3')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+A new version of d3 was released recently. As I maintain a few open source d3-related libraries I was curious what work would be required to support the new version. It turns out not to be too difficult and I wanted to share my experience.
+
+<Image src={atlas} alt="" />
+
+My most popular library is d3-simple-slider and it wasn't long before an issue was filed letting me know it didn't work with d3 v6. My first thought was to make the necessary changes and release a new major version of my library. However, the thought of breaking backwards compatibility and possibly maintaining two versions of the library wasn't appealing.
+
+After reading the d3 v6 release notes and migration guide it became a lot clearer what was causing issues. The changes to event management mean that a lot of listeners (callbacks triggered by an event) have a new signature.
+
+For example:
+
+```js
+selection.on('mousemove', function (d) {
+  // do something with d3.event and d
+})
+```
+
+becomes:
+
+```js
+selection.on('mousemove', function (event, d) {
+  // do something with event and d
+})
+```
+
+In other words, the global `d3.event` has been removed. It has been replaced by a local event passed as the first argument to all listeners.
+
+So nothing that a simple [adaptor function](https://en.wikipedia.org/wiki/Adapter_pattern) won't solve.
+All we need is a reliable way to detect which version of d3 we are working with.
+After some reading around as to how other libraries are approaching this problem I found the [approach discussed](https://github.com/dc-js/dc.js/pull/1749) by the [dc.js](https://dc-js.github.io/dc.js/) project enlightening. They detect whether the first argument passed to a listener is an event by looking for the presence of a `target` property. Based on this we can call the original callback with the same arguments as passed in. If not we can use the global event object and pass this as the first argument followed by the original arguments. Something like this:
+
+```js
+import { event } from 'd3-selection';
+export function adaptListener(listener) {
+  return function (a, b) {
+    if (a && a.target) {
+      // d3@v6
+      listener.call(this, a, b);
+    } else {
+      // d3@v5
+      listener.call(this, event, a);    
+    }  
+  };
+}
+```
+
+And it is used like this:
+
+```js
+drag()
+  .on('start', adaptListener(dragstarted))
+  .on('drag', adaptListener(dragged))
+  .on('end', adaptListener(dragended));
+```
+
+This assumes the listeners are written in the form expected by d3 v6.
+
+The latest version of d3-simple-slider with this change has been out in the wild for two weeks now and seems to be working well!

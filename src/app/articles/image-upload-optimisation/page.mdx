@@ -1,0 +1,50 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { createArticleMetadata } from '@/lib/metadata'
+import Image from 'next/image'
+import screenshot from './screenshot.png'
+import moodboard from './image-upload.gif'
+
+export const article = {
+  author: 'John Walley',
+  date: '2023-11-25',
+  title: 'Faster image uploads',
+  description: 'Keeping people happy through timely feedback.',
+}
+
+export const metadata = createArticleMetadata(article, 'image-upload-optimisation')
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+This week I've been adding a [moodboard](https://en.wikipedia.org/wiki/Mood_board) feature to the Reno bathroom planning [web app](https://www.renovatewithreno.co.uk/).
+
+<Image src={screenshot} alt="Moodboard" />
+
+A big part of this is uploading your own photos and images. It can take a while to upload an image to the backend and receive a url we can use to display the image.
+Previously we showed a loading spinner while we waited for this process to complete. However, this was causing users some frustration as it could take several seconds to see anything promising.
+
+When you sit down and think about it there's something odd about this process. We have the image at the start, before anything upload-related has even started, so why not use it?
+The approach we went with was to display the local image we have straight away. This gives some positive feedback as quickly as possible. We could stop here and then transparently swap out the local image for the one served from our backend when it's ready.
+
+We might do something like this in the future but for the time-being we're greying out the image and overlaying a spinner to communicate to the user that we have their image but it's going to take some time to finish uploading.
+
+<Image src={moodboard} alt="Image upload" />
+
+One important technical aspect to get right is to notice that just because you have the remote image url it does not mean that the image is ready. If you were to swap out the local image for the remote one at this point there would be an annoying flicker while the browser downloads the image and renders it.
+We can wait for the image to actually be ready by using the image's [`onload`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/load_event) callback or [`decode`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decode) method.
+
+The first being a traditional callback and the second returns a Promise.
+
+```js
+const image = new Image();
+image.onload = function() {
+    alert('image loaded');
+};
+image.src = 'image.jpg';
+```
+
+```js
+const image = new Image();
+image.src = 'image.jpg';
+await image.decode();
+
+```
