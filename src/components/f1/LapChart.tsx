@@ -3,7 +3,7 @@
 import { line, scaleLinear } from 'd3'
 import { useMemo, useState } from 'react'
 
-import { dashedDrivers, displayName, pitOnlyMoves, type LapChartData } from './types'
+import { dashedDrivers, displayName, nonRacingMoves, type LapChartData } from './types'
 
 const ROW = 22
 const MARGIN = { top: 32, right: 56, bottom: 28, left: 64 }
@@ -24,6 +24,8 @@ interface Props {
   data: LapChartData
   /** Fade line segments where the position change came only from pit stops. */
   fadePitMoves?: boolean
+  /** Draw a dot at the end of every lap on which a driver entered the pits. */
+  pitMarkers?: boolean
   /** Driver codes emphasised when nothing is hovered. */
   highlight?: string[]
   annotations?: Annotation[]
@@ -31,7 +33,7 @@ interface Props {
   description?: string
 }
 
-export function LapChart({ data, fadePitMoves = false, highlight = [], annotations = [], description }: Props) {
+export function LapChart({ data, fadePitMoves = false, pitMarkers = false, highlight = [], annotations = [], description }: Props) {
   const [hovered, setHovered] = useState<number | null>(null)
   const [pinned, setPinned] = useState<number | null>(null)
 
@@ -43,7 +45,7 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
 
   const series = useMemo(() => {
     const dashed = dashedDrivers(data)
-    const pitOnly = pitOnlyMoves(data)
+    const nonRacing = nonRacingMoves(data)
     const xs = scaleLinear().domain([0, laps]).range([MARGIN.left, WIDTH - MARGIN.right])
     const path = line<[number, number]>()
       .defined(([, p]) => p >= 0)
@@ -60,7 +62,7 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
         const [p0, p1] = [points[l - 1][1], points[l][1]]
         if (p0 < 0 || p1 < 0) continue
         const seg = `M${xs(l - 1)},${y(p0)}L${xs(l)},${y(p1)}`
-        if (pitOnly.get(num)?.has(l)) faded += seg
+        if (nonRacing.get(num)?.has(l)) faded += seg
         else solid += seg
       }
       return {
@@ -188,6 +190,22 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
                 <path d={s.all} {...strokeProps(s)} />
               )}
               <path d={s.all} fill="none" stroke="transparent" strokeWidth={14} />
+              {pitMarkers &&
+                (data.pits[s.num] ?? []).map((lap) => {
+                  const p = s.points[lap]?.[1]
+                  if (p == null || p < 0) return null
+                  return (
+                    <circle
+                      key={lap}
+                      cx={x(lap)}
+                      cy={y(p)}
+                      r={3}
+                      fill={s.colour}
+                      className="stroke-white dark:stroke-zinc-900"
+                      strokeWidth={1}
+                    />
+                  )
+                })}
               {s.retiredAfter != null && s.end && (
                 <path
                   d={`M${x(s.end[0]) - 4},${y(s.end[1]) - 4}l8,8m0,-8l-8,8`}
@@ -255,7 +273,15 @@ export function LapChart({ data, fadePitMoves = false, highlight = [], annotatio
             <svg width="16" height="2" aria-hidden="true">
               <line x1="0" x2="16" y1="1" y2="1" stroke="currentColor" strokeWidth="1.5" strokeDasharray="1 3" strokeLinecap="round" />
             </svg>
-            Moved only by pit stops
+            Moved only by pit stops or retirements
+          </span>
+        )}
+        {pitMarkers && (
+          <span className="inline-flex items-center gap-1.5">
+            <svg width="8" height="8" aria-hidden="true">
+              <circle cx="4" cy="4" r="3" fill="currentColor" />
+            </svg>
+            Pit stop
           </span>
         )}
       </div>

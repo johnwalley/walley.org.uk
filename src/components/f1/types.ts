@@ -28,11 +28,12 @@ export interface LapChartData {
 }
 
 /**
- * For each driver, the laps L where their move from lap L-1 to L came only
- * from pit stops: every driver they swapped places with (or they themselves)
- * pitted on lap L-1 or L. Same rule as scripts/f1/analyse.mjs.
+ * For each driver, the laps L where their move from lap L-1 to L involved no
+ * pass: every swap they were part of had a car that pitted on lap L-1 or L
+ * (the same pit rule as scripts/f1/analyse.mjs), or they swapped with no one
+ * and only moved because a car ahead of them retired.
  */
-export function pitOnlyMoves(data: LapChartData): Map<number, Set<number>> {
+export function nonRacingMoves(data: LapChartData): Map<number, Set<number>> {
   const pitted = (d: number, L: number) => {
     const laps = data.pits[d] ?? []
     return laps.includes(L - 1) || laps.includes(L)
@@ -54,11 +55,11 @@ export function pitOnlyMoves(data: LapChartData): Map<number, Set<number>> {
         }
       }
     }
-    for (const [d, s] of swaps) {
-      if (s.pit > 0 && s.other === 0) {
-        if (!result.has(d)) result.set(d, new Set())
-        result.get(d)!.add(L)
-      }
+    for (const d of cur) {
+      const moved = data.columns[L].indexOf(d) !== prev.get(d)
+      if (!moved || (swaps.get(d)?.other ?? 0) > 0) continue
+      if (!result.has(d)) result.set(d, new Set())
+      result.get(d)!.add(L)
     }
   }
   return result
